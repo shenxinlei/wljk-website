@@ -258,6 +258,7 @@
                             </div>
                         </div>
                         <div class="box-content">
+                            <!-- 三种方式发送 -->
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-primary btn-lg">
                                     <input type="radio" name="options" id="option1" value="1" autocomplete="off" checked>
@@ -272,113 +273,143 @@
                                 </label>
                             </div>
                             <br><br><br><br>
+                            <!-- 深入讨论三种方式 -->
                             <div class="alert alert-info">
-                            <form class="form-inline" role="form" id="form1">
-                                <div class="form-group">
-                                    <label class="form-group" for="zhuanye">选择专业</label>
-                                    <select id="zhuanye" class="form-control">
-                                        <option>无线</option>
-                                        <option>传输</option>
-                                        <option>数据</option>
-                                        <option>交换</option>
-                                        <option>集客</option>
-                                        <option>跨专业</option>
-                                        <option>其他</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="level" class="form-group">级别</label>
-                                    <select name="" id="level" class="form-control">
-                                        <option value="">重大</option>
-                                        <option value="">严重</option> 
-                                        <option value="">内部</option>
-                                        <option value="">一般</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-group" for="moban">具体模板</label>
-                                    <select id="moban" class="form-control">
-                                        <option>模板一</option>
-                                        <option>模板二</option>
-                                        <option>模板三</option>
-                                        <option>模板四</option>
-                                    </select>
-                                </div>  
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="" checked>
-                                        是否需要值班长审核
-                                    </label>
-                                </div>
-                                <br><br>
-                                <div class="form-group">
-                                    <label for="textarea1" class="form-group">短信编辑模板</label>
-                                    <textarea id="textarea1" class="form-control" cols="100" rows="10">【重大故障信息】**:**  ****（填写“厂商+BSC名称”/或“端局网元名称＋下挂＋厂商＋RNC名称”）信令全阻，故障主要影响**地区**业务。现**单位处理中，网运中心已向客服前台进行故障信息发布，将密切跟踪故障处理进展，目前未收到前台批量投诉/目前收到批量投诉**件。故障处理责任人：单位+名字+电话/单位+名字+电话、故障处理联系人：单位+名字+电话/单位+名字+电话；网运中心协调责任人：名字+电话。请维护单位在抢修过程中确保人身安全。当班值班长：XXX（网络运行管理中心）
-                                    </textarea>
-                                </div>
-                                <br><br>
-                                <button type="submit" class="btn btn-primary send">发送短信</button>
-                            </form>
-                            <form class="form-inline" role="form" id="form2" style="display:none">
-                                <div class="form-group">
-                                    <label class="form-group" for="zhuanye2">选择专业</label>
-                                    <select id="zhuanye2" class="form-control">
-                                        <option value="">所有专业</option>
-                                        <option>无线</option>
-                                        <option>传输</option>
-                                        <option>数据</option>
-                                        <option>交换</option>
-                                        <option>集客</option>
-                                        <option>跨专业</option>
-                                        <option>其他</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="level2" class="form-group">级别</label>
-                                    <select name="" id="level2" class="form-control">
-                                        <option value="">所有</option>
-                                        <option value="">重大</option>
-                                        <option value="">严重</option> 
-                                        <option value="">内部</option>
-                                        <option value="">一般</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="dtp_input3" class="col-sm-3 control-label" style="line-height:250%">起始日</label>
-                                    <div class="input-group date formDate col-sm-9" data-link-field="dtp_input3">
-                                        <input class="form-control" size="16" type="text" value="" readonly>
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                <!-- 第一种方式 -->
+                                <form class="form-inline" role="form" id="form1">
+                                    <div class="form-group">
+                                        <label class="form-group" for="zhuanye">选择专业</label>
+                                        <select id="zhuanye" class="form-control">
+                                            <option>无线</option>
+                                            <option>传输</option>
+                                            <option>数据</option>
+                                            <option>交换</option>
+                                            <option>集客</option>
+                                            <option>跨专业</option>
+                                            <option value="">投诉</option>
+                                            <option>其他</option>
+                                        </select>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="dtp_input4" class="col-sm-3 control-label" style="line-height:250%">结束日</label>
-                                    <div class="input-group date formDate col-sm-9" data-link-field="dtp_input4">
-                                        <input class="form-control" size="16" type="text" value="" readonly>
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                    <div class="form-group">
+                                        <label for="level" class="form-group">级别</label>
+                                        <select name="" id="level" class="form-control">
+                                            <option value="">重大</option>
+                                            <option value="">严重</option> 
+                                            <option value="">内部</option>
+                                            <option value="">一般</option>
+                                        </select>
                                     </div>
-                                </div>
-                                <br><br>
-                                <div class="form-group">
-                                    <label for="keywords">关键字查询</label>
-                                    <input type="text" class="form-control" id="keywords" placeholder="如果没有可以不填">
-                                </div>
-                                <button type="submit" class="btn btn-primary">查询历史记录</button>
-                            </form>
-                            <form action="" role="form" id="form3" style="display:none">
-                                <div class="form-group">
-                                    <label for="textarea3">请自由编写短信</label>
-                                    <textarea id="textarea3" class="form-control" cols="100" rows="10" placeholder="请自由编写短信"></textarea>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" checked>是否需要值班长审核
-                                    </label>
-                                </div>
-                                <button type="submit" class="btn btn-primary send">发送短信</button>
-                            </form>          
-                        </div>
+                                    <div class="form-group">
+                                        <label class="form-group" for="moban">具体模板</label>
+                                        <select id="moban" class="form-control">
+                                            <option>模板一</option>
+                                            <option>模板二</option>
+                                            <option>模板三</option>
+                                            <option>模板四</option>
+                                        </select>
+                                    </div>  
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value="" checked>
+                                            是否需要值班长审核
+                                        </label>
+                                    </div>
+                                    <br><br>
+                                    <div class="form-group">
+                                        <label for="textarea1" class="form-group">短信编辑模板</label>
+                                        <textarea id="textarea1" class="form-control" cols="100" rows="10">【重大故障信息】**:**  ****（填写“厂商+BSC名称”/或“端局网元名称＋下挂＋厂商＋RNC名称”）信令全阻，故障主要影响**地区**业务。现**单位处理中，网运中心已向客服前台进行故障信息发布，将密切跟踪故障处理进展，目前未收到前台批量投诉/目前收到批量投诉**件。故障处理责任人：单位+名字+电话/单位+名字+电话、故障处理联系人：单位+名字+电话/单位+名字+电话；网运中心协调责任人：名字+电话。请维护单位在抢修过程中确保人身安全。当班值班长：XXX（网络运行管理中心）
+                                        </textarea>
+                                    </div>
+                                    <br><br>
+                                    <button type="submit" class="btn btn-primary send">发送短信</button>
+                                </form>
+                                <!-- 第二种方式先要查询 -->
+                                <form class="form-inline" role="form" id="form2" style="display:none">
+                                    <div class="form-group">
+                                        <label class="form-group" for="zhuanye2">选择专业</label>
+                                        <select id="zhuanye2" class="form-control">
+                                            <option value="">所有专业</option>
+                                            <option>无线</option>
+                                            <option>传输</option>
+                                            <option>数据</option>
+                                            <option>交换</option>
+                                            <option>集客</option>
+                                            <option>跨专业</option>
+                                            <option value="">投诉</option>
+                                            <option>其他</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="level2" class="form-group">级别</label>
+                                        <select name="" id="level2" class="form-control">
+                                            <option value="">所有</option>
+                                            <option value="">重大</option>
+                                            <option value="">严重</option> 
+                                            <option value="">内部</option>
+                                            <option value="">一般</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dtp_input3" class="col-sm-3 control-label" style="line-height:250%">起始日</label>
+                                        <div class="input-group date formDate col-sm-9" data-link-field="dtp_input3">
+                                            <input class="form-control" size="16" type="text" value="" readonly>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dtp_input4" class="col-sm-3 control-label" style="line-height:250%">结束日</label>
+                                        <div class="input-group date formDate col-sm-9" data-link-field="dtp_input4">
+                                            <input class="form-control" size="16" type="text" value="" readonly>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                    <div class="form-group">
+                                        <label for="keywords">关键字查询</label>
+                                        <input type="text" class="form-control" id="keywords" placeholder="如果没有可以不填">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">查询历史记录</button>
+                                </form>
+                                <!-- 第三种方式直接了当 -->
+                                <form action="" role="form" id="form3" style="display:none" class="form-inline">
+                                    <div class="form-group">
+                                        <label class="form-group" for="zhuanye3">选择专业</label>
+                                        <select id="zhuanye3" class="form-control">
+                                            <option>无线</option>
+                                            <option>传输</option>
+                                            <option>数据</option>
+                                            <option>交换</option>
+                                            <option>集客</option>
+                                            <option>跨专业</option>
+                                            <option value="">投诉</option>
+                                            <option>其他</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="level3" class="form-group">级别</label>
+                                        <select name="" id="level3" class="form-control">
+                                            <option value="">重大</option>
+                                            <option value="">严重</option> 
+                                            <option value="">内部</option>
+                                            <option value="">一般</option>
+                                        </select>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" checked>是否需要值班长审核
+                                        </label>
+                                    </div>
+                                    <br><br>
+                                    <div class="form-group">
+                                        <label for="textarea3">请自由编写短信</label>
+                                        <textarea id="textarea3" class="form-control" cols="100" rows="10" placeholder="请自由编写短信"></textarea>
+                                    </div>
+                                    <br><br>
+                                    <button type="submit" class="btn btn-primary send">发送短信</button>
+                                </form>          
+                            </div>
                         <!-- 通过历史预警编辑，查询出来的记录放在这里面 -->
                         <div class="row" style="display:none" id="table1">
                             <div class="box col-md-12">
@@ -539,7 +570,6 @@
             </div>
         </div>
     </div>
-
     <!-- 联系我们 -->
     <div class="row">
         <div class="col-md-2 col-lg-3 col-sm-12 col-xs-12 email-subscription-footer">
@@ -562,7 +592,6 @@
             </div>
         </div>
     </div>
-
     <br><br><br><br><br>
 	<!-- 页面底部 页脚-->
     <div class="container">
@@ -575,11 +604,9 @@
             </p>
         </footer>
     </div>
-
-
     <!-- 模态框 获取该短信并重新编辑功能-->
     <div class="modal fade" id="reEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-    data-backdrop="static">
+        data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form class="form-horizontal" role="form" id="reEditForm" method="post">
@@ -589,20 +616,45 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="contents" class="control-label">短信内容</label>
-                            <div>
+                            <label class="control-label col-sm-3" for="zhuanye-modal-1">选择专业</label>
+                            <div class="col-sm-9">
+                                <select id="zhuanye-modal-1" class="form-control">
+                                    <option>无线</option>
+                                    <option>传输</option>
+                                    <option>数据</option>
+                                    <option>交换</option>
+                                    <option>集客</option>
+                                    <option>跨专业</option>
+                                    <option value="">投诉</option>
+                                    <option>其他</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="level-modal-1" class="control-label col-sm-3">级别</label>
+                            <div class="col-sm-9">
+                                <select name="" id="level-modal-1" class="form-control">
+                                    <option value="">重大</option>
+                                    <option value="">严重</option> 
+                                    <option value="">内部</option>
+                                    <option value="">一般</option>
+                                </select>
+                            </div>                      
+                        </div>
+                        <br><br>
+                        <div class="form-group">
+                            <label for="contents" class="control-label col-sm-3">短信内容</label>
+                            <div class="col-sm-9">
                                 <textarea id="contents" name="contents" rows="10" class="form-control" placeholder="请输入内容"> 
                                 </textarea>
                             </div>
                         </div>
                         <br>
-                        <div class="form-group">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" checked>是否需要值班长审核
-                                </label>
-                            </div>
-                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" checked>是否需要值班长审核
+                            </label>
+                        </div>   
                     </div>
                     <div class="modal-footer">
                         <a href="#" class="btn btn-default" data-dismiss="modal">取消</a>
@@ -612,8 +664,6 @@
             </div>
         </div>
     </div>
-    
-
     <!-- 日期选择插件 -->
     <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8">
     </script>
