@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>网络监控自主研发系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="WLJK System">
+    <meta name="author" content="阿哥就是帅气-Todorov">
+    <script src="js/testIE.js"></script>
+
+	<!-- 初始皮肤css -->
+    <link id="bs-css" href="css/bootstrap-cerulean.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/charisma-app.css">
+    <!-- 日期选择css -->
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css"  media="screen">
+    <!-- 日历插件css -->
+    <link rel='stylesheet' href='css/fullcalendar.css'>
+    <link rel='stylesheet' href='css/fullcalendar.print.css' media='print'>
+    <!-- 其他css -->
+    <link rel='stylesheet' href='css/chosen.min.css'>
+    <link rel='stylesheet' href='css/colorbox.css'>
+    <link rel='stylesheet' href='css/responsive-tables.css'>
+    <link rel='stylesheet' href='css/jquery.noty.css'>
+    <link rel='stylesheet' href='css/noty_theme_default.css'>
+    <link rel='stylesheet' href='css/elfinder.min.css'>
+    <link rel='stylesheet' href='css/elfinder.theme.css'>
+    <link rel='stylesheet' href='css/jquery.iphone.toggle.css'>
+    <link rel='stylesheet' href='css/uploadify.css'>
+    <link rel='stylesheet' href='css/animate.min.css'>
+    <link rel='stylesheet' href='css/bootstrap-tour.min.css'>
+    
+
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <!-- bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- cookie -->
+    <script src="js/jquery.cookie.js"></script>
+    <!-- 验证是否有cookie 前置好处就是省去了页面的加载
+    <script src="js/iscookieset.js"></script> -->
+
+    <!-- 小图标-->
+    <link rel="shortcut icon" href="img/t111.ico">
+</head>
+<body>
+	<!--  导航栏开始 -->
+	<div class="navbar navbar-default" role="navigation">
+        <div class="navbar-inner">
+        <!-- 这是一个响应式按钮，在手机端可见，在大屏幕状态下隐藏-->
+		<button type="button" class="navbar-toggle pull-left animated flip">
+		    <span class="sr-only">Toggle navigation</span> 
+		    <span class="icon-bar"></span>
+		    <span class="icon-bar"></span>
+		    <span class="icon-bar"></span>
+		</button>
+		<!-- 这是放置logo的地方 -->
+        <a class="navbar-brand" href="main.html" style="width:300px"> 
+            <img alt="Logo" src="img/logo20.jpg" class="hidden-xs"/>
+            <span>WLJK-SDS</span>
+        </a>
+		<!-- 用户下拉按钮  -->
+		<div class="btn-group pull-right">
+		    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+		        <i class="glyphicon glyphicon-user"></i>
+		        <span class="hidden-sm hidden-xs"> <span id="who"></span>您好！</span>
+		        <span class="caret"></span>
+		    </button>
+		    <ul class="dropdown-menu">
+		        <li><a href="#"><span class="glyphicon glyphicon-asterisk"></span> 资料修改</a></li>
+		        <li class="divider"></li>
+		        <li><a href="#"><span class="glyphicon glyphicon-bookmark"></span> 个人收藏</a></li>
+                <li class="divider"></li>
+                <li><a id="quit" href="index.html"><span class="glyphicon glyphicon-hand-left"></span> 退出登录</a></li>
+		    </ul>
+		</div>
+		<!-- 主题选择  -->
+		<div class="btn-group pull-right theme-container animated tada">
+		    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+		        <i class="glyphicon glyphicon-tint"></i>
+		        <span class="hidden-sm hidden-xs"> 换一款皮肤试试</span>
+		        <span class="caret"></span>
+		    </button>
+		    <ul class="dropdown-menu" id="themes">
+		        <li><a data-value="classic" href="#"><i class="whitespace"></i> 经典色</a></li>
+		        <li><a data-value="cerulean" href="#"><i class="whitespace"></i> 海天蓝</a></li>
+		        <li><a data-value="cyborg" href="#"><i class="whitespace"></i> 半机械</a></li>
+                <li><a data-value="simplex" href="#"><i class="whitespace"></i> 简约派</a></li>
+		        <li><a data-value="darkly" href="#"><i class="whitespace"></i> 暗黑风</a></li>
+		        <li><a data-value="lumen" href="#"><i class="whitespace"></i> 流明光</a></li>
+		        <li><a data-value="slate" href="#"><i class="whitespace"></i> 页岩石</a></li>
+                <li><a data-value="spacelab" href="#"><i class="whitespace"></i> 空间站</a></li>
+		        <li><a data-value="united" href="#"><i class="whitespace"></i> 美利坚</a></li>
+		    </ul>
+		</div>
+		<!-- 欢迎访问 导航条下拉菜单-->	
+		<ul class="collapse navbar-collapse nav navbar-nav top-menu">
+		    <li>
+                <a href="#"><i class="glyphicon glyphicon-globe"></i> 监控bbs社区</a>
+            </li>
+		    <li class="dropdown">
+		        <a href="#" data-toggle="dropdown">
+		            <i class="glyphicon glyphicon-star"></i>各专业分区
+		            <span class="caret"></span>
+		        </a>
+			    <ul class="dropdown-menu" role="menu">
+    			    <li><a href="#">数据专区</a></li>
+    			    <li class="divider"></li>
+    			    <li><a href="#">传输专区</a></li>
+    			    <li class="divider"></li>
+    			    <li><a href="#">动环专区</a></li>
+    			    <li class="divider"></li>
+    			    <li><a href="#">投诉专区</a></li>
+			    </ul>
+			</li>
+			<!-- 搜索框 -->
+		    <li>
+		        <form class="navbar-search pull-left">
+		            <input placeholder="请输入要搜索的内容" 
+                    class="search-query form-control col-md-10" name="query" type="text">
+		        </form>
+		    </li>
+		</ul> 
+	    </div>
+    </div>
+	<!--  导航栏结束 -->
+	
+    <!--正文-->
+	<div class="ch-container">
+    	<div class="row">	
+            <!-- 正文左侧内容 -->
+        	<div class="col-sm-2 col-lg-2">
+            	<div class="sidebar-nav">
+                	<div class="nav-canvas">
+                    	<div class="nav-sm nav nav-stacked">
+                    	</div>
+                    	<ul class="nav nav-pills nav-stacked main-menu">
+                            <li class="nav-header">主要模块</li>
+                            <li>
+                            	<a class="ajax-link" href="main.html">
+                                    <i class="glyphicon glyphicon-home"></i><span> 要事汇总</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="otherSystem.html">
+                                    <i class="glyphicon glyphicon-tags"></i><span> 常用系统</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="resource.html">
+                                    <i class="glyphicon glyphicon-book"></i><span> 
+                                    资料库</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="transmissionExcel.html">
+                                    <i class="glyphicon glyphicon-retweet"></i><span> 
+                                    传输报表统计</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="resourceCorrigendum.html">
+                                    <i class=" glyphicon glyphicon-exclamation-sign"></i><span> 
+                                    资源勘误</span>
+                                </a>
+                            </li>
+                            <li>
+                            	<a class="ajax-link" href="messageBoard.html">
+                                    <i class="glyphicon glyphicon-eye-open"></i><span> 留言板</span>
+                                </a>
+                            </li>
+                            <li>
+                            	<a class="ajax-link" href="tools.html">
+                                    <i class="glyphicon glyphicon-edit"></i><span> 工具箱</span>
+                                </a>
+                            </li>
+                            <li class="accordion">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-list-alt"></i><span> 工程管理</span>
+                                </a>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="nightworkManagementAllOneDay.html"><i class="glyphicon glyphicon-pencil"></i> 当晚工程查询</a></li>
+                                    <li><a href="nightworkManagementAll.html"><i class="glyphicon glyphicon-facetime-video"></i> 历史工程查询</a></li>
+                                </ul>
+                            </li>
+                            <li class="accordion">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-adjust"></i><span> 大值班KPI</span>
+                                </a>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="dzb.html"><i class="glyphicon glyphicon-tag"></i> 每日KPI上报</a></li>
+                                    <li><a href="dazhibanmoban.html"><i class="glyphicon glyphicon-tag"></i> 大值班每月参考值修改</a></li>
+                                    <li><a href="dzbHistory.html"><i class="glyphicon glyphicon-tag"></i> KPI历史数据导出</a></li>
+                                </ul>
+                            </li>
+                            <!-- <li class="accordion">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-adjust"></i><span> 监控预警</span>
+                                </a>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="yujingfabu.html"><i class="glyphicon glyphicon-tag"></i> 预警发布</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-tag"></i> 预警跟踪</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-tag"></i> 预警恢复</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-tag"></i> 历史预警</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-tag"></i> 制定模板</a></li>
+                                </ul>
+                            </li> -->
+                            <li class="accordion">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-adjust"></i><span> 监控预警</span><span class="badge pull-right" title="有遗留请处理" data-toggle="tooltip" data-placement="right">!</span>
+                                </a>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="yujingfabu.html"><i class="glyphicon glyphicon-envelope"></i> 预警发布</a></li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="glyphicon glyphicon-envelope"></i> 遗留预警<span class="badge pull-right" title="当前遗留2预警" data-toggle="tooltip" data-placement="right">2</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="glyphicon glyphicon-envelope"></i> 预警审核<span class="badge pull-right" title="当前有1条消息待审核" data-toggle="tooltip" data-placement="right">1</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="glyphicon glyphicon-envelope"></i> 预警打分<span class="badge pull-right" title="当前有12条短信需打分" data-toggle="tooltip" data-placement="right">12</span>
+                                        </a>
+                                    </li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-envelope"></i> 历史预警</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-envelope"></i> 制定模板</a></li>
+                                </ul>
+                            </li>
+                    	</ul>
+                    	<label id="for-is-ajax" for="is-ajax">
+                    		<input id="is-ajax" type="checkbox"> Ajax(勾选可Ajax刷新)
+                    	</label>
+                	</div>
+            	</div>
+        	</div>
+        	<!-- 正文左侧内容结束 -->
+
+		    <!-- 此段代码意思为如果浏览器不支持script的代码，则显示以下内容 -->
+        	<noscript>
+            	<div class="alert alert-block col-md-12">
+                	<h4 class="alert-heading">严重警告！！！</h4>
+                	<p>你必须要有 <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a>才能体验本网站</p>
+            	</div>
+        	</noscript>
+
+		    <!-- 正文右侧内容 -->
+        	<div id="content" class="col-lg-10 col-sm-10">
+            	<!-- 面包屑导航 -->
+            	<div>
+    				<ul class="breadcrumb">
+        				<li><a href="#">主页</a></li>
+        				<li><a href="#">要事汇总</a></li>
+    				</ul>
+			    </div>
+			    <!--图形统计-->
+			    <div class="row">
+    				<div class="col-md-3 col-sm-3 col-xs-6">
+        				<a data-toggle="tooltip" title="6位新用户" class="well top-block" href="#">
+            				<i class="glyphicon glyphicon-user blue"></i>
+            				<div>总用户数</div>
+            				<div>107</div>
+            				<span class="notification">6</span>
+        				</a>
+    				</div>
+			    	<div class="col-md-3 col-sm-3 col-xs-6">
+			        	<a data-toggle="tooltip" title="14条新增告警" class="well top-block" href="#">
+			            	<i class="glyphicon glyphicon-star green"></i>
+			            	<div>全专业告警数量</div>
+			            	<div>2280</div>
+			            	<span class="notification green">14</span>
+			        	</a>
+			    	</div>
+    				<div class="col-md-3 col-sm-3 col-xs-6">
+        				<a data-toggle="tooltip" title="134张今日完成" class="well top-block" href="#">
+            				<i class="glyphicon glyphicon-shopping-cart yellow"></i>
+            				<div>本周已完成质检工单</div>
+            				<div>1320</div>
+            				<span class="notification yellow">134</span>
+        				</a>
+    				</div>
+			    	<div class="col-md-3 col-sm-3 col-xs-6">
+			        	<a data-toggle="tooltip" title="2封新邮件" class="well top-block" href="#">
+			            	<i class="glyphicon glyphicon-envelope red"></i>
+			            	<div>监控邮箱本周邮件</div>
+			            	<div>325</div>
+			            	<span class="notification red">2</span>
+			        	</a>
+			    	</div>
+			    </div>
+			    <!--新鲜资讯 -->
+			    <div class="row">
+    				<div class="box col-md-12">
+        				<div class="box-inner">
+            				<div class="box-header well">
+                				<h2><i class="glyphicon glyphicon-info-sign"></i> 监控新鲜资讯</h2>
+                				<div class="box-icon">
+                    				<a href="#" class="btn btn-setting btn-round btn-default" id="supervisorbutton">
+                                        <i class="glyphicon glyphicon-cog"></i>
+                            		</a>
+                    				<a href="#" class="btn btn-minimize btn-round btn-default">
+                                        <i class="glyphicon glyphicon-chevron-up"></i>
+                            		</a>
+                    				<a href="#" class="btn btn-close btn-round btn-default">
+                                        <i class="glyphicon glyphicon-remove"></i>
+                            		</a>
+                				</div>
+            				</div>
+            				<div class="box-content row">
+                				<div class="col-lg-6 col-md-12">
+                    				<h1>各位同事，大家好
+                                        <br>
+                        				<small>本系统于2016-3-25首次启动开发</small>
+                    				</h1>
+                    				<p>
+                                        本栏为系统管理员金培、顾蓓丽设置，目的旨在方便开展各项通知工作。也可以用作监控内部预警等短信发送公示栏，方便每位员工看到最新的故障处理进展。
+                                        <br>
+                                    </p>
+                    				<p>
+                                        <b>
+                                            PS：当前版本1.0.32，感谢大家在网站建设期间给予我们测试工作的支持
+                                            <br>
+                                            如有使用方面的需求或者建议，欢迎联系后端工程师-
+                                            <a href="#" data-toggle="popover" data-content="电话: 15121130194 邮箱: jiangqicheng@sh.chinamobile.com" title="联系方式">蒋器成</a>
+                                            <a href="#" data-toggle="popover" data-content="电话: 13761063936 邮箱: wangyinchao@sh.chinamobile.com" title="联系方式">王寅超</a>
+                                            <br>
+                                            如有对网站美化美观方面的需求或者建议，欢迎联系前端工程师-
+                                            <a href="#" data-toggle="popover" data-content="电话: 13917797109 邮箱: jiazhenghao@sh.chinamobile.com" title="联系方式">贾正皓</a>
+                                            <a href="#" data-toggle="popover" data-content="电话: 13564420192 邮箱: houboyong@sh.chinamobile.com" title="联系方式">侯伯勇</a>
+                                            <br>
+                                        </b>
+                            		</p>
+                    				<p class="center-block download-buttons">
+                        				<a href="###" 
+                                           class="btn btn-primary btn-md">
+                                           <i class="glyphicon glyphicon-backward glyphicon-white"></i>
+                                           前一条资讯
+                                        </a>
+                        				<a href="###" 
+                                           class="btn btn-default btn-md">
+                                           <i class="glyphicon glyphicon-download-alt"></i> 
+                                           下载到手机
+                                        </a>
+                                        <a href="###" 
+                                           class="btn btn-primary btn-md">
+                                           <i class="glyphicon glyphicon-forward glyphicon-white"></i>
+                                           后一条资讯
+                                        </a>
+                    				</p>
+                				</div>
+                                <div class="col-lg-6 col-md-12">
+                                    <div id="myCarousel" class="carousel slide">
+                                        <ol class="carousel-indicators">
+                                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                                        </ol>
+                                        <div class="carousel-inner">
+                                            <div class="item active" style="background:#223240">
+                                                <img src="img/slide1.png" alt="第一张">
+                                            </div>
+                                            <div class="item" style="background:#F5E4DC;">
+                                                <img src="img/slide2.jpg" alt="第二张">
+                                            </div>
+                                            <div class="item" style="background:#DE2A2D;">
+                                                <img src="img/slide3.jpg" alt="第三张">
+                                            </div>
+                                        </div>
+                                        <a href="#myCarousel" data-slide="prev" class="carousel-control left">
+                                            <span class="glyphicon glyphicon-chevron-left"></span>
+                                        </a>
+                                        <a href="#myCarousel" data-slide="next" class="carousel-control right">
+                                            <span class="glyphicon glyphicon-chevron-right"></span>
+                                        </a>
+                                    </div>
+                                </div>
+            				</div>
+        				</div>
+    				</div>
+		        </div>
+                <!-- 日历 -->
+                <div class="row">
+                    <div class="box col-md-12">
+                        <div class="box-inner">
+                            <div class="box-header well" data-original-title="">
+                                <h2><i class="glyphicon glyphicon-calendar"></i> 重要事件日历表</h2>
+                                <div class="box-icon">
+                                    <a href="#" class="btn btn-setting btn-round btn-default"><i
+                                    class="glyphicon glyphicon-cog"></i></a>
+                                    <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                    class="glyphicon glyphicon-chevron-up"></i></a>
+                                    <a href="#" class="btn btn-close btn-round btn-default"><i
+                                    class="glyphicon glyphicon-remove"></i></a>
+                                </div>
+                            </div>
+                            <div class="box-content">   
+                                <div id="calendar"></div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 小贴士 -->
+                <div class="row">
+                    <!-- 最近登录的用户 -->
+                    <div class="box col-md-4">
+                        <div class="box-inner">
+                            <div class="box-header well" data-original-title="">
+                                <h2><i class="glyphicon glyphicon-user"></i> 最近登录的用户</h2>
+                                <div class="box-icon">
+                                    <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                            class="glyphicon glyphicon-chevron-up"></i></a>
+                                    <a href="#" class="btn btn-close btn-round btn-default"><i
+                                            class="glyphicon glyphicon-remove"></i></a>
+                                </div>
+                            </div>
+                            <div class="box-content">
+                                <div class="box-content">
+                                    <ul class="dashboard-list">
+                                        <li>
+                                            <a href="#"><img class="dashboard-avatar" alt="臧逸飞"
+                                            src="img/zangyifei.png"></a>
+                                            <strong>昵称:</strong> <a href="#">臧逸飞
+                                            </a><br>
+                                            <strong>登录:</strong> 2016-3-26 18:00<br>
+                                            <strong>状态:</strong> 
+                                            <span class="label-success label label-default">在线</span>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img class="dashboard-avatar" alt="刘炎杰"
+                                            src="img/liuyanjie.png"></a>
+                                            <strong>昵称:</strong> <a href="#">刘炎杰
+                                            </a><br>
+                                            <strong>登录:</strong> 2016-3-26 17:31<br>
+                                            <strong>状态:</strong> 
+                                            <span class="label-default label label-danger">离线</span>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img class="dashboard-avatar" alt="俞大海"
+                                            src="img/yudahai.png"></a>
+                                            <strong>昵称:</strong> <a href="#">俞大海
+                                            </a><br>
+                                            <strong>登录:</strong> 2016-3-26 16:35<br>
+                                            <strong>状态:</strong> 
+                                            <span class="label-warning label label-default">值班</span>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img class="dashboard-avatar" alt="秦达"
+                                            src="img/qinda.jpg"></a>
+                                            <strong>昵称:</strong> <a href="#">秦达
+                                            </a><br>
+                                            <strong>登录:</strong> 2016-3-26 09:00<br>
+                                            <strong>状态:</strong> 
+                                            <span class="label label-info">离开</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 本周热门搜索 -->
+                    <div class="box col-md-4">
+                        <div class="box-inner">
+                            <div class="box-header well" data-original-title="">
+                                <h2><i class="glyphicon glyphicon-list"></i> 本周搜索排行榜</h2>
+                                <div class="box-icon">
+                                    <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                            class="glyphicon glyphicon-chevron-up"></i></a>
+                                    <a href="#" class="btn btn-close btn-round btn-default"><i
+                                            class="glyphicon glyphicon-remove"></i></a>
+                                </div>
+                            </div>
+                            <div class="box-content">
+                                <div class="box-content">
+                                    <ul class="dashboard-list">
+                                    <li>
+                                        <a href="#">
+                                            <i class="glyphicon glyphicon-arrow-up"></i>
+                                            <span class="green">01</span>
+                                            系统瘫痪
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="glyphicon glyphicon-arrow-up"></i>
+                                            <span class="red">02</span>
+                                            两会保障
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="glyphicon glyphicon-minus"></i>
+                                            <span class="blue">03</span>
+                                            培训
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="glyphicon glyphicon-arrow-down"></i>
+                                            <span class="yellow">04</span>
+                                            告警分析
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="glyphicon glyphicon-arrow-up"></i>
+                                            <span class="green">05</span>
+                                            网上学院
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="glyphicon glyphicon-arrow-down"></i>
+                                            <span class="red">06</span>
+                                            夜班费
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="glyphicon glyphicon-minus"></i>
+                                            <span class="blue">07</span>
+                                            EMOS3.5
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="glyphicon glyphicon-arrow-up"></i>
+                                            <span class="yellow">08</span>
+                                            短道速滑保障
+                                        </a>
+                                    </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 网管系统快速导航 -->
+                    <div class="box col-md-4">
+                        <div class="box-inner">
+                            <div class="box-header well" data-original-title="">
+                                <h2>
+                                    <i class="glyphicon glyphicon glyphicon-link"></i> 常用系统快速入口
+                                </h2>
+                                <div class="box-icon">
+                                    <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                            class="glyphicon glyphicon-chevron-up"></i></a>
+                                    <a href="#" class="btn btn-close btn-round btn-default"><i
+                                            class="glyphicon glyphicon-remove"></i></a>
+                                </div>
+                            </div>
+                            <div class="box-content  buttons">
+                                <p>
+                                    <button id="btn1" class="btn btn-default btn-lg">集中故障管理</button>
+                                    <button id="btn2" class="btn btn-primary btn-lg">集团EMOS</button>
+                                </p>
+                                <p>
+                                    <button id="btn3" class="btn btn-danger btn-lg">EMOS3.5</button>
+                                    <button id="btn4" class="btn btn-warning btn-lg">综资系统</button>
+                                </p>
+                                <p>
+                                    <button id="btn5" class="btn btn-success btn-lg">网投系统</button>
+                                    <button id="btn6" class="btn btn-info btn-lg">网管信息门户</button>
+                                </p>
+                                <p>
+                                    <button id="btn7" class="btn btn-inverse btn-default btn-lg">OA门户</button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 联系我们 -->
+    <div class="row">
+        <div class="col-md-2 col-lg-3 col-sm-12 col-xs-12 email-subscription-footer">
+            <div class="mc_embed_signup">
+                <form action="" method="" id="" name="" class="validate" target="" 
+                novalidate>
+                    <div>
+                        <label>欢迎加入我们</label>
+                        <input type="email" value="" name="EMAIL" class="email" 
+                        placeholder="请留下您的电子邮件" required>
+                        <!-- <div class="power_field" style="background-color:red">
+                            <input type="text" name="" tabindex="-1" value="">
+                        </div> -->
+                        <div class="clear">
+                            <input type="submit" value="订阅" 
+                            name="subscribe" class="button">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <br><br><br><br><br>
+	<!-- 页面底部 页脚-->
+    <div class="container">
+        <footer class="row">
+            <p class="col-md-8 col-sm-8 col-xs-12 copyright">版权所有&copy; 
+                <a href="###" target="_blank">上海移动网络管理中心网络监控部</a> 2016 - 2020
+            </p>
+            <p class="col-md-4 col-sm-4 col-xs-12 powered-by">技术支持: 
+                <a href="###">阿哥就是帅气&Todorov&Ubuntu</a>
+            </p>
+        </footer>
+    </div>
+
+
+    <!-- 模态框 管理员信息发布-->
+    <div class="modal fade" id="supervisor" tabindex="-1" role="dialog" aria-labelledby="
+        myModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-horizontal" role="form" id="publish-blackboard" method="post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                        <h3>重要通知发布</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="headline" class="col-sm-2 control-label">标题</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="headline" name="headline" placeholder="请输入标题">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contents" class="col-sm-2 control-label">内容</label>
+                            <div class="col-sm-10">
+                                <textarea id="contents" name="contents" rows="10" class="form-control" placeholder="请输入内容"> 
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dtp_input1" class="col-sm-3 control-label">公告起始时间</label>
+                            <div class="input-group date form_datetime col-sm-5" 
+                            data-link-field="dtp_input1">
+                                <input class="form-control" size="16" type="text" value="" readonly>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                            </div>
+                            <input type="hidden" id="dtp_input1" name="dtp_input1" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="dtp_input2" class="col-sm-3 control-label">公告结束时间</label>
+                            <div class="input-group date form_datetime col-sm-5"   
+                            data-link-field="dtp_input2">
+                                <input class="form-control" size="16" type="text" value="" readonly>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                            </div>
+                            <input type="hidden" id="dtp_input2" value="">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-default" data-dismiss="modal">取消</a>
+                        <button type="submit" class="btn btn-primary" id="submitToBlackboard">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 日期选择插件 -->
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8">
+    </script>
+    <script type="text/javascript" src="js/locales/bootstrap-datetimepicker.zh-CN.js" 
+    charset="UTF-8"></script>
+    <!--表单增强插件-->
+    <script src="js/jquery.form.js"></script>
+    <!-- 日历插件 -->
+    <script src='js/moment.min.js'></script>
+    <script src='js/fullcalendar.min.js'></script>
+    <!-- 选择下拉增强插件-->
+    <script src="js/chosen.jquery.min.js"></script>
+    <!-- 数据表格插件 -->
+    <script src='js/jquery.dataTables.min.js'></script>
+    <!-- tour plugin -->
+    <script src="js/bootstrap-tour.min.js"></script>
+    <!-- plugin for gallery image view -->
+    <script src="js/jquery.colorbox-min.js"></script>
+    <!-- notification plugin -->
+    <script src="js/jquery.noty.js"></script>
+    <!-- library for making tables responsive -->
+    <script src="js/responsive-tables.js"></script>
+    <!-- star rating plugin -->
+    <script src="js/jquery.raty.min.js"></script>
+    <!-- for iOS style toggle switch -->
+    <script src="js/jquery.iphone.toggle.js"></script>
+    <!-- autogrowing textarea plugin -->
+    <script src="js/jquery.autogrow-textarea.js"></script>
+    <!-- multiple file upload plugin -->
+    <script src="js/jquery.uploadify-3.1.min.js"></script>
+    <!-- history.js for cross-browser state change on ajax -->
+    <script src="js/jquery.history.js"></script>
+    <!-- 所有页面共有的需启动初始化的js -->
+    <script src="js/common.js"></script>
+    <!-- 最终的独立js -->
+    <script src="jsonce/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>网络监控自主研发系统</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="WLJK System">
+    <meta name="author" content="阿哥就是帅气-Todorov">
+    <script src="js/testIE.js"></script>
+
+	<!-- 初始皮肤css -->
+    <link id="bs-css" href="css/bootstrap-cerulean.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/charisma-app.css">
+    <!-- 日期选择css -->
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css"  media="screen">
+    <!-- 日历插件css -->
+    <link rel='stylesheet' href='css/fullcalendar.css'>
+    <link rel='stylesheet' href='css/fullcalendar.print.css' media='print'>
+    <!-- 其他css -->
+    <link rel='stylesheet' href='css/chosen.min.css'>
+    <link rel='stylesheet' href='css/colorbox.css'>
+    <link rel='stylesheet' href='css/responsive-tables.css'>
+    <link rel='stylesheet' href='css/jquery.noty.css'>
+    <link rel='stylesheet' href='css/noty_theme_default.css'>
+    <link rel='stylesheet' href='css/elfinder.min.css'>
+    <link rel='stylesheet' href='css/elfinder.theme.css'>
+    <link rel='stylesheet' href='css/jquery.iphone.toggle.css'>
+    <link rel='stylesheet' href='css/uploadify.css'>
+    <link rel='stylesheet' href='css/animate.min.css'>
+    <link rel='stylesheet' href='css/bootstrap-tour.min.css'>
+    
+
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <!-- bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- cookie -->
+    <script src="js/jquery.cookie.js"></script>
+    <!-- 验证是否有cookie 前置好处就是省去了页面的加载
+    <script src="js/iscookieset.js"></script> -->
+
+    <!-- 小图标-->
+    <link rel="shortcut icon" href="img/t111.ico">
+</head>
+<body>
+	<!--  导航栏开始 -->
+	<div class="navbar navbar-default" role="navigation">
+        <div class="navbar-inner">
+        <!-- 这是一个响应式按钮，在手机端可见，在大屏幕状态下隐藏-->
+		<button type="button" class="navbar-toggle pull-left animated flip">
+		    <span class="sr-only">Toggle navigation</span> 
+		    <span class="icon-bar"></span>
+		    <span class="icon-bar"></span>
+		    <span class="icon-bar"></span>
+		</button>
+		<!-- 这是放置logo的地方 -->
+        <a class="navbar-brand" href="index.html" style="width:300px"> 
+            <img alt="Logo" src="img/logo20.jpg" class="hidden-xs"/>
+            <span>WLJK-SDS</span>
+        </a>
+		<!-- 用户下拉按钮  -->
+		<div class="btn-group pull-right">
+		    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+		        <i class="glyphicon glyphicon-user"></i>
+		        <span class="hidden-sm hidden-xs"> wljk您好！</span>
+		        <span class="caret"></span>
+		    </button>
+		    <ul class="dropdown-menu">
+		        <li><a href="#"><span class="glyphicon glyphicon-asterisk"></span> 资料修改</a></li>
+		        <li class="divider"></li>
+		        <li><a href="#"><span class="glyphicon glyphicon-bookmark"></span> 个人收藏</a></li>
+                <li class="divider"></li>
+                <li><a href="login.html"><span class="glyphicon glyphicon-hand-left"></span> 退出登录</a></li>
+		    </ul>
+		</div>
+		<!-- 主题选择  -->
+		<div class="btn-group pull-right theme-container animated tada">
+		    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+		        <i class="glyphicon glyphicon-tint"></i>
+		        <span class="hidden-sm hidden-xs"> 换一款皮肤试试</span>
+		        <span class="caret"></span>
+		    </button>
+		    <ul class="dropdown-menu" id="themes">
+		        <li><a data-value="classic" href="#"><i class="whitespace"></i> 经典色</a></li>
+		        <li><a data-value="cerulean" href="#"><i class="whitespace"></i> 海天蓝</a></li>
+		        <li><a data-value="cyborg" href="#"><i class="whitespace"></i> 半机械</a></li>
+                <li><a data-value="simplex" href="#"><i class="whitespace"></i> 简约派</a></li>
+		        <li><a data-value="darkly" href="#"><i class="whitespace"></i> 暗黑风</a></li>
+		        <li><a data-value="lumen" href="#"><i class="whitespace"></i> 流明光</a></li>
+		        <li><a data-value="slate" href="#"><i class="whitespace"></i> 页岩石</a></li>
+                <li><a data-value="spacelab" href="#"><i class="whitespace"></i> 空间站</a></li>
+		        <li><a data-value="united" href="#"><i class="whitespace"></i> 美利坚</a></li>
+		    </ul>
+		</div>
+		<!-- 欢迎访问 导航条下拉菜单-->	
+		<ul class="collapse navbar-collapse nav navbar-nav top-menu">
+		    <li>
+                <a href="#"><i class="glyphicon glyphicon-globe"></i> 监控bbs社区</a>
+            </li>
+		    <li class="dropdown">
+		        <a href="#" data-toggle="dropdown">
+		            <i class="glyphicon glyphicon-star"></i>各专业分区
+		            <span class="caret"></span>
+		        </a>
+			    <ul class="dropdown-menu" role="menu">
+    			    <li><a href="#">数据专区</a></li>
+    			    <li class="divider"></li>
+    			    <li><a href="#">传输专区</a></li>
+    			    <li class="divider"></li>
+    			    <li><a href="#">动环专区</a></li>
+    			    <li class="divider"></li>
+    			    <li><a href="#">投诉专区</a></li>
+			    </ul>
+			</li>
+			<!-- 搜索框 -->
+		    <li>
+		        <form class="navbar-search pull-left">
+		            <input placeholder="请输入要搜索的内容" 
+                    class="search-query form-control col-md-10" name="query" type="text">
+		        </form>
+		    </li>
+		</ul> 
+	    </div>
+    </div>
+	<!--  导航栏结束 -->
+	
+    <!--正文-->
+	<div class="ch-container">
+    	<div class="row">	
+            <!-- 正文左侧内容 -->
+            <div class="col-sm-2 col-lg-2">
+                <div class="sidebar-nav">
+                    <div class="nav-canvas">
+                        <div class="nav-sm nav nav-stacked">
+                        </div>
+                        <ul class="nav nav-pills nav-stacked main-menu">
+                            <li class="nav-header">主要模块</li>
+                            <li>
+                                <a class="ajax-link" href="main.html">
+                                    <i class="glyphicon glyphicon-home"></i><span> 要事汇总</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="otherSystem.html">
+                                    <i class="glyphicon glyphicon-tags"></i><span> 常用系统</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="resource.html">
+                                    <i class="glyphicon glyphicon-book"></i><span> 
+                                    资料库</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="transmissionExcel.html">
+                                    <i class="glyphicon glyphicon-retweet"></i><span> 
+                                    传输报表统计</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="resourceCorrigendum.html">
+                                    <i class=" glyphicon glyphicon-exclamation-sign"></i><span> 
+                                    资源勘误</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="messageBoard.html">
+                                    <i class="glyphicon glyphicon-eye-open"></i><span> 留言板</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="tools.html">
+                                    <i class="glyphicon glyphicon-edit"></i><span> 工具箱</span>
+                                </a>
+                            </li>
+                            <li class="accordion">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-list-alt"></i><span> 工程管理</span>
+                                </a>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="nightworkManagementAllOneDay.html"><i class="glyphicon glyphicon-pencil"></i> 当晚工程查询</a></li>
+                                    <li><a href="nightworkManagementAll.html"><i class="glyphicon glyphicon-facetime-video"></i> 历史工程查询</a></li>
+                                </ul>
+                            </li>
+                            <li class="accordion">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-adjust"></i><span> 大值班KPI</span>
+                                </a>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="dzb.html"><i class="glyphicon glyphicon-tag"></i> 每日KPI上报</a></li>
+                                    <li><a href="dazhibanmoban.html"><i class="glyphicon glyphicon-tag"></i> 大值班每月参考值修改</a></li>
+                                    <li><a href="dzbHistory.html"><i class="glyphicon glyphicon-tag"></i> KPI历史数据导出</a></li>
+                                </ul>
+                            </li>
+                            <li class="accordion">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-adjust"></i><span> 监控预警</span>
+                                </a>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="yujingfabu.html"><i class="glyphicon glyphicon-tag"></i> 预警发布</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-tag"></i> 预警跟踪</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-tag"></i> 预警恢复</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-tag"></i> 历史预警</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-tag"></i> 制定模板</a></li>
+                                </ul>
+                            </li>
+                            
+                            
+                        </ul>
+                        <label id="for-is-ajax" for="is-ajax">
+                            <input id="is-ajax" type="checkbox"> Ajax(勾选可Ajax刷新)
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!-- 正文左侧内容结束 -->
+
+		    <!-- 此段代码意思为如果浏览器不支持script的代码，则显示以下内容 -->
+        	<noscript>
+            	<div class="alert alert-block col-md-12">
+                	<h4 class="alert-heading">严重警告！！！</h4>
+                	<p>你必须要有 <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a>才能体验本网站</p>
+            	</div>
+        	</noscript>
+
+		    <!-- 正文右侧内容 -->
+        	<div id="content" class="col-lg-10 col-sm-10">
+            	<!-- 面包屑导航 -->
+            	<div>
+    				<ul class="breadcrumb">
+        				<li><a href="#">主页</a></li>
+        				<li><a href="#">常用系统</a></li>
+    				</ul>
+			    </div>
+                <!--常用系统链接-->
+                <div class="row">
+                    <div class="box col-md-12">
+                        <div class="box-inner">
+                            <div class="box-header well" data-original-title="">
+                                <h2><i class="glyphicon glyphicon-user"></i> 常用系统列表
+                                </h2>
+                                <div class="box-icon">
+                                    <a href="#" id="plusURL" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+                                    <a href="#" class="btn btn-minimize btn-round btn-default"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                                </div>
+                            </div>
+                        <div class="box-content">
+                            <table id="otherSystem" class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                                <thead>
+                                    <tr>
+                                        <th>系统名</th>
+                                        <th>网址</th>
+                                        <th>用户名</th>
+                                        <th>密码</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>集中故障管理系统</td>
+                                        <td class="center"><a href="http://www.baidu.com" target="_blank">http://10.221.23.32</a></td>
+                                        <td class="center">wljk_jh</td>
+                                        <td class="center">
+                                            <span class="label-success label label-danger">Wangguan@135</span>
+                                        </td>
+                                        <td class="center">
+                                            <a class="btn btn-success" href="#">
+                                                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                                打开
+                                            </a>
+                                            <a class="btn btn-info edit" href="#">
+                                                <i class="glyphicon glyphicon-edit icon-white"></i>
+                                                修改
+                                            </a>
+                                            <a class="btn btn-danger" href="#">
+                                                <i class="glyphicon glyphicon-trash icon-white"></i>
+                                                删除
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>OA系统</td>
+                                        <td class="center"><a href="http://www.baidu.com" target="_blank">http://10.221.13.32</a></td>
+                                        <td class="center">wangguanwljkb</td>
+                                        <td class="center">
+                                            <span class="label-success label label-danger">mobiles9</span>
+                                        </td>
+                                        <td class="center">
+                                            <a class="btn btn-success" href="#">
+                                                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                                打开
+                                            </a>
+                                            <a class="btn btn-info edit" href="#">
+                                                <i class="glyphicon glyphicon-edit icon-white"></i>
+                                                修改
+                                            </a>
+                                            <a class="btn btn-danger" href="#">
+                                                <i class="glyphicon glyphicon-trash icon-white"></i>
+                                                删除
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>东信告警监控台</td>
+                                        <td class="center"><a href="http://www.baidu.com" target="_blank">http://10.221.15.32</a></td>
+                                        <td class="center">wljk</td>
+                                        <td class="center">
+                                            <span class="label-success label label-danger">wljk#123</span>
+                                        </td>
+                                        <td class="center">
+                                            <a class="btn btn-success" href="#">
+                                                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                                打开
+                                            </a>
+                                            <a class="btn btn-info edit" href="#">
+                                                <i class="glyphicon glyphicon-edit icon-white"></i>
+                                                修改
+                                            </a>
+                                            <a class="btn btn-danger" href="#">
+                                                <i class="glyphicon glyphicon-trash icon-white"></i>
+                                                删除
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>话务网管</td>
+                                        <td class="center"><a href="http://www.baidu.com" target="_blank">http://110.221.13.32</a></td>
+                                        <td class="center">wljk</td>
+                                        <td class="center">
+                                            <span class="label-success label label-danger">wljk#123</span>
+                                        </td>
+                                        <td class="center">
+                                            <a class="btn btn-success" href="#">
+                                                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                                打开
+                                            </a>
+                                            <a class="btn btn-info edit" href="#">
+                                                <i class="glyphicon glyphicon-edit icon-white"></i>
+                                                修改
+                                            </a>
+                                            <a class="btn btn-danger" href="#">
+                                                <i class="glyphicon glyphicon-trash icon-white"></i>
+                                                删除
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>集团EMOS</td>
+                                        <td class="center"><a href="http://www.baidu.com" target="_blank">http://89.32.32.31</a></td>
+                                        <td class="center">sh_chenli</td>
+                                        <td class="center">
+                                            <span class="label-success label label-danger">Password5</span>
+                                        </td>
+                                        <td class="center">
+                                            <a class="btn btn-success" href="#">
+                                                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                                打开
+                                            </a>
+                                            <a class="btn btn-info edit" href="#">
+                                                <i class="glyphicon glyphicon-edit icon-white"></i>
+                                                修改
+                                            </a>
+                                            <a class="btn btn-danger" href="#">
+                                                <i class="glyphicon glyphicon-trash icon-white"></i>
+                                                删除
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>OA邮箱系统</td>
+                                        <td class="center"><a href="http://www.baidu.com" target="_blank">http://10.221.14.32</a></td>
+                                        <td class="center">wangguanwljkb</td>
+                                        <td class="center">
+                                            <span class="label-success label label-danger">mobiles9</span>
+                                        </td>
+                                        <td class="center">
+                                            <a class="btn btn-success" href="#">
+                                                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                                打开
+                                            </a>
+                                            <a class="btn btn-info edit" href="#">
+                                                <i class="glyphicon glyphicon-edit icon-white"></i>
+                                                修改
+                                            </a>
+                                            <a class="btn btn-danger" href="#">
+                                                <i class="glyphicon glyphicon-trash icon-white"></i>
+                                                删除
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>传输PTN二平面</td>
+                                        <td class="center"><a href="http://www.baidu.com" target="_blank">http://10.221.155.32</a></td>
+                                        <td class="center">wljkb</td>
+                                        <td class="center">
+                                            <span class="label-success label label-danger">t1jds</span>
+                                        </td>
+                                        <td class="center">
+                                            <a class="btn btn-success" href="#">
+                                                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                                打开
+                                            </a>
+                                            <a class="btn btn-info edit" href="#">
+                                                <i class="glyphicon glyphicon-edit icon-white"></i>
+                                                修改
+                                            </a>
+                                            <a class="btn btn-danger" href="#">
+                                                <i class="glyphicon glyphicon-trash icon-white"></i>
+                                                删除
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>投诉查询系统</td>
+                                        <td class="center"><a href="http://www.baidu.com" target="_blank">http://110.221.13.32</a></td>
+                                        <td class="center">tousu</td>
+                                        <td class="center">
+                                            <span class="label-success label label-danger">123</span>
+                                        </td>
+                                        <td class="center">
+                                            <a class="btn btn-success" href="#">
+                                                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                                打开
+                                            </a>
+                                            <a class="btn btn-info edit" href="#">
+                                                <i class="glyphicon glyphicon-edit icon-white"></i>
+                                                修改
+                                            </a>
+                                            <a class="btn btn-danger" href="#">
+                                                <i class="glyphicon glyphicon-trash icon-white"></i>
+                                                删除
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>淘宝</td>
+                                        <td class="center"><a href="http://www.taobao.com" target="_blank">http://www.taobao.com</a></td>
+                                        <td class="center">jiazhenghao</td>
+                                        <td class="center">
+                                            <span class="label-success label label-danger">Wsrmm!748</span>
+                                        </td>
+                                        <td class="center">
+                                            <a class="btn btn-success" href="#">
+                                                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                                打开
+                                            </a>
+                                            <a class="btn btn-info edit" href="#">
+                                                <i class="glyphicon glyphicon-edit icon-white"></i>
+                                                修改
+                                            </a>
+                                            <a class="btn btn-danger" href="#">
+                                                <i class="glyphicon glyphicon-trash icon-white"></i>
+                                                删除
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>直播吧</td>
+                                        <td class="center"><a href="http://zhibo8.cc" target="_blank">http://zhibo8.cc</a></td>
+                                        <td class="center">无</td>
+                                        <td class="center">
+                                            <span class="label-success label label-danger">无</span>
+                                        </td>
+                                        <td class="center">
+                                            <a class="btn btn-success" href="#">
+                                                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                                打开
+                                            </a>
+                                            <a class="btn btn-info edit" href="#">
+                                                <i class="glyphicon glyphicon-edit icon-white"></i>
+                                                修改
+                                            </a>
+                                            <a class="btn btn-danger" href="#">
+                                                <i class="glyphicon glyphicon-trash icon-white"></i>
+                                                删除
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>JQuery官网</td>
+                                        <td class="center"><a href="http://jquery.com/" target="_blank">http://jquery.com/</a></td>
+                                        <td class="center">无</td>
+                                        <td class="center">
+                                            <span class="label-success label label-danger">无</span>
+                                        </td>
+                                        <td class="center">
+                                            <a class="btn btn-success" href="#">
+                                                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                                打开
+                                            </a>
+                                            <a class="btn btn-info edit" href="#">
+                                                <i class="glyphicon glyphicon-edit icon-white"></i>
+                                                修改
+                                            </a>
+                                            <a class="btn btn-danger" href="#">
+                                                <i class="glyphicon glyphicon-trash icon-white"></i>
+                                                删除
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>FM2016</td>
+                                        <td class="center"><a href="http://fm2016.wemvp.com/" target="_blank">http://fm2016.com/</a></td>
+                                        <td class="center">jiazhenghao</td>
+                                        <td class="center">
+                                            <span class="label-success label label-danger">13917797109abc</span>
+                                        </td>
+                                        <td class="center">
+                                            <a class="btn btn-success" href="#">
+                                                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                                打开
+                                            </a>
+                                            <a class="btn btn-info edit" href="#">
+                                                <i class="glyphicon glyphicon-edit icon-white"></i>
+                                                修改
+                                            </a>
+                                            <a class="btn btn-danger" href="#">
+                                                <i class="glyphicon glyphicon-trash icon-white"></i>
+                                                删除
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>爱奇艺</td>
+                                        <td class="center"><a href="http://www.iqiyi.com/" target="_blank">http://www.iqiyi.com/</a></td>
+                                        <td class="center">test1</td>
+                                        <td class="center">
+                                            <span class="label-success label label-danger">tt231</span>
+                                        </td>
+                                        <td class="center">
+                                            <a class="btn btn-success" href="#">
+                                                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                                打开
+                                            </a>
+                                            <a class="btn btn-info edit" href="#">
+                                                <i class="glyphicon glyphicon-edit icon-white"></i>
+                                                修改
+                                            </a>
+                                            <a class="btn btn-danger" href="#">
+                                                <i class="glyphicon glyphicon-trash icon-white"></i>
+                                                删除
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 联系我们 -->
+    <div class="row">
+        <div class="col-md-2 col-lg-3 col-sm-12 col-xs-12 email-subscription-footer">
+            <div class="mc_embed_signup">
+                <form action="" method="" id="" name="" class="validate" target="" 
+                novalidate>
+                    <div>
+                        <label>欢迎加入我们</label>
+                        <input type="email" value="" name="EMAIL" class="email" 
+                        placeholder="请留下您的电子邮件" required>
+                        <!-- <div class="power_field" style="background-color:red">
+                            <input type="text" name="" tabindex="-1" value="">
+                        </div> -->
+                        <div class="clear">
+                            <input type="submit" value="订阅" 
+                            name="subscribe" class="button">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <br><br><br><br><br>
+	<!-- 页面底部 页脚-->
+    <div class="container">
+        <footer class="row">
+            <p class="col-md-8 col-sm-8 col-xs-12 copyright">版权所有&copy; 
+                <a href="###" target="_blank">上海移动网络管理中心网络监控部</a> 2016 - 2020
+            </p>
+            <p class="col-md-4 col-sm-4 col-xs-12 powered-by">技术支持: 
+                <a href="###">阿哥就是帅气&Todorov&Ubuntu</a>
+            </p>
+        </footer>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="
+        myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3>添加你想要的网址</h3>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label for="system" class="col-sm-2 control-label">系统名称</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="system" 
+                                placeholder="请输入系统名称">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="url" class="col-sm-2 control-label">网址</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="url" 
+                                placeholder="请输入网址">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="username" class="col-sm-2 control-label">用户名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="username" 
+                                placeholder="请输入用户名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-sm-2 control-label">密码</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="password" 
+                                placeholder="请输入密码">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dept" class="col-sm-2 control-label">专业</label>
+                            <div class="col-sm-10" style="padding-top:5px">
+                                <input type="checkbox" name="major" value="1">交换 &nbsp;
+                                <input type="checkbox" name="major" value="2">数据 &nbsp;
+                                <input type="checkbox" name="major" value="3">无线 &nbsp;
+                                <input type="checkbox" name="major" value="4">传输 &nbsp;
+                                <input type="checkbox" name="major" value="5">动力 &nbsp;
+                                <input type="checkbox" name="major" value="6">投诉 &nbsp;
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-default" data-dismiss="modal">取消</a>
+                    <a href="#" class="btn btn-primary" data-dismiss="modal">保存</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="
+        myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3>添加你想要的网址</h3>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label for="system" class="col-sm-2 control-label">系统名称</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="system" 
+                                value="百度">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="url" class="col-sm-2 control-label">网址</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="url" 
+                                value="http://www.baidu.com">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="username" class="col-sm-2 control-label">用户名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="username" 
+                                value="阿哥就是帅气">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-sm-2 control-label">密码</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="password" 
+                                value="123abc">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dept" class="col-sm-2 control-label">专业</label>
+                            <div class="col-sm-10" style="padding-top:5px">
+                                <input type="checkbox" name="major" value="1">交换 &nbsp;
+                                <input type="checkbox" name="major" value="2">数据 &nbsp;
+                                <input type="checkbox" name="major" value="3">无线 &nbsp;
+                                <input type="checkbox" name="major" value="4">传输 &nbsp;
+                                <input type="checkbox" name="major" value="5">动力 &nbsp;
+                                <input type="checkbox" name="major" value="6">投诉 &nbsp;
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-default" data-dismiss="modal">取消</a>
+                    <a href="#" class="btn btn-primary" data-dismiss="modal">保存</a>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	
+
+	<!-- 日期选择插件 -->
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8">
+    </script>
+    <script type="text/javascript" src="js/locales/bootstrap-datetimepicker.zh-CN.js" 
+    charset="UTF-8"></script>
+    <!--表单增强插件-->
+    <script src="js/jquery.form.js"></script>
+    <!-- 日历插件 -->
+    <script src='js/moment.min.js'></script>
+    <script src='js/fullcalendar.min.js'></script>
+    <!-- 选择下拉增强插件-->
+    <script src="js/chosen.jquery.min.js"></script>
+    <!-- 数据表格插件 -->
+    <script src='js/jquery.dataTables.min.js'></script>
+    <!-- tour plugin -->
+    <script src="js/bootstrap-tour.min.js"></script>
+    <!-- plugin for gallery image view -->
+    <script src="js/jquery.colorbox-min.js"></script>
+    <!-- notification plugin -->
+    <script src="js/jquery.noty.js"></script>
+    <!-- library for making tables responsive -->
+    <script src="js/responsive-tables.js"></script>
+    <!-- star rating plugin -->
+    <script src="js/jquery.raty.min.js"></script>
+    <!-- for iOS style toggle switch -->
+    <script src="js/jquery.iphone.toggle.js"></script>
+    <!-- autogrowing textarea plugin -->
+    <script src="js/jquery.autogrow-textarea.js"></script>
+    <!-- multiple file upload plugin -->
+    <script src="js/jquery.uploadify-3.1.min.js"></script>
+    <!-- history.js for cross-browser state change on ajax -->
+    <script src="js/jquery.history.js"></script>
+    <!-- 所有页面共有的需启动初始化的js -->
+    <script src="js/common.js"></script>
+    <!-- 最终的独立js -->
+    <script src="jsonce/otherSystem.js"></script>
+</body>
+</html>

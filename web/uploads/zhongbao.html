@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- <meta http-equiv="refresh" content="10;url=跳转的页面"> -->
+	<title>重保监控-自动刷新</title>
+	<script>
+		setInterval("clock()", 60000);
+		function clock() {
+			window.location.reload(true);
+		}
+	</script>
+	<style>
+		#zb {
+			width:100%;
+			height:5000px;
+		}
+
+	</style>
+	
+</head>
+<body>
+	<iframe id="zb" src="http://10.221.213.86:8080/shjk/shjk_hstopics.html#" frameborder="0"></iframe>
+	
+</body>
+</html>

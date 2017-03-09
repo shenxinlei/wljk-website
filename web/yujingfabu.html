@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>网络监控自主研发系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="WLJK System">
+    <meta name="author" content="阿哥就是帅气-Todorov">
+    <script src="js/testIE.js"></script>
+
+	<!-- 初始皮肤css -->
+    <link id="bs-css" href="css/bootstrap-cerulean.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/charisma-app.css">
+    <!-- 日期选择css -->
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css"  media="screen">
+    <!-- 日历插件css -->
+    <link rel='stylesheet' href='css/fullcalendar.css'>
+    <link rel='stylesheet' href='css/fullcalendar.print.css' media='print'>
+    <!-- 其他css -->
+    <link rel='stylesheet' href='css/chosen.min.css'>
+    <link rel='stylesheet' href='css/colorbox.css'>
+    <link rel='stylesheet' href='css/responsive-tables.css'>
+    <link rel='stylesheet' href='css/jquery.noty.css'>
+    <link rel='stylesheet' href='css/noty_theme_default.css'>
+    <link rel='stylesheet' href='css/elfinder.min.css'>
+    <link rel='stylesheet' href='css/elfinder.theme.css'>
+    <link rel='stylesheet' href='css/jquery.iphone.toggle.css'>
+    <link rel='stylesheet' href='css/uploadify.css'>
+    <link rel='stylesheet' href='css/animate.min.css'>
+    <link rel='stylesheet' href='css/bootstrap-tour.min.css'>
+    <link rel="stylesheet" href="css/jquery-confirm.css">
+
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <!-- bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- cookie -->
+    <script src="js/jquery.cookie.js"></script>
+    <!-- 验证是否有cookie 前置好处就是省去了页面的加载
+    <script src="js/iscookieset.js"></script> -->
+
+    <!-- 小图标-->
+    <link rel="shortcut icon" href="img/t111.ico">
+</head>
+<body>
+	<!--  导航栏开始 -->
+	<div class="navbar navbar-default" role="navigation">
+        <div class="navbar-inner">
+        <!-- 这是一个响应式按钮，在手机端可见，在大屏幕状态下隐藏-->
+		<button type="button" class="navbar-toggle pull-left animated flip">
+		    <span class="sr-only">Toggle navigation</span> 
+		    <span class="icon-bar"></span>
+		    <span class="icon-bar"></span>
+		    <span class="icon-bar"></span>
+		</button>
+		<!-- 这是放置logo的地方 -->
+        <a class="navbar-brand" href="main.html" style="width:300px"> 
+            <img alt="Logo" src="img/logo20.jpg" class="hidden-xs"/>
+            <span>WLJK-SDS</span>
+        </a>
+		<!-- 用户下拉按钮  -->
+		<div class="btn-group pull-right">
+		    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+		        <i class="glyphicon glyphicon-user"></i>
+		        <span class="hidden-sm hidden-xs"> <span id="who"></span>您好！</span>
+		        <span class="caret"></span>
+		    </button>
+		    <ul class="dropdown-menu">
+		        <li><a href="#"><span class="glyphicon glyphicon-asterisk"></span> 资料修改</a></li>
+		        <li class="divider"></li>
+		        <li><a href="#"><span class="glyphicon glyphicon-bookmark"></span> 个人收藏</a></li>
+                <li class="divider"></li>
+                <li><a id="quit" href="index.html"><span class="glyphicon glyphicon-hand-left"></span> 退出登录</a></li>
+		    </ul>
+		</div>
+		<!-- 主题选择  -->
+		<div class="btn-group pull-right theme-container animated tada">
+		    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+		        <i class="glyphicon glyphicon-tint"></i>
+		        <span class="hidden-sm hidden-xs"> 换一款皮肤试试</span>
+		        <span class="caret"></span>
+		    </button>
+		    <ul class="dropdown-menu" id="themes">
+		        <li><a data-value="classic" href="#"><i class="whitespace"></i> 经典色</a></li>
+		        <li><a data-value="cerulean" href="#"><i class="whitespace"></i> 海天蓝</a></li>
+		        <li><a data-value="cyborg" href="#"><i class="whitespace"></i> 半机械</a></li>
+                <li><a data-value="simplex" href="#"><i class="whitespace"></i> 简约派</a></li>
+		        <li><a data-value="darkly" href="#"><i class="whitespace"></i> 暗黑风</a></li>
+		        <li><a data-value="lumen" href="#"><i class="whitespace"></i> 流明光</a></li>
+		        <li><a data-value="slate" href="#"><i class="whitespace"></i> 页岩石</a></li>
+                <li><a data-value="spacelab" href="#"><i class="whitespace"></i> 空间站</a></li>
+		        <li><a data-value="united" href="#"><i class="whitespace"></i> 美利坚</a></li>
+		    </ul>
+		</div>
+		<!-- 欢迎访问 导航条下拉菜单-->	
+		<ul class="collapse navbar-collapse nav navbar-nav top-menu">
+		    <li>
+                <a href="#"><i class="glyphicon glyphicon-globe"></i> 监控bbs社区</a>
+            </li>
+		    <li class="dropdown">
+		        <a href="#" data-toggle="dropdown">
+		            <i class="glyphicon glyphicon-star"></i>各专业分区
+		            <span class="caret"></span>
+		        </a>
+			    <ul class="dropdown-menu" role="menu">
+    			    <li><a href="#">数据专区</a></li>
+    			    <li class="divider"></li>
+    			    <li><a href="#">传输专区</a></li>
+    			    <li class="divider"></li>
+    			    <li><a href="#">动环专区</a></li>
+    			    <li class="divider"></li>
+    			    <li><a href="#">投诉专区</a></li>
+			    </ul>
+			</li>
+			<!-- 搜索框 -->
+		    <li>
+		        <form class="navbar-search pull-left">
+		            <input placeholder="请输入要搜索的内容" 
+                    class="search-query form-control col-md-10" name="query" type="text">
+		        </form>
+		    </li>
+		</ul> 
+	    </div>
+    </div>
+	<!--  导航栏结束 -->
+	
+    <!--正文-->
+	<div class="ch-container">
+    	<div class="row">	
+            <!-- 正文左侧内容 -->
+        	<div class="col-sm-2 col-lg-2">
+            	<div class="sidebar-nav">
+                	<div class="nav-canvas">
+                    	<div class="nav-sm nav nav-stacked">
+                    	</div>
+                    	<ul class="nav nav-pills nav-stacked main-menu">
+                            <li class="nav-header">主要模块</li>
+                            <li>
+                            	<a class="ajax-link" href="main.html">
+                                    <i class="glyphicon glyphicon-home"></i><span> 要事汇总</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="otherSystem.html">
+                                    <i class="glyphicon glyphicon-tags"></i><span> 常用系统</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="resource.html">
+                                    <i class="glyphicon glyphicon-book"></i><span> 
+                                    资料库</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="transmissionExcel.html">
+                                    <i class="glyphicon glyphicon-retweet"></i><span> 
+                                    传输报表统计</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="resourceCorrigendum.html">
+                                    <i class=" glyphicon glyphicon-exclamation-sign"></i><span> 
+                                    资源勘误</span>
+                                </a>
+                            </li>
+                            <li>
+                            	<a class="ajax-link" href="messageBoard.html">
+                                    <i class="glyphicon glyphicon-eye-open"></i><span> 留言板</span>
+                                </a>
+                            </li>
+                            <li>
+                            	<a class="ajax-link" href="tools.html">
+                                    <i class="glyphicon glyphicon-edit"></i><span> 工具箱</span>
+                                </a>
+                            </li>
+                            <li class="accordion">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-list-alt"></i><span> 工程管理</span>
+                                </a>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="nightworkManagementAllOneDay.html"><i class="glyphicon glyphicon-pencil"></i> 当晚工程查询</a></li>
+                                    <li><a href="nightworkManagementAll.html"><i class="glyphicon glyphicon-facetime-video"></i> 历史工程查询</a></li>
+                                </ul>
+                            </li>
+                            <li class="accordion">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-adjust"></i><span> 大值班KPI</span>
+                                </a>
+    				            <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="dzb.html"><i class="glyphicon glyphicon-tag"></i> 每日KPI上报</a></li>
+                                    <li><a href="dazhibanmoban.html"><i class="glyphicon glyphicon-tag"></i> 大值班每月参考值修改</a></li>
+                                    <li><a href="dzbHistory.html"><i class="glyphicon glyphicon-tag"></i> KPI历史数据导出</a></li>
+                                </ul>
+                            </li>
+                            <li class="accordion">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-adjust"></i><span> 监控预警</span><span class="badge pull-right" title="有遗留请处理" data-toggle="tooltip" data-placement="right">!</span>
+                                </a>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="yujingfabu.html"><i class="glyphicon glyphicon-envelope"></i> 预警发布</a></li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="glyphicon glyphicon-envelope"></i> 遗留预警<span class="badge pull-right" title="当前遗留2预警" data-toggle="tooltip" data-placement="right">2</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="glyphicon glyphicon-envelope"></i> 预警审核<span class="badge pull-right" title="当前有1条消息待审核" data-toggle="tooltip" data-placement="right">1</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="glyphicon glyphicon-envelope"></i> 预警打分<span class="badge pull-right" title="当前有12条短信需打分" data-toggle="tooltip" data-placement="right">12</span>
+                                        </a>
+                                    </li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-envelope"></i> 历史预警</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-envelope"></i> 制定模板</a></li>
+                                </ul>
+                            </li>
+                    	</ul>
+                    	<label id="for-is-ajax" for="is-ajax">
+                    		<input id="is-ajax" type="checkbox"> Ajax(勾选可Ajax刷新)
+                    	</label>
+                	</div>
+            	</div>
+        	</div>
+        	<!-- 正文左侧内容结束 -->
+
+		    <!-- 此段代码意思为如果浏览器不支持script的代码，则显示以下内容 -->
+        	<noscript>
+            	<div class="alert alert-block col-md-12">
+                	<h4 class="alert-heading">严重警告！！！</h4>
+                	<p>你必须要有 <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a>才能体验本网站</p>
+            	</div>
+        	</noscript>
+
+		    <!-- 正文右侧内容 -->
+        	<div id="content" class="col-lg-10 col-sm-10">
+            	<!-- 面包屑导航 -->
+            	<div>
+    				<ul class="breadcrumb">
+        				<li><a href="main.html">主页</a></li>
+        				<li><a href="#">预警发布</a></li>
+                        <!-- <li><a href="dzbvolte.html">VOLTE KPI</a></li> -->
+    				</ul>
+			    </div>
+                <!-- 预警发布模块 -->
+                <div class="box">
+                    <div class="box-inner">
+                        <div class="box-header well" data-original-title="">
+                            <h2>预警发布</h2>
+                            <div class="box-icon">
+                                <a href="#" class="btn btn-minimize btn-round btn-default"><i class="glyphicon glyphicon-chevron-up"></i>
+                                </a>
+                                <a href="#" class="btn btn-close btn-round btn-default">
+                                    <i class="glyphicon glyphicon-remove"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="box-content">
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-primary btn-lg">
+                                    <input type="radio" name="options" id="option1" value="1" autocomplete="off" checked>
+                                    选取预定制的模板进行编辑
+                                </label>
+                                <label class="btn btn-default btn-lg">
+                                    <input type="radio" name="options" id="option2" value="2" autocomplete="off">
+                                    在原先发过的历史预警中编辑
+                                </label>
+                                <label class="btn btn-default btn-lg">
+                                    <input type="radio" name="options" id="option3" value="3" autocomplete="off"> 自定义发送(没有模板)
+                                </label>
+                            </div>
+                            <br><br><br><br>
+                            <div class="alert alert-info">
+                            <form class="form-inline" role="form" id="form1">
+                                <div class="form-group">
+                                    <label class="form-group" for="zhuanye">选择专业</label>
+                                    <select id="zhuanye" class="form-control">
+                                        <option>无线</option>
+                                        <option>传输</option>
+                                        <option>数据</option>
+                                        <option>交换</option>
+                                        <option>集客</option>
+                                        <option>跨专业</option>
+                                        <option>其他</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="level" class="form-group">级别</label>
+                                    <select name="" id="level" class="form-control">
+                                        <option value="">重大</option>
+                                        <option value="">严重</option> 
+                                        <option value="">内部</option>
+                                        <option value="">一般</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-group" for="moban">具体模板</label>
+                                    <select id="moban" class="form-control">
+                                        <option>模板一</option>
+                                        <option>模板二</option>
+                                        <option>模板三</option>
+                                        <option>模板四</option>
+                                    </select>
+                                </div>  
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="" checked>
+                                        是否需要值班长审核
+                                    </label>
+                                </div>
+                                <br><br>
+                                <div class="form-group">
+                                    <label for="textarea1" class="form-group">短信编辑模板</label>
+                                    <textarea id="textarea1" class="form-control" cols="100" rows="10">【重大故障信息】**:**  ****（填写“厂商+BSC名称”/或“端局网元名称＋下挂＋厂商＋RNC名称”）信令全阻，故障主要影响**地区**业务。现**单位处理中，网运中心已向客服前台进行故障信息发布，将密切跟踪故障处理进展，目前未收到前台批量投诉/目前收到批量投诉**件。故障处理责任人：单位+名字+电话/单位+名字+电话、故障处理联系人：单位+名字+电话/单位+名字+电话；网运中心协调责任人：名字+电话。请维护单位在抢修过程中确保人身安全。当班值班长：XXX（网络运行管理中心）
+                                    </textarea>
+                                </div>
+                                <br><br>
+                                <button type="submit" class="btn btn-primary send">发送短信</button>
+                            </form>
+                            <form class="form-inline" role="form" id="form2" style="display:none">
+                                <div class="form-group">
+                                    <label class="form-group" for="zhuanye2">选择专业</label>
+                                    <select id="zhuanye2" class="form-control">
+                                        <option value="">所有专业</option>
+                                        <option>无线</option>
+                                        <option>传输</option>
+                                        <option>数据</option>
+                                        <option>交换</option>
+                                        <option>集客</option>
+                                        <option>跨专业</option>
+                                        <option>其他</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="level2" class="form-group">级别</label>
+                                    <select name="" id="level2" class="form-control">
+                                        <option value="">所有</option>
+                                        <option value="">重大</option>
+                                        <option value="">严重</option> 
+                                        <option value="">内部</option>
+                                        <option value="">一般</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dtp_input3" class="col-sm-3 control-label" style="line-height:250%">起始日</label>
+                                    <div class="input-group date formDate col-sm-9" data-link-field="dtp_input3">
+                                        <input class="form-control" size="16" type="text" value="" readonly>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dtp_input4" class="col-sm-3 control-label" style="line-height:250%">结束日</label>
+                                    <div class="input-group date formDate col-sm-9" data-link-field="dtp_input4">
+                                        <input class="form-control" size="16" type="text" value="" readonly>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                    </div>
+                                </div>
+                                <br><br>
+                                <div class="form-group">
+                                    <label for="keywords">关键字查询</label>
+                                    <input type="text" class="form-control" id="keywords" placeholder="如果没有可以不填">
+                                </div>
+                                <button type="submit" class="btn btn-primary">查询历史记录</button>
+                            </form>
+                            <form action="" role="form" id="form3" style="display:none">
+                                <div class="form-group">
+                                    <label for="textarea3">请自由编写短信</label>
+                                    <textarea id="textarea3" class="form-control" cols="100" rows="10" placeholder="请自由编写短信"></textarea>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" checked>是否需要值班长审核
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn btn-primary send">发送短信</button>
+                            </form>          
+                        </div>
+                        <!-- 通过历史预警编辑，查询出来的记录放在这里面 -->
+                        <div class="row" style="display:none" id="table1">
+                            <div class="box col-md-12">
+                                <div class="box-inner">
+                                    <div class="box-header well" data-original-title="">
+                                        <h2>
+                                            <i class="glyphicon glyphicon-user"></i> 
+                                            这是一个活动标题，根据用户选择的专业，时间段，关键字进行动态发布
+                                        </h2>
+                                        <div class="box-icon">
+                                            <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                                    class="glyphicon glyphicon-chevron-up"></i></a>
+                                            <a href="#" class="btn btn-close btn-round btn-default"><i
+                                                    class="glyphicon glyphicon-remove"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="box-content">
+                                        <table class="table table-striped table-bordered responsive">
+                                            <thead>
+                                                <tr>
+                                                    <th>预警ID</th>
+                                                    <th>发布时间</th>
+                                                    <th>专业</th>
+                                                    <th>级别</th>
+                                                    <th>内容</th>
+                                                    <th>发布人</th>
+                                                    <th>评分</th>
+                                                    <th>操作一</th> 
+                                                    <th>操作二</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>WLJK-170308-001</td>
+                                                    <td class="center">2017/03/08 01:34</td>
+                                                    <td class="center">无线</td>
+                                                    <td class="center">一般</td>
+                                                    <td class="center">【一般故障恢复信息】1:18发生的青浦区批量小区退服于09:11:54恢复，故障原因是由于SH-001-161226-00023《关于普陀区配合M15号线梅岭北路站市政工程大渡河路（武宁路-梅岭北路）信息管道内的“怒江11号-长寿骨干光缆02[长寿-怒江11号]”等21根光缆割接的请示》割接引起，经网维线路部处理后恢复，期间未收到前台批量投诉，网管中心已向客服进行故障恢复信息发布。当班值班长：贾正皓（网络运行管理中心）</td>
+                                                    <td class="center">俞大海</td>
+                                                    <td class="center">5.0</td>
+                                                    <td class="center">
+                                                        <a class="btn btn-success" href="#">
+                                                            <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                                            点击查看详情
+                                                        </a>
+                                                    </td>
+                                                    <td class="center">
+                                                        <a class="btn btn-info reEditButton" href="#">
+                                                            <i class="glyphicon glyphicon-edit icon-white"></i>
+                                                            选取该短信并重新编辑
+                                                        </a>  
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>WLJK-170303-002</td>
+                                                    <td class="center">2017/03/03 17:53</td>
+                                                    <td class="center">数据</td>
+                                                    <!-- <td class="center">
+                                                        <span class="label-warning label label-default">Pending</span>
+                                                    </td> -->
+                                                    <td class="center">内部</td>
+                                                    <td class="center">【内部预警】17:38集中故障管理系统垃圾短信系统LJDX-OMM服务器上报ZTE-LJDX-15256告警，互联网专业室正在处理中。目前未收到前台批量投诉。（网络运行管理中心）</td>
+                                                    <td class="center">许頔</td>
+                                                    <td class="center">4.0</td>
+                                                    <td class="center">
+                                                        <a class="btn btn-success" href="#">
+                                                            <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                                            点击查看详情
+                                                        </a>
+                                                    </td>
+                                                    <td class="center">
+                                                        <a class="btn btn-info reEditButton" href="#">
+                                                            <i class="glyphicon glyphicon-edit icon-white"></i>
+                                                            选取该短信并重新编辑
+                                                        </a>  
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>WLJK-170227-001</td>
+                                                    <td class="center">2017/02/27 14:32</td>
+                                                    <td class="center">数据</td>
+                                                    <!-- <td class="center">
+                                                        <span class="label-warning label label-default">Pending</span>
+                                                    </td> -->
+                                                    <td class="center">严重</td>
+                                                    <td class="center">【严重故障信息】14:18垃圾彩信系统MMSC2的AntispamMMS01/02、SRV01-05设备上报NTP服务器不可用告警。互联网专业室正在处理中。目前未收到前台批量投诉。故障处理责任部门：互联网运行部，当班值班长：贾正皓（网络运行管理中心）</td>
+                                                    <td class="center">张鹤</td>
+                                                    <td class="center">4.5</td>
+                                                    <td class="center">
+                                                        <a class="btn btn-success" href="#">
+                                                            <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                                            点击查看详情
+                                                        </a>
+                                                    </td>
+                                                    <td class="center">
+                                                        <a class="btn btn-info reEditButton" href="#">
+                                                            <i class="glyphicon glyphicon-edit icon-white"></i>
+                                                            选取该短信并重新编辑
+                                                        </a>  
+                                                    </td>
+                                                </tr>
+                                                <tr class="wljk">
+                                                    <td>WLJK-170225-003</td>
+                                                    <td class="center">2017/02/25 09:40</td>
+                                                    <td class="center">传输</td>
+                                                    <!-- <td class="center">
+                                                        <span class="label-warning label label-default">Pending</span>
+                                                    </td> -->
+                                                    <td class="center">严重</td>
+                                                    <td class="center">【严重故障信息】09:20松江港湾新城发生38个ONU离线，新中-OLT01的相关PON口上报单板通讯故障告警，初步定位为单板故障引起，主要影响港湾新城小区宽带业务，优化中心正在处理中，网运中心已向客服前台进行故障信息发布，目前未收到前台批量投诉。故障处理责任人：网优南部 毛炜13761150193。当班值班长：贾正皓（网络运行管理中心）</td>
+                                                    <td class="center">刘炎杰</td>
+                                                    <td class="center">4.5</td>
+                                                    <td class="center">
+                                                        <a class="btn btn-success" href="#">
+                                                            <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                                            点击查看详情
+                                                        </a>
+                                                    </td>
+                                                    <td class="center">
+                                                        <a class="btn btn-info reEditButton" href="#">
+                                                            <i class="glyphicon glyphicon-edit icon-white"></i>
+                                                            选取该短信并重新编辑
+                                                        </a>  
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>WLJK-170221-001</td>
+                                                    <td class="center">2017/02/21 11:42</td>
+                                                    <td class="center">传输</td>
+                                                    <!-- <td class="center">
+                                                        <span class="label-warning label label-default">Pending</span>
+                                                    </td> -->
+                                                    <td class="center">严重</td>
+                                                    <td class="center">【严重故障信息】网管监测PTN宝山04环川蕴-1与合众-1、宝山202环汇聚万荣主07与杨开-1、OTN宝山02环宝新川与月罗路局房等多个汇聚点互收LOS告警，初步定位为光缆故障，11:30已派单至网维线路及优化中心处理。故障处理责任人：网维中心 程治13501620195。当班值班长：冷顺超（网络运行管理中心）</td>
+                                                    <td class="center">曹宏亮</td>
+                                                    <td class="center">4.0</td>
+                                                    <td class="center">
+                                                        <a class="btn btn-success" href="#">
+                                                            <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                                            点击查看详情
+                                                        </a>
+                                                    </td>
+                                                    <td class="center">
+                                                        <a class="btn btn-info reEditButton" href="#">
+                                                            <i class="glyphicon glyphicon-edit icon-white"></i>
+                                                            选取该短信并重新编辑
+                                                        </a>  
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 联系我们 -->
+    <div class="row">
+        <div class="col-md-2 col-lg-3 col-sm-12 col-xs-12 email-subscription-footer">
+            <div class="mc_embed_signup">
+                <form action="" method="" id="" name="" class="validate" target="" 
+                novalidate>
+                    <div>
+                        <label>欢迎加入我们</label>
+                        <input type="email" value="" name="EMAIL" class="email" 
+                        placeholder="请留下您的电子邮件" required>
+                        <!-- <div class="power_field" style="background-color:red">
+                            <input type="text" name="" tabindex="-1" value="">
+                        </div> -->
+                        <div class="clear">
+                            <input type="submit" value="订阅" 
+                            name="subscribe" class="button">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <br><br><br><br><br>
+	<!-- 页面底部 页脚-->
+    <div class="container">
+        <footer class="row">
+            <p class="col-md-8 col-sm-8 col-xs-12 copyright">版权所有&copy; 
+                <a href="###" target="_blank">上海移动网络管理中心网络监控部</a> 2016 - 2020
+            </p>
+            <p class="col-md-4 col-sm-4 col-xs-12 powered-by">技术支持: 
+                <a href="###">阿哥就是帅气&Todorov&Ubuntu</a>
+            </p>
+        </footer>
+    </div>
+
+
+    <!-- 模态框 获取该短信并重新编辑功能-->
+    <div class="modal fade" id="reEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+    data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-horizontal" role="form" id="reEditForm" method="post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                        <h3>短信重新编辑</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="contents" class="control-label">短信内容</label>
+                            <div>
+                                <textarea id="contents" name="contents" rows="10" class="form-control" placeholder="请输入内容"> 
+                                </textarea>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" checked>是否需要值班长审核
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-default" data-dismiss="modal">取消</a>
+                        <button type="submit" class="btn btn-primary send" id="submitToReEditForm">发送短信</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- 日期选择插件 -->
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8">
+    </script>
+    <script type="text/javascript" src="js/locales/bootstrap-datetimepicker.zh-CN.js" 
+    charset="UTF-8"></script>
+    <!--表单增强插件-->
+    <script src="js/jquery.form.js"></script>
+    <!-- 日历插件 -->
+    <script src='js/moment.min.js'></script>
+    <script src='js/fullcalendar.min.js'></script>
+    <!-- 选择下拉增强插件-->
+    <script src="js/chosen.jquery.min.js"></script>
+    <!-- 数据表格插件 -->
+    <script src='js/jquery.dataTables.min.js'></script>
+    <!-- tour plugin -->
+    <script src="js/bootstrap-tour.min.js"></script>
+    <!-- plugin for gallery image view -->
+    <script src="js/jquery.colorbox-min.js"></script>
+    <!-- notification plugin -->
+    <script src="js/jquery.noty.js"></script>
+    <!-- library for making tables responsive -->
+    <script src="js/responsive-tables.js"></script>
+    <!-- star rating plugin -->
+    <script src="js/jquery.raty.min.js"></script>
+    <!-- for iOS style toggle switch -->
+    <script src="js/jquery.iphone.toggle.js"></script>
+    <!-- autogrowing textarea plugin -->
+    <script src="js/jquery.autogrow-textarea.js"></script>
+    <!-- multiple file upload plugin -->
+    <script src="js/jquery.uploadify-3.1.min.js"></script>
+    <!-- history.js for cross-browser state change on ajax -->
+    <script src="js/jquery.history.js"></script>
+    <!-- 确认框插件 -->
+    <script src="js/jquery-confirm.js"></script>
+    <!-- 所有页面共有的需启动初始化的js -->
+    <script src="js/common.js"></script>
+    <!-- 最终的独立js -->
+    <script src="jsonce/yujingfabu.js"></script>
+</body>
+</html>

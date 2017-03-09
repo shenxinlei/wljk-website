@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    	<meta charset="UTF-8">
+    	<title>网络监控自主研发系统</title>
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="WLJK System">
+        <meta name="author" content="阿哥就是帅气-Todorov">
+        <script src="js/testIE.js"></script>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/bootstrap-cerulean.min.css" >
+    	<link rel="stylesheet" href="css/charisma-app.css" >
+        <link rel="stylesheet" href="css/animate.min.css">
+        <link rel="stylesheet" href="css/login.css">
+        
+        <!-- jquery -->
+        <script src="js/jquery.min.js"></script>
+        <!--bootstrap-->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- cookie -->
+        <script src="js/jquery.cookie.js"></script>
+        <!-- 如果cookie已经有了，就直接进入main -->
+       <!--  // <script src="js/cookiealreadyset.js"></script>   
+ -->
+        <!-- icons-->
+        <link rel="shortcut icon" href="img/t111.ico"> 
+
+    </head>
+    <body>
+        <div class="ch-container">
+            <div class="row">
+                <div class="row">
+                    <div class="col-md-12 center login-header">
+                        <h2>网络监控部自主开发系统</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="well col-md-5 center login-box">
+                        <div class="alert alert-info">
+                            请输入用户名以及密码
+                        </div>
+                        <form id="login" class="form-horizontal" action="" method="post">
+                            <fieldset>
+                                <div class="input-group input-group-lg">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user red"></i></span>
+                                    <input type="text" class="form-control" placeholder="用户名" name="login_user" id="login_user">
+                                </div>
+                                <div id="usernamenotempty"></div>
+                                <div class="clearfix"></div><br>
+
+                                <div class="input-group input-group-lg">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock red"></i></span>
+                                    <input type="password" class="form-control" placeholder="密码" name="login_pass" id="login_pass">
+                                </div>
+                                <div id="passwordnotempty"></div>
+                                <div class="clearfix"></div><br>
+
+                                <div class="input-prepend">
+                                    <label class="remember" for="remember"><input type="checkbox" id="remember"> <h4 style="display:inline;">一周内免登陆</h4></label>
+                                </div>
+                                <div class="clearfix"></div>
+
+                                <div class="col-md-4">
+                                    <button type="button" class="btn btn-primary btn-lg" id="reg" data-toggle="modal" data-target="myModal">注册</button>
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="submit" class="btn btn-primary btn-lg" id="load">登陆</button>
+                                </div>
+                                <div class="col-md-4" title="暂未开放">
+                                    <button type="button" class="btn btn-danger disabled btn-lg">忘记密码</button>
+                                </div>
+                            </fieldset>
+                        </form>  
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="
+            myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                        <h3>请填写相关个人信息来完成注册</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <form class="form-inline" role="form" id="reg_form" method="post">
+                                    <fieldset>
+                                    <div class="form-group has-warning has-feedback col-sm-12">
+                                        <div class="col-sm-2">
+                                            <label for="reg_username" class="control-label">用户名</label>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control" id="reg_username" name="reg_username" placeholder="请输入用户名" data-toggle="tooltip" data-placement="top" title="用户名不得少于4位">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <span id="reg_user_info" class="reg_info"></span>
+                                            <span id="reg_user_succ" class="reg_succ glyphicon glyphicon-ok form-control-feedback"></span>
+                                            <span id="reg_user_error" class="reg_error glyphicon glyphicon-remove form-control-feedback"></span>
+                                        </div>    
+                                    </div>
+                                    <div class="clearfix"></div><br>
+                                    <div class="form-group has-warning has-feedback col-sm-12">
+                                        <div class="col-sm-2">
+                                            <label for="reg_password" class="control-label">密码</label>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <input type="password" class="form-control" id="reg_password" name="reg_password" placeholder="请输入密码" data-toggle="tooltip" data-placement="top" title="密码不得少于3位">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <span class="info_pass">
+                                                <p>安全级别：
+                                                    <strong class="s s1">■</strong>
+                                                    <strong class="s s2">■</strong>
+                                                    <strong class="s s3">■</strong>
+                                                    <strong class="s s4" style="font-weight:normal;">
+                                                    </strong>
+                                                </p>
+                                                <p><strong class="q1" style="font-weight:normal;">○
+                                                </strong>6-20 个字符</p>
+                                                <p><strong class="q2" style="font-weight:normal;">○
+                                                </strong>只能包含大小写字母、数字和非空格字符</p>
+                                                <p><strong class="q3" style="font-weight:normal;">○
+                                                </strong>大写字母、小写字母、数字、非空字符，4类至少包含2类</p>
+                                            </span>
+                                            <span id="reg_pwd_info" class="reg_info">输入不合法，请重新输入！</span>
+                                            <span id="reg_pwd_succ" class="reg_succ glyphicon glyphicon-ok form-control-feedback"></span>
+                                            <span id="reg_pwd_error" class="reg_error glyphicon glyphicon-remove form-control-feedback"></span>
+                                        </div>    
+                                    </div>
+                                    <div class="clearfix"></div><br>
+                                    <div class="form-group has-warning has-feedback col-sm-12">
+                                        <div class="col-sm-2">
+                                            <label for="reg_confirmpassword" class="control-label">确认密码</label>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <input type="password" class="form-control" id="reg_confirmpassword" name="reg_confirmpassword" placeholder="请再次输入密码">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <span id="reg_confirm_info" class="reg_info"></span>
+                                            <span id="reg_confirm_succ" class="reg_succ glyphicon glyphicon-ok form-control-feedback"></span>
+                                            <span id="reg_confirm_error" class="reg_error glyphicon glyphicon-remove form-control-feedback"></span>
+                                        </div>    
+                                    </div>
+                                    <div class="clearfix"></div><br>
+                                    <div class="form-group has-warning has-feedback col-sm-12">
+                                        <div class="col-sm-2">
+                                            <label for="reg_realname" class="control-label">真名</label>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control" id="reg_realname" name="reg_realname" placeholder="请输入真名" data-toggle="tooltip" data-placement="top" title="请填写你的真名，方便程序猿后台管理">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <span id="reg_realname_info" class="reg_info"></span>
+                                            <span id="reg_realname_succ" class="reg_succ glyphicon glyphicon-ok form-control-feedback"></span>
+                                            <span id="reg_realname_error" class="reg_error glyphicon glyphicon-remove form-control-feedback"></span>
+                                        </div>    
+                                    </div>
+                                    <div class="clearfix"></div><br>
+                                    <div class="form-group has-warning has-feedback col-sm-12">
+                                        <div class="col-sm-2">
+                                            <label for="reg_telephone" class="control-label">手机号码</label>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control" id="reg_telephone" name="reg_telephone" placeholder="请输入手机号" data-toggle="tooltip" data-placement="top" title="请填写11位手机号码">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <span id="reg_tel_info" class="reg_info"></span>
+                                            <span id="reg_tel_succ" class="reg_succ glyphicon glyphicon-ok form-control-feedback"></span>
+                                            <span id="reg_tel_error" class="reg_error glyphicon glyphicon-remove form-control-feedback"></span>
+                                        </div>   
+                                    </div>
+                                    <div class="clearfix"></div><br>
+                                    <div class="form-group has-warning has-feedback col-sm-12">
+                                        <div class="col-sm-2">
+                                            <label for="reg_email" class="control-label">E-mail</label>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control" id="reg_email" name="reg_email" placeholder="请输入电子邮箱" data-toggle="tooltip" data-placement="top" title="请填写你的邮箱，方便密码找回">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <span id="reg_email_info" class="reg_info"></span>
+                                            <span id="reg_email_succ" class="reg_succ glyphicon glyphicon-ok form-control-feedback"></span>
+                                            <span id="reg_email_error" class="reg_error glyphicon glyphicon-remove form-control-feedback"></span>
+                                        </div>    
+                                    </div>
+                                    <div class="clearfix"></div><br>
+                                    <div class="form-group has-warning has-feedback col-sm-12">
+                                        <div class="col-sm-2">
+                                            <label for="reg_major" class="control-label">所属专业</label>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <select name="reg_major" id="reg_major" class="form-control"
+                                            data-toggle="tooltip" data-placement="top" title="请选择你所在的专业，这关系到你的网站区域划分">
+                                                <option value="0">---请选择---</option>
+                                                <option value="1">---数据---</option>
+                                                <option value="2">---交换---</option>
+                                                <option value="3">---传输---</option>
+                                                <option value="4">---无线---</option>
+                                                <option value="5">---投诉---</option>
+                                                <option value="6">---动力---</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <span id="reg_major_info" class="reg_info"></span>
+                                            <span id="reg_major_succ" class="reg_succ glyphicon glyphicon-ok form-control-feedback"></span>
+                                            <span id="reg_major_error" class="reg_error glyphicon glyphicon-remove form-control-feedback"></span>
+                                        </div> 
+                                    </div>
+                                    <div class="clearfix"></div><br>
+                                    <div class="form-group has-warning has-feedback col-sm-12">
+                                        <div class="col-sm-2">
+                                            <label for="reg_title" class="control-label">工作岗位</label>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <select name="reg_title" id="reg_title" class="form-control"
+                                            data-toggle="tooltip" data-placement="top" title="请选择你的日常工作职务">
+                                                <option value="0">---请选择---</option>
+                                                <option value="1">---boss---</option>
+                                                <option value="2">---组长---</option>
+                                                <option value="3">---值班长---</option>
+                                                <option value="4">---常日班---</option>
+                                                <option value="5">---轮班---</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <span id="reg_title_info" class="reg_info"></span>
+                                            <span id="reg_title_succ" class="reg_succ glyphicon glyphicon-ok form-control-feedback"></span>
+                                            <span id="reg_title_error" class="reg_error glyphicon glyphicon-remove form-control-feedback"></span>
+                                        </div>  
+                                    </div>
+                                    <div class="clearfix"></div><br>
+                                    <div class="col-md-8">
+                                    </div>
+                                    <div class="form-group center col-md-4">
+                                        <button type="submit" class="btn btn-primary btn-lg" id="register">提交注册</button>
+                                    </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer">
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        
+        
+
+        <!--noty插件 -->
+        <script src="js/noty/packaged/jquery.noty.packaged.js"></script>
+        <!--cookie插件-->
+        <script src="js/jquery.cookie.js"></script>
+        <!--表单增强插件-->
+        <script src="js/jquery.form.js"></script>
+        <!-- 本页自身的js -->
+        <script src="jsonce/login.js"></script>
+    </body>
+</html>

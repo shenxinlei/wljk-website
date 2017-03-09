@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>网络监控自主研发系统</title>	
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="WLJK System">
+    <meta name="author" content="阿哥就是帅气-Todorov">
+    <script src="js/testIE.js"></script>
+
+	<!-- 初始皮肤css -->
+    <link id="bs-css" href="css/bootstrap-cerulean.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/charisma-app.css">
+    <!-- 日期选择css -->
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css"  media="screen">
+    <!-- 日历插件css -->
+    <link rel='stylesheet' href='css/fullcalendar.css'>
+    <link rel='stylesheet' href='css/fullcalendar.print.css' media='print'>
+    <!-- 其他css -->
+    <link rel='stylesheet' href='css/chosen.min.css'>
+    <link rel='stylesheet' href='css/colorbox.css'>
+    <link rel='stylesheet' href='css/responsive-tables.css'>
+    <link rel='stylesheet' href='css/jquery.noty.css'>
+    <link rel='stylesheet' href='css/noty_theme_default.css'>
+    <link rel='stylesheet' href='css/elfinder.min.css'>
+    <link rel='stylesheet' href='css/elfinder.theme.css'>
+    <link rel='stylesheet' href='css/jquery.iphone.toggle.css'>
+    <link rel='stylesheet' href='css/uploadify.css'>
+    <link rel='stylesheet' href='css/animate.min.css'>
+    <link rel='stylesheet' href='css/bootstrap-tour.min.css'>
+    
+
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <!-- bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- cookie -->
+    <script src="js/jquery.cookie.js"></script>
+    <!-- 验证是否有cookie 前置好处就是省去了页面的加载
+    <script src="js/iscookieset.js"></script> -->
+
+    <!-- 小图标-->
+    <link rel="shortcut icon" href="img/t111.ico">    
+</head>
+<body>
+	<!--  导航栏开始 -->
+	<div class="navbar navbar-default" role="navigation">
+        <div class="navbar-inner">
+        <!-- 这是一个响应式按钮，在手机端可见，在大屏幕状态下隐藏-->
+		<button type="button" class="navbar-toggle pull-left animated flip">
+		    <span class="sr-only">Toggle navigation</span> 
+		    <span class="icon-bar"></span>
+		    <span class="icon-bar"></span>
+		    <span class="icon-bar"></span>
+		</button>
+		<!-- 这是放置logo的地方 -->
+        <a class="navbar-brand" href="index.html" style="width:300px"> 
+            <img alt="Logo" src="img/logo20.jpg" class="hidden-xs"/>
+            <span>WLJK-SDS</span>
+        </a>
+		<!-- 用户下拉按钮  -->
+		<div class="btn-group pull-right">
+		    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+		        <i class="glyphicon glyphicon-user"></i>
+		        <span class="hidden-sm hidden-xs"> wljk您好！</span>
+		        <span class="caret"></span>
+		    </button>
+		    <ul class="dropdown-menu">
+		        <li><a href="#"><span class="glyphicon glyphicon-asterisk"></span> 资料修改</a></li>
+		        <li class="divider"></li>
+		        <li><a href="#"><span class="glyphicon glyphicon-bookmark"></span> 个人收藏</a></li>
+                <li class="divider"></li>
+                <li><a href="login.html"><span class="glyphicon glyphicon-hand-left"></span> 退出登录</a></li>
+		    </ul>
+		</div>
+		<!-- 主题选择  -->
+		<div class="btn-group pull-right theme-container animated tada">
+		    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+		        <i class="glyphicon glyphicon-tint"></i>
+		        <span class="hidden-sm hidden-xs"> 换一款皮肤试试</span>
+		        <span class="caret"></span>
+		    </button>
+		    <ul class="dropdown-menu" id="themes">
+		        <li><a data-value="classic" href="#"><i class="whitespace"></i> 经典色</a></li>
+		        <li><a data-value="cerulean" href="#"><i class="whitespace"></i> 海天蓝</a></li>
+		        <li><a data-value="cyborg" href="#"><i class="whitespace"></i> 半机械</a></li>
+                <li><a data-value="simplex" href="#"><i class="whitespace"></i> 简约派</a></li>
+		        <li><a data-value="darkly" href="#"><i class="whitespace"></i> 暗黑风</a></li>
+		        <li><a data-value="lumen" href="#"><i class="whitespace"></i> 流明光</a></li>
+		        <li><a data-value="slate" href="#"><i class="whitespace"></i> 页岩石</a></li>
+                <li><a data-value="spacelab" href="#"><i class="whitespace"></i> 空间站</a></li>
+		        <li><a data-value="united" href="#"><i class="whitespace"></i> 美利坚</a></li>
+		    </ul>
+		</div>
+		<!-- 欢迎访问 导航条下拉菜单-->	
+		<ul class="collapse navbar-collapse nav navbar-nav top-menu">
+		    <li>
+                <a href="#"><i class="glyphicon glyphicon-globe"></i> 监控bbs社区</a>
+            </li>
+		    <li class="dropdown">
+		        <a href="#" data-toggle="dropdown">
+		            <i class="glyphicon glyphicon-star"></i>各专业分区
+		            <span class="caret"></span>
+		        </a>
+			    <ul class="dropdown-menu" role="menu">
+    			    <li><a href="#">数据专区</a></li>
+    			    <li class="divider"></li>
+    			    <li><a href="#">传输专区</a></li>
+    			    <li class="divider"></li>
+    			    <li><a href="#">动环专区</a></li>
+    			    <li class="divider"></li>
+    			    <li><a href="#">投诉专区</a></li>
+			    </ul>
+			</li>
+			<!-- 搜索框 -->
+		    <li>
+		        <form class="navbar-search pull-left">
+		            <input placeholder="请输入要搜索的内容" 
+                    class="search-query form-control col-md-10" name="query" type="text">
+		        </form>
+		    </li>
+		</ul> 
+	    </div>
+    </div>
+	<!--  导航栏结束 -->
+	
+    <!--正文-->
+	<div class="ch-container">
+    	<div class="row">	
+            <!-- 正文左侧内容 -->
+            <div class="col-sm-2 col-lg-2">
+                <div class="sidebar-nav">
+                    <div class="nav-canvas">
+                        <div class="nav-sm nav nav-stacked">
+                        </div>
+                        <ul class="nav nav-pills nav-stacked main-menu">
+                            <li class="nav-header">主要模块</li>
+                            <li>
+                                <a class="ajax-link" href="main.html">
+                                    <i class="glyphicon glyphicon-home"></i><span> 要事汇总</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="otherSystem.html">
+                                    <i class="glyphicon glyphicon-tags"></i><span> 常用系统</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="resource.html">
+                                    <i class="glyphicon glyphicon-book"></i><span> 
+                                    资料库</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="transmissionExcel.html">
+                                    <i class="glyphicon glyphicon-retweet"></i><span> 
+                                    传输报表统计</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="resourceCorrigendum.html">
+                                    <i class=" glyphicon glyphicon-exclamation-sign"></i><span> 
+                                    资源勘误</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="messageBoard.html">
+                                    <i class="glyphicon glyphicon-eye-open"></i><span> 留言板</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="tools.html">
+                                    <i class="glyphicon glyphicon-edit"></i><span> 工具箱</span>
+                                </a>
+                            </li>
+                            <li class="accordion">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-list-alt"></i><span> 工程管理</span>
+                                </a>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="nightworkManagementAllOneDay.html"><i class="glyphicon glyphicon-pencil"></i> 当晚工程查询</a></li>
+                                    <li><a href="nightworkManagementAll.html"><i class="glyphicon glyphicon-facetime-video"></i> 历史工程查询</a></li>
+                                </ul>
+                            </li>
+                            <li class="accordion">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-adjust"></i><span> 大值班KPI</span>
+                                </a>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="dzb.html"><i class="glyphicon glyphicon-tag"></i> 每日KPI上报</a></li>
+                                    <li><a href="dazhibanmoban.html"><i class="glyphicon glyphicon-tag"></i> 大值班每月参考值修改</a></li>
+                                    <li><a href="dzbHistory.html"><i class="glyphicon glyphicon-tag"></i> KPI历史数据导出</a></li>
+                                </ul>
+                            </li>
+                            <li class="accordion">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-adjust"></i><span> 监控预警</span>
+                                </a>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="yujingfabu.html"><i class="glyphicon glyphicon-tag"></i> 预警发布</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-tag"></i> 预警跟踪</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-tag"></i> 预警恢复</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-tag"></i> 历史预警</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-tag"></i> 制定模板</a></li>
+                                </ul>
+                            </li>
+                            
+                        </ul>
+                        <label id="for-is-ajax" for="is-ajax">
+                            <input id="is-ajax" type="checkbox"> Ajax(勾选可Ajax刷新)
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!-- 正文左侧内容结束 -->
+
+		    <!-- 此段代码意思为如果浏览器不支持script的代码，则显示以下内容 -->
+        	<noscript>
+            	<div class="alert alert-block col-md-12">
+                	<h4 class="alert-heading">严重警告！！！</h4>
+                	<p>你必须要有 <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a>才能体验本网站</p>
+            	</div>
+        	</noscript>
+
+		    <!-- 正文右侧内容 -->
+        	<div id="content" class="col-lg-10 col-sm-10">
+            	<!-- 面包屑导航 -->
+            	<div>
+    				<ul class="breadcrumb">
+        				<li><a href="main.html">主页</a></li>
+        				<li><a href="nightworkManagement.html">工程管理</a></li>
+                        <li><a href="#">所有工程</a></li>
+    				</ul>
+			    </div>
+                <div class="row">
+                    <div class="box col-md-12">
+                        <div class="box-inner">
+                            <div class="box-header well">
+                                <h2><i class="glyphicon glyphicon-folder-open"></i> 夜间工程查询</h2>
+                                <div class="box-icon">
+                                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                                        <i class="glyphicon glyphicon-chevron-up"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-close btn-round btn-default">
+                                        <i class="glyphicon glyphicon-remove"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="box-content">
+                                <div class="alert alert-info"> 
+                                    <form class="form-inline" role="form">
+                                        <div class="form-group">
+                                            <label for="dtp_input3" class="col-sm-3 control-label" style="line-height:250%">起始日</label>
+                                            <div class="input-group date formDate col-sm-9"
+                                            data-link-field="dtp_input3">
+                                                <input class="form-control" size="16" type="text" value="" readonly>
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dtp_input4" class="col-sm-3 control-label" style="line-height:250%">结束日</label>
+                                            <div class="input-group date formDate col-sm-9"
+                                            data-link-field="dtp_input4">
+                                                <input class="form-control" size="16" type="text" value="" readonly>
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="major">&nbsp;&nbsp;&nbsp;专业&nbsp;</label>
+                                            <select class="form-control" name="major">
+                                                <option>全专业</option>
+                                                <option>无线</option>
+                                                <option>传输</option>
+                                                <option>交换</option>
+                                                <option>数据</option>
+                                                <option>动力</option>
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="btn btn-default pull-right btn-success" id="nightworkQuery">查询</button>
+                                    </form>
+                                </div>
+                                <!-- <div class="panel-group" id="accordion" style="display:none;">
+                                    <div class="panel panel-success">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                                8月5日所有工程一览 
+                                                    <span class="pull-right">
+                                                        <i class="glyphicon glyphicon-comment" title="复制文本"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <i class="glyphicon glyphicon-save" title="导出到Excel"></i>
+                                                    </span>
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse1" class="panel-collapse collapse ">
+                                            <div class="panel-body">
+                                            1、23:00-6:00 SH-001-160614-00007 上海移动诺基亚EPC VOLTE容灾（诺基亚SAEGW容灾）倒换测试，涉及：MME5，SAEGW3-10部分外环外用户上网<br>
+                                            2、23:00-6:00 SH-001-160613-00062 关于爱立信EPC 内部路由器MX安全合规加固的通知，涉及：爱立信EPC 内部路由器MX960 MX480 安全合规加固<br>
+                                            3、21:00-5:00 SH-001-160606-00030 关于更换部分华为关口局单板的通知，涉及：MGB202<br> 
+                                            4、23:00-5:00 SH-001-160601-00071 关于实施爱立信端局R13A IPA04升级的通知，涉及：MSC54，MSC80<br> 
+                                            5、22:00-6:00 SH-001-160606-00050 关于上海移动诺基亚DHSS50支持VoLTE自动开通补丁软件升级及FOA测试的通知，涉及：DHSS50-1<br> 
+                                            6、23:00-6:00 SH-001-160608-00007 关于实施华为STP补丁升级的通知，涉及：L1<br> 
+                                            7、22:00-5:00 SH-001-160614-00041 JT-001-160613-00036请各兄弟省份配合西藏HSTP1升级工作<br> 
+                                            8、22:00-5:00 SH-001-160614-00006 华为VOLTE SHMGCF网元加载SPH126补丁操作，涉及：SHMGCF4<br>
+                                            9、22:00-5:00 SH-001-160614-00041 华为VOLTE SHPSBC2网元加载SPH112补丁操作，涉及：SHPSBC2 、TAS3<br> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-success">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                                                8月4日所有工程一览<span class="pull-right">
+                                                        <i class="glyphicon glyphicon-comment" title="复制文本"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <i class="glyphicon glyphicon-save" title="导出到Excel"></i>
+                                                    </span>
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse2" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                            1、23:00-5:00 SH-001-160516-00076 关于实施爱立信BSC70-F、64C、55F基站传输割接的通知<br>  
+                                            2、23:00-5:00 SH-001-160427-00101 关于实施2016年5月BSC、RNC健康检查及主备倒换的通知 涉及BSC57-0--9,71-D\E\F,72-C\D<br>   
+                                            3、23:00-5:00 SH-001-160517-00067 关于委托诺基亚厂商更换（钦州）BSC86-D、BSC85-B所有PCU2E单板的通知<br>    
+                                            4、23:00-5:00 SH-001-160517-00065 关于对（金桥）爱立信BSC66-D备用侧ETSFB更换的通知<br>     
+                                            5、23:00-5:00 SH-001-160517-00048 关于委托厂商对钦州阿尔卡特BSC87-2更换jbxomcp的通知<br>    
+                                            6、23:00-6:00 SH-001-160513-00022 关于配合杨高南路（峨山路-浦建路）信息管道内的“浦东-浦丰L01汇聚光缆”等22根光缆割接的请示
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-success">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                                                8月3日所有工程一览<span class="pull-right">
+                                                        <i class="glyphicon glyphicon-comment" title="复制文本"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <i class="glyphicon glyphicon-save" title="导出到Excel"></i>
+                                                    </span>
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse3" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                            1、23:00-6:00 SH-001-160513-00068 关于2016年第六批上海移动华为GPONOLT设备版本升级的批复<br>  
+                                            2、23:00-6:00 SH-001-160406-00115 关于《关于上海移动OTN网络OSN6800／8800／9800软件版本升级的请示》的批复<br>   
+                                            3、23:00-6:00 SH-001-160516-00099 关于松江新育传输设备退服的割接批复<br>  
+                                            4、23:00-6:00 SH-001-160511-00030 关于松江区荣乐东路松江茸北-陆家浜L01汇聚等38根光缆割接请示（市政项目）<br>
+                                            5、23:00-3:00 SH-001-160516-00035 HLR/HSS47网元PG4711隐患板卡更换的通知，涉及：PG4711<br>  
+                                            6、23:00-5:00 SH-001-160516-00113 JT-001-160516-00005关于江西公司NCSSA2承载网改造割接工作的通知，涉及：NCSSA2,信令点编码为0FFB01 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-success">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+                                                8月2日所有工程一览<span class="pull-right">
+                                                        <i class="glyphicon glyphicon-comment" title="复制文本"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <i class="glyphicon glyphicon-save" title="导出到Excel"></i>
+                                                    </span>
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse4" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                            1、23:00-5:00 SH-001-160516-00125 关于上海移动VOLTE CSCF补丁升级的通知，涉及：ISBG3<br>     
+                                            2、23:00-1:00 SH-001-160516-00084 关于网管网防火墙FG3040os版本升级的通知，届时可能影响包括数据网管，安全管控平台公网登陆，统一采集等系统.影响时间在22:10-22:30.<br>   
+                                            3、23:00-6:00 SH-001-160516-00110 核心网爱立信SAEGW19实施调整的通知 外围网元（包括外环内eNodeB）会出现到爱立信SAEGW19全阻告警<br>    
+                                            4、23:00-6:00 SH-001-160517-00039 关于2015年彩铃平台支持VoLTE业务能力建设工程金桥66号楼1楼CL2拆除机架下电的通知，涉及：CL1、CL2、AIP2、AIP6
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="box col-md-12" id="table" style="display:none;">
+                        <div class="box-inner">
+                            <div class="box-header well" data-original-title="">
+                                <h2><i class="glyphicon glyphicon-link"></i> 夜间工程详细列表</h2>
+                            <div class="box-icon">
+                                <a href="#" class="btn btn-minimize btn-round btn-default"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                                <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                            </div>
+                        </div>
+                        <div class="box-content">
+                            <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                                <thead>
+                                    <tr>
+                                        <th>发布人</th>
+                                        <th>专业</th>
+                                        <th>工程来源</th>
+                                        <th>工程主题</th>
+                                        <th>开始时间</th>
+                                        <th>结束时间</th>
+                                        <th>涉及网元</th>
+                                        <th>工程影响范围</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>俞大海</td>
+                                        <td>无线</td>
+                                        <td>SH-001-160803-00065</td>
+                                        <td>关于实施金桥机房爱立信BSC66-B光口Abis扩容的通知</td>
+                                        <td>2016/08/03 23:00</td>
+                                        <td>2016/08/04 05:00</td>
+                                        <td>BSC66-B</td>
+                                        <td>无附件</td>
+                                    </tr>
+                                    <tr>
+                                        <td>刘炎杰</td>
+                                        <td>传输</td>
+                                        <td>SH-001-160803-00107</td>
+                                        <td>关于嘉定区墨玉南路“一干京津沪01”等12根光缆割接请示</td>
+                                        <td>2016/08/03 23:00</td>
+                                        <td>2016/08/04 05:00</td>
+                                        <td>见附件</td>
+                                        <td><a href="#" class="btn btn-primary" title="详细描述"><i class="glyphicon glyphicon-search"></i> 点击下载附件</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>杨晓芸</td>
+                                        <td>交换</td>
+                                        <td>SH-001-160803-00207</td>
+                                        <td>关于CE01板卡倒换的通知</td>
+                                        <td>2016/08/03 23:00</td>
+                                        <td>2016/08/04 05:00</td>
+                                        <td>CE01</td>
+                                        <td>无附件</td>
+                                    </tr>
+                                <tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 联系我们 -->
+    <div class="col-md-2 col-lg-3 col-sm-12 col-xs-12 email-subscription-footer">
+        <div class="mc_embed_signup">
+            <form action="" method="" id="" name="" class="validate" target="" 
+            novalidate>
+                <div>
+                    <label>欢迎加入我们</label>
+                    <input type="email" value="" name="EMAIL" class="email" 
+                    placeholder="请留下您的电子邮件" required>
+                    <div class="clear">
+                        <input type="submit" value="订阅" name="subscribe" class="button">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <br><br><br><br><br><br><br><br><br>
+	<!-- 页面底部 页脚-->
+    <div class="container">
+        <footer class="row">
+            <p class="col-md-8 col-sm-8 col-xs-12 copyright">版权所有&copy; 
+                <a href="###" target="_blank">上海移动网络管理中心网络监控部</a> 2016 - 2020
+            </p>
+            <p class="col-md-4 col-sm-4 col-xs-12 powered-by">技术支持: 
+                <a href="###">阿哥就是帅气&Todorov&Ubuntu</a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- 模态框 管理员信息发布-->
+<!--     <div class="modal fade" id="supervisor" tabindex="-1" role="dialog" aria-labelledby="
+        myModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-horizontal" role="form" id="publish-blackboard" method="post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                        <h3>工程发布</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="source" class="col-sm-3 control-label">工程来源</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="source" name="source" placeholder="请输入工单号">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="headline" class="col-sm-3 control-label">工程主题</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="headline" name="headline" placeholder="请输入工程标题">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contents" class="col-sm-3 control-label">工程影响网元（此处用富文本代替，因为需要上传附件）</label>
+                            <div class="col-sm-9">
+                                <textarea id="contents" name="contents" rows="6" class="form-control" placeholder="请输入内容"> 
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="major" class="col-sm-3 control-label">面向专业</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" id="major" name="major">
+                                    <option value="0">无线</option>
+                                    <option value="1">传输</option>
+                                    <option value="2">动力</option>
+                                    <option value="3">交换</option>
+                                    <option value="4">数据</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dtp_input1" class="col-sm-3 control-label">工程起始时间</label>
+                            <div class="input-group date form_datetime col-sm-8" 
+                            data-link-field="dtp_input1">
+                                <input class="form-control" size="16" type="text" value="" readonly>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dtp_input2" class="col-sm-3 control-label">工程结束时间</label>
+                            <div class="input-group date form_datetime col-sm-8" 
+                            data-link-field="dtp_input2">
+                                <input class="form-control" size="16" type="text" value="" readonly>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-default" data-dismiss="modal">取消</a>
+                        <button type="submit" class="btn btn-primary" id="submitToBlackboard">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="supervisor1" tabindex="-1" role="dialog" aria-labelledby="
+        myModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-horizontal" role="form" id="publish-blackboard1" method="post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                        <h3>工程发布</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="source1" class="col-sm-3 control-label">工程来源</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="source1" name="source" placeholder="请输入工单号" value="SH-001-160803-00065">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="headline1" class="col-sm-3 control-label">工程主题</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="headline1" name="headline" placeholder="请输入工程标题" value="关于实施金桥机房爱立信BSC66-B光口Abis扩容的通知">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contents1" class="col-sm-3 control-label">工程影响网元（此处用富文本代替，因为需要上传附件）</label>
+                            <div class="col-sm-9">
+                                <textarea id="contents1" name="contents" rows="6" class="form-control" placeholder="请输入内容">一堆屁话blablabla 
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="major1" class="col-sm-3 control-label">面向专业</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" id="major1" name="major">
+                                    <option value="0">无线</option>
+                                    <option value="1">传输</option>
+                                    <option value="2">动力</option>
+                                    <option value="3">交换</option>
+                                    <option value="4">数据</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dtp_input5" class="col-sm-3 control-label">工程起始时间</label>
+                            <div class="input-group date form_datetime col-sm-8" 
+                            data-link-field="dtp_input5">
+                                <input class="form-control" size="16" type="text" value="" readonly>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dtp_input6" class="col-sm-3 control-label">工程结束时间</label>
+                            <div class="input-group date form_datetime col-sm-8" 
+                            data-link-field="dtp_input6">
+                                <input class="form-control" size="16" type="text" value="" readonly>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-default" data-dismiss="modal">取消</a>
+                        <button type="submit" class="btn btn-primary" id="submitToBlackboard1">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> -->
+
+	<!-- 日期选择插件 -->
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8">
+    </script>
+    <script type="text/javascript" src="js/locales/bootstrap-datetimepicker.zh-CN.js" 
+    charset="UTF-8"></script>
+    <!--表单增强插件-->
+    <script src="js/jquery.form.js"></script>
+    <!-- 日历插件 -->
+    <script src='js/moment.min.js'></script>
+    <script src='js/fullcalendar.min.js'></script>
+    <!-- 选择下拉增强插件-->
+    <script src="js/chosen.jquery.min.js"></script>
+    <!-- 数据表格插件 -->
+    <script src='js/jquery.dataTables.min.js'></script>
+    <!-- tour plugin -->
+    <script src="js/bootstrap-tour.min.js"></script>
+    <!-- plugin for gallery image view -->
+    <script src="js/jquery.colorbox-min.js"></script>
+    <!-- notification plugin -->
+    <script src="js/jquery.noty.js"></script>
+    <!-- library for making tables responsive -->
+    <script src="js/responsive-tables.js"></script>
+    <!-- star rating plugin -->
+    <script src="js/jquery.raty.min.js"></script>
+    <!-- for iOS style toggle switch -->
+    <script src="js/jquery.iphone.toggle.js"></script>
+    <!-- autogrowing textarea plugin -->
+    <script src="js/jquery.autogrow-textarea.js"></script>
+    <!-- multiple file upload plugin -->
+    <script src="js/jquery.uploadify-3.1.min.js"></script>
+    <!-- history.js for cross-browser state change on ajax -->
+    <script src="js/jquery.history.js"></script>
+    <!-- 所有页面共有的需启动初始化的js -->
+    <script src="js/common.js"></script>
+    <!-- 最终的独立js -->
+    <script src="jsonce/nightworkManagementAll.js"></script>
+</body>
+</html>
