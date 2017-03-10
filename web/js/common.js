@@ -150,9 +150,9 @@ $(document).ready(function () {
     //popover
     $('[data-toggle="popover"]').popover();
     //star rating
-    $('.raty').raty({
-        score: 4 //default stars
-    });
+    // $('.raty').raty({
+    //     score: 4 //default stars
+    // });
     //notifications
     $('.noty').click(function (e) {
         e.preventDefault();

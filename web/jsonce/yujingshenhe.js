@@ -60,27 +60,79 @@ function docReady() {
         return false;//阻止默认提交
     });
 
-    //按钮解除预警
-    $('#closeCase').on('click', function () {
+    //获取该短信并重新编辑功能
+    $('.reEditButton').click(function (e){
+        e.preventDefault();
+        //var contents = "678910"；
+        var contents = $(this).parent().parent().children().eq(5).text();
+        $("#contents").val(contents);
+        //console.log("12345");
+        $("#reEdit").modal('show');
+    });
+
+    //日期查询按照天粒度来取
+    // $('.formDate').datetimepicker({
+    //     format:'yyyy-mm-dd',
+    //     language: 'zh-CN',
+    //     weekStart: 0,
+    //     autoclose: 1,
+    //     startView: 2,
+    //     todayBtn:  1,
+    //     todayHighlight: 1,
+    //     forceParse: 1,
+    //     showMeridian: 0,
+    //     minView: "month",//设置只显示到月份
+    //     initialDate:new Date(),
+    // });
+
+    //星星评分
+    $('.raty').raty({ 
+        number: 5,
+        score: 4.5,
+        half: true,
+        halfShow: true, 
+        click: function(score, evt) {
+            var string = "";
+            switch (score) {
+                case "5": string = "5.0分"; break;
+                case "4": string = "4.0分"; break;
+                case "3": string = "3.0分"; break;
+                case "2": string = "2.0分"; break;
+                case "1": string = "1.0分"; break;
+                default: string = score + "分";
+            }           
+            $("#score-modal-number").text(string);
+        }
+    });
+
+    //如何获取星星上面的分数
+    // $('#submitToSender').click(function(e) {
+    //     e.preventDefault();
+    //     console.log("12345");
+    //     var temp = $('#score-modal').raty('score'); 
+    //     console.log(temp);
+    // });
+
+    $('#submitToSender').on('click', function () {
         $.confirm({
-            title: '请确认是否解除该预警',
-            content: '如果选择解除预警，将不能再发送任何信息',
+            title: '请确认是否审核完成',
+            content: '请确保短信已经修改无误，并确认您打的分数公平公正',
             confirm: function () {
                 $.alert({
                     icon: 'glyphicon glyphicon-heart',
                     content: false,
-                    title: '预警已解除',
-                    theme: 'green',
+                    title: '审核成功',
+                    theme: 'black',
                 });
             },
             cancel: function () {
                 $.alert({
                     content: false,
-                    title: '请继续关注该预警',
+                    title: '已取消',
                     theme: 'black',
                 });
             },
-            confirmButton: '是的，我要解除预警',
+            confirmButton: '是的，继续',
             cancelButton: '容我三思',
             confirmButtonClass: 'btn-info',
             cancelButtonClass: 'btn-danger',
@@ -91,68 +143,36 @@ function docReady() {
         return false;//阻止默认提交
     });
 
-    //查询历史预警的Ajax
-    $('#form2 button').click(function(){
-        $('#form2').ajaxSubmit({
-            type: 'post', // 提交方式 get/post
-            //url: '###', // 需要提交的 url
-            // beforeSubmit: function() {
-            //     $('#resourceCorrigendum button').html("<img src='img/ajax-loaders/ajax-loader-7.gif'>");
-            // },
-            // success: function(data) { // data 保存提交后返回的数据，一般为 json 数据
-            //     $('#resourceCorrigendum button').html("重新计算");
-            //     $('.zhibiao').show();
-            // }
+    $('.noChanges').on('click', function (e) {
+        e.preventDefault();
+        $.confirm({
+            title: '请确认是否审核完成',
+            content: '直接提交代表该短信无需修改，并且默认为五星评价',
+            confirm: function () {
+                $.alert({
+                    icon: 'glyphicon glyphicon-heart',
+                    content: false,
+                    title: '审核成功',
+                    theme: 'black',
+                });
+            },
+            cancel: function () {
+                $.alert({
+                    content: false,
+                    title: '已取消',
+                    theme: 'black',
+                });
+            },
+            confirmButton: '是的，继续',
+            cancelButton: '容我三思',
+            confirmButtonClass: 'btn-info',
+            cancelButtonClass: 'btn-danger',
+            animation: 'zoom',
+            closeAnimation: 'scale',
+            theme: 'black',
         });
-        $('#table1').show();
-        $('#form2').resetForm(); // 提交后重置表单
-        return false; // 阻止表单自动提交事件
     });
 
-    //获取该短信并重新编辑功能
-    $('.reEditButton').click(function (e){
-        e.preventDefault();
-        //var contents = "678910"；
-        var contents = $(this).parent().parent().children().eq(4).text();
-        $("#contents").val(contents);
-        //console.log("12345");
-        $("#reEdit").modal('show');
-    });
-
-    //从历史中获取短信并编辑
-    $('.reEditHistoryButton').click(function (e){
-        e.preventDefault();
-        var contents = $(this).parent().parent().children().eq(5).text();
-        $("#contents").val(contents);
-        $("#reEdit").modal('show');
-    });
-
-    //按照模版来发短信
-    $('#editTextButton1').click(function (e){
-        e.preventDefault();
-        $("#editTextModal1").modal('show');
-    });
-
-    //日期查询按照天粒度来取
-    $('.formDate').datetimepicker({
-        format:'yyyy-mm-dd',
-        language: 'zh-CN',
-        weekStart: 0,
-        autoclose: 1,
-        startView: 2,
-        todayBtn:  1,
-        todayHighlight: 1,
-        forceParse: 1,
-        showMeridian: 0,
-        minView: "month",//设置只显示到月份
-        initialDate:new Date(),
-    });
-
-    //按钮：从历史预警选择一条来发送
-    $('#enquireHistory').click(function(e){
-        e.preventDefault();
-        $('#history-form-div').show();
-    });
 
 }
 
