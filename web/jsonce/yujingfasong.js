@@ -28,115 +28,75 @@ function docReady() {
             }
         },
     });
-    $('.send').on('click', function () {
-                    $.confirm({
-                        title: '请确认是否提交该短信',
-                        content: '每条提交的短信都将被记录到数据库，请仔细斟酌后提交',
-                        confirm: function () {
-                            $.alert({
-                                icon: 'glyphicon glyphicon-heart',
-                                content: false,
-                                title: '提交成功',
-                                theme: 'black',
-                            });
-                        },
-                        cancel: function () {
-                            $.alert({
-                                content: false,
-                                title: '提交已取消',
-                                theme: 'black',
-                            });
-                        },
-                        confirmButton: '是的，继续提交',
-                        cancelButton: '容我三思',
-                        confirmButtonClass: 'btn-info',
-                        cancelButtonClass: 'btn-danger',
-                        animation: 'zoom',
-                        closeAnimation: 'scale',
-                        theme: 'black',
-                    });
-                    return false;//阻止默认提交
-    });
 
-    //查询历史预警的Ajax
-    $('#form2 button').click(function(){
-        $('#form2').ajaxSubmit({
-            type: 'post', // 提交方式 get/post
-            //url: '###', // 需要提交的 url
-            // beforeSubmit: function() {
-            //     $('#resourceCorrigendum button').html("<img src='img/ajax-loaders/ajax-loader-7.gif'>");
-            // },
-            // success: function(data) { // data 保存提交后返回的数据，一般为 json 数据
-            //     $('#resourceCorrigendum button').html("重新计算");
-            //     $('.zhibiao').show();
-            // }
+    // 交由系统发送 按钮
+    $('.sendToSystem').on('click', function () {
+        $.confirm({
+            title: '是否已经完成发送',
+            content: '',
+            confirm: function () {
+                $.alert({
+                    icon: 'glyphicon glyphicon-heart',
+                    content: false,
+                    title: '发送成功',
+                    theme: 'green',
+                });
+            },
+            cancel: function () {
+                $.alert({
+                    content: false,
+                    title: '取消发送',
+                    theme: 'black',
+                });
+            },
+            confirmButton: '已发送',
+            cancelButton: '还没发送',
+            confirmButtonClass: 'btn-info',
+            cancelButtonClass: 'btn-danger',
+            animation: 'zoom',
+            closeAnimation: 'scale',
+            theme: 'black',
         });
-        $('#table1').show();
-        $('#form2').resetForm(); // 提交后重置表单
-        return false; // 阻止表单自动提交事件
-    });
-
-    $('input[type="radio"]:checked').parent('label').addClass('active');
-    $('input:radio[name="options"]').change(function(){
-        console.log($("input[name='options']:checked").val());
-        var value = $("input[name='options']:checked").val();
-        if (value == 1) {
-            $('#option1').parent('label').removeClass('btn-default').addClass('btn-primary');
-            $('#option2').parent('label').removeClass('btn-primary').addClass('btn-default');
-            $('#option3').parent('label').removeClass('btn-primary').addClass('btn-default');
-            $('#form1').show();
-            $('#form2').hide();
-            $('#form3').hide();
-            $('#table1').hide();
-        }
-        else if (value == 2) {
-            $('#option1').parent('label').removeClass('btn-primary').addClass('btn-default');
-            $('#option2').parent('label').removeClass('btn-default').addClass('btn-primary');
-            $('#option3').parent('label').removeClass('btn-primary').addClass('btn-default');
-            $('#form1').hide();
-            $('#form2').show();
-            $('#form3').hide();
-        }
-        else if (value == 3){
-            $('#option1').parent('label').removeClass('btn-primary').addClass('btn-default');
-            $('#option2').parent('label').removeClass('btn-primary').addClass('btn-default');
-            $('#option3').parent('label').removeClass('btn-default').addClass('btn-primary');
-            $('#form1').hide();
-            $('#form2').hide();
-            $('#form3').show();
-            $('#table1').hide();
-        }
-        else {
-
-        }
+        //return false;//阻止默认提交
     });
 
     //获取该短信并重新编辑功能
     $('.reEditButton').click(function (e){
         e.preventDefault();
-        //var contents = "678910"；
-        var contents = $(this).parent().parent().children().eq(4).text();
+        var contents = $(this).parent().parent().children().eq(6).text();
         $("#contents").val(contents);
-        //console.log("12345");
         $("#reEdit").modal('show');
-
     });
 
-
-
-    //日期查询按照天粒度来取
-    $('.formDate').datetimepicker({
-        format:'yyyy-mm-dd',
-        language: 'zh-CN',
-        weekStart: 0,
-        autoclose: 1,
-        startView: 2,
-        todayBtn:  1,
-        todayHighlight: 1,
-        forceParse: 1,
-        showMeridian: 0,
-        minView: "month",//设置只显示到月份
-        initialDate:new Date(),
+    //再改改 按钮
+    $('#submitToSender').on('click', function () {
+        $.confirm({
+            title: '请确认是否完成修改',
+            content: '请确保短信已经修改无误',
+            confirm: function () {
+                $.alert({
+                    icon: 'glyphicon glyphicon-heart',
+                    content: false,
+                    title: '成功交由值班长审核',
+                    theme: 'black',
+                });
+            },
+            cancel: function () {
+                $.alert({
+                    content: false,
+                    title: '已取消',
+                    theme: 'black',
+                });
+            },
+            confirmButton: '是的，继续',
+            cancelButton: '容我再改改',
+            confirmButtonClass: 'btn-info',
+            cancelButtonClass: 'btn-danger',
+            animation: 'zoom',
+            closeAnimation: 'scale',
+            theme: 'black',
+        });
+        return false;//阻止默认提交
     });
 
 }

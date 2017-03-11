@@ -249,7 +249,7 @@
             	<div>
     				<ul class="breadcrumb">
         				<li><a href="main.html">主页</a></li>
-        				<li><a href="#">预警审核</a></li>
+        				<li><a href="#">预警发送</a></li>
     				</ul>
 			    </div>
                 
@@ -259,7 +259,7 @@
                             <div class="box-header well" data-original-title="">
                                 <h2>
                                     <i class="glyphicon glyphicon-user"></i> 
-                                    等待审核列表
+                                    等待发送的信息列表
                                 </h2>
                                 <div class="box-icon">
                                     <a href="#" class="btn btn-minimize btn-round btn-default"><i
@@ -274,6 +274,7 @@
                                         <tr>
                                             <th>预警ID</th>
                                             <th>发布时间</th>
+                                            <th>审核时间</th>
                                             <th>专业</th>
                                             <th>级别</th>
                                             <th>类型</th>
@@ -281,51 +282,32 @@
                                             <th>操作一</th>
                                             <th>操作二</th>
                                             <th>发布人</th>
+                                            <th>审核人</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <th>WLJK-170308-001</th>
-                                            <td>2017:03:08 23:25</td>
-                                            <td>无线</td>
-                                            <td>重大</td>
-                                            <td>发生</td> 
-                                            <td>【重大故障信息】23:10上报GSM基站退服数超40个告警，故障主要分布在闵行、黄浦等地区，传输网管显示分散核心平台二1级扩架与二级扩架间上报带宽利用率越限，网运中心紧急处理中。目前未收到前台批量投诉。故障处理责任人：网运中心  吴勇 13601720119；故障处理联系人：网运中心 徐瀚 13801830195；网运中心协调责任人：林晓轩  13524580195。当班值班长：冷顺超（网络运行管理中心）</td>
-                                            <td class="center">
-                                                <a class="btn btn-warning reEditButton" href="#" title="修改此条消息并交给编写者正式发送" data-toggle="tooltip" data-placement="top">
-                                                    <i class="glyphicon glyphicon-edit icon-white"></i>
-                                                    修改此条消息
-                                                </a>  
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-success noChanges" href="#" title="无需修改直接交由编写者正式发送" data-toggle="tooltip" data-placement="top">
-                                                    <i class="glyphicon glyphicon-ok icon-white"></i>
-                                                    无需修改
-                                                </a> 
-                                            </td>
-                                            <td>王源</td>
-                                        </tr>
-                                        <tr>
-                                            <th>WLJK-170309-001</th>
-                                            <td>2017:03:09 06:13</td>
-                                            <td>数据</td>
+                                            <th>WLJK-160601-002</th>
+                                            <td>2016/06/01 12:55</td>
+                                            <td>2016/06/01 12:58</td>
+                                            <td>传输</td>
                                             <td>严重</td>
                                             <td>跟踪</td> 
-                                            <td>【严重故障跟踪信息】4:50发生的CMNET城域网新南汇9306-1至金桥MX960-2，新南汇9306-2至金桥MX960-1聚合口linkdown告警。网维回复该故障是由于光缆割接引起（割接方案中并未提及金桥至南汇WDM设备主光路）。该故障影响一条金牌客户专线（中国农业银行股份有限公司上海市分行）。目前未收到前台批量投诉。故障处理责任人：网维中心  程治 13501620195，当班值班长：贾正皓（网络运行管理中心）
-                                            </td>
+                                            <td>【严重故障跟踪信息】12:05 发生的宝山四季绿城共238个ONU离线故障，故障定位为四季绿城一期、二期基站搬迁引起，预计22:30完成后恢复。目前未收到前台相关投诉7件，网运中心将密切跟踪故障处理进展。当班值班长：凌晓欢（网络运行管理中心）</td>
                                             <td class="center">
-                                                <a class="btn btn-warning reEditButton" href="#" title="修改此条消息并交给编写者正式发送" data-toggle="tooltip" data-placement="top">
+                                                <a class="btn btn-warning reEditButton" href="#" title="如果发现短信编写有错误，点击继续修改" data-toggle="tooltip" data-placement="top">
                                                     <i class="glyphicon glyphicon-edit icon-white"></i>
-                                                    修改此条消息
+                                                    再改改
                                                 </a>  
                                             </td>
                                             <td>
-                                                <a class="btn btn-success noChanges" href="#" title="无需修改直接交由编写者正式发送" data-toggle="tooltip" data-placement="top">
+                                                <a class="btn btn-success sendToSystem" target="_blank" href="http://www.baidu.com" title="将跳转至短信发送系统" data-toggle="tooltip" data-placement="top">
                                                     <i class="glyphicon glyphicon-ok icon-white"></i>
-                                                    无需修改
-                                                </a> 
+                                                    发送短信
+                                                </a>
                                             </td>
-                                            <td>张鹤</td>
+                                            <td>刘炎杰</td>
+                                            <td>凌晓欢</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -376,13 +358,13 @@
 
     <!-- 模态框 获取该短信并重新编辑功能-->
     <div class="modal fade" id="reEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-    data-backdrop="static">
+        data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form class="form-horizontal" role="form" id="reEditForm" method="post">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">×</button>
-                        <h3>短信修改并最终交给编写者发送</h3>
+                        <h3>反复修改的短信必须交由值班长再次审核</h3>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
@@ -429,16 +411,11 @@
                                 </textarea>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="score-modal" class="control-label col-sm-3">审核人打分</label>
-                            <div class="col-sm-9">
-                                <span class="raty" id="score-modal"></span>&nbsp;&nbsp;&nbsp;<span class="label label-danger" id="score-modal-number">4.5分</span>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="modal-footer">
                         <a href="#" class="btn btn-default" data-dismiss="modal">取消</a>
-                        <button type="submit" class="btn btn-primary" id="submitToSender">交由创建者发送</button>
+                        <button type="submit" class="btn btn-primary" id="submitToSender">请值班长审核</button>
                     </div>
                 </form>
             </div>
@@ -483,6 +460,6 @@
     <!-- 所有页面共有的需启动初始化的js -->
     <script src="js/common.js"></script>
     <!-- 最终的独立js -->
-    <script src="jsonce/yujingshenhe.js"></script>
+    <script src="jsonce/yujingfasong.js"></script>
 </body>
 </html>

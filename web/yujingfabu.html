@@ -197,7 +197,11 @@
                                     <i class="glyphicon glyphicon-adjust"></i><span> 监控预警</span><span class="badge pull-right" title="有遗留请处理" data-toggle="tooltip" data-placement="right">!</span>
                                 </a>
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="yujingfabu.html"><i class="glyphicon glyphicon-envelope"></i> 预警发布</a></li>
+                                    <li>
+                                        <a href="yujingfabu.html">
+                                            <i class="glyphicon glyphicon-envelope"></i> 预警发布
+                                        </a>
+                                    </li>
                                     <li>
                                         <a href="yujingyiliu.html">
                                             <i class="glyphicon glyphicon-envelope"></i> 遗留预警<span class="badge pull-right" title="当前遗留1预警" data-toggle="tooltip" data-placement="right">1</span>
@@ -206,6 +210,11 @@
                                     <li>
                                         <a href="yujingshenhe.html">
                                             <i class="glyphicon glyphicon-envelope"></i> 预警审核<span class="badge pull-right" title="当前有2条消息待审核" data-toggle="tooltip" data-placement="right">2</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="yujingfasong.html">
+                                            <i class="glyphicon glyphicon-envelope"></i> 预警发送<span class="badge pull-right" title="当前有1条短信待发送" data-toggle="tooltip" data-placement="right">1</span>
                                         </a>
                                     </li>
                                     <li>
@@ -308,12 +317,6 @@
                                             <option>模板四</option>
                                         </select>
                                     </div>  
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" value="" checked>
-                                            是否需要值班长审核
-                                        </label>
-                                    </div>
                                     <br><br>
                                     <div class="form-group">
                                         <label for="textarea1" class="form-group">短信编辑模板</label>
@@ -321,7 +324,7 @@
                                         </textarea>
                                     </div>
                                     <br><br>
-                                    <button type="submit" class="btn btn-primary send">发送短信</button>
+                                    <button type="submit" class="btn btn-primary send">请值班长审核</button>
                                 </form>
                                 <!-- 第二种方式先要查询 -->
                                 <form class="form-inline" role="form" id="form2" style="display:none">
@@ -396,18 +399,13 @@
                                             <option value="">一般</option>
                                         </select>
                                     </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" checked>是否需要值班长审核
-                                        </label>
-                                    </div>
                                     <br><br>
                                     <div class="form-group">
                                         <label for="textarea3">请自由编写短信</label>
                                         <textarea id="textarea3" class="form-control" cols="100" rows="10" placeholder="请自由编写短信"></textarea>
                                     </div>
                                     <br><br>
-                                    <button type="submit" class="btn btn-primary send">发送短信</button>
+                                    <button type="submit" class="btn btn-primary send">请值班长审核</button>
                                 </form>          
                             </div>
                         <!-- 通过历史预警编辑，查询出来的记录放在这里面 -->
@@ -650,15 +648,10 @@
                             </div>
                         </div>
                         <br>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" checked>是否需要值班长审核
-                            </label>
-                        </div>   
                     </div>
                     <div class="modal-footer">
                         <a href="#" class="btn btn-default" data-dismiss="modal">取消</a>
-                        <button type="submit" class="btn btn-primary send" id="submitToReEditForm">发送短信</button>
+                        <button type="submit" class="btn btn-primary send" id="submitToReEditForm">请值班长审核</button>
                     </div>
                 </form>
             </div>
