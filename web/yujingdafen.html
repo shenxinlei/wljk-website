@@ -258,7 +258,7 @@
             	<div>
     				<ul class="breadcrumb">
         				<li><a href="main.html">主页</a></li>
-        				<li><a href="#">预警发送</a></li>
+        				<li><a href="#">预警打分</a></li>
     				</ul>
 			    </div>
                 
@@ -268,7 +268,7 @@
                             <div class="box-header well" data-original-title="">
                                 <h2>
                                     <i class="glyphicon glyphicon-user"></i> 
-                                    等待发送的信息列表
+                                    等待打分的预警信息列表
                                 </h2>
                                 <div class="box-icon">
                                     <a href="#" class="btn btn-minimize btn-round btn-default"><i
@@ -284,46 +284,88 @@
                                             <th>预警ID</th>
                                             <th>发布时间</th>
                                             <th>审核时间</th>
+                                            <th>发送时间</th>
                                             <th>专业</th>
                                             <th>级别</th>
                                             <th>类型</th>
                                             <th>内容</th>
-                                            <th>操作一</th>
-                                            <th>操作二</th>
-                                            <th>操作三</th>
+                                            <th>打分</th>
                                             <th>发布人</th>
-                                            <th>审核人</th>
+                                            <th>审核人</th> 
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <th>WLJK-160601-002</th>
-                                            <td>2016/06/01 12:55</td>
-                                            <td>2016/06/01 12:58</td>
+                                            <th>WLJK-170104-001</th>
+                                            <td>2017/01/04 05:03</td>
+                                            <td>2017/01/04 05:04</td>
+                                            <td>2017/01/04 05:05</td>
                                             <td>传输</td>
                                             <td>严重</td>
-                                            <td>跟踪</td> 
-                                            <td>【严重故障跟踪信息】12:05 发生的宝山四季绿城共238个ONU离线故障，故障定位为四季绿城一期、二期基站搬迁引起，预计22:30完成后恢复。目前未收到前台相关投诉7件，网运中心将密切跟踪故障处理进展。当班值班长：凌晓欢（网络运行管理中心）</td>
+                                            <td>发生</td>
+                                            <td>【严重故障信息】4:50发生CMNET城域网新南汇9306-1至金桥MX960-2，新南汇9306-2至金桥MX960-1聚合口linkdown告警。故障影响新南汇9306-1下的GPON  IMS专线和CMS业务，新南汇9306-2下的GPON宽带通专线。传输网管显示浦东至南汇WDM设备上报主光路中断告警，初步怀疑为光缆中断。网运中心已向客服进行故障信息发布，目前未收到前台批量投诉。故障处理责任人：网维中心  程治 13501620195，当班值班长：贾正皓（网络运行管理中心）</td>
                                             <td class="center">
-                                                <a class="btn btn-primary reEditButton" href="#" title="如果发现短信编写有错误，点击继续修改" data-toggle="tooltip" data-placement="top">
-                                                    <i class="glyphicon glyphicon-edit icon-white"></i>
-                                                    再改改
+                                                <a class="btn btn-warning scoreButton" href="#" title="点击可给此条信息打分" data-toggle="tooltip" data-placement="top">
+                                                    <i class="glyphicon glyphicon-check icon-white"></i>
+                                                    点击打分
                                                 </a>  
                                             </td>
-                                            <td>
-                                                <a class="btn btn-success sendToSystem" target="_blank" href="http://www.baidu.com" title="将跳转至短信发送系统" data-toggle="tooltip" data-placement="top">
-                                                    <i class="glyphicon glyphicon-ok icon-white"></i>
-                                                    发送短信
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-danger cancelButton" title="将取消发送该短信，但依然会记录在数据库中" data-toggle="tooltip" data-placement="top">
-                                                    <i class="glyphicon glyphicon-remove icon-white"></i>
-                                                    取消发送
-                                                </a>
+                                            <td>刘炎杰</td>
+                                            <td>贾正皓</td>
+                                        </tr>
+                                        <tr>
+                                            <th>WLJK-170104-001</th>
+                                            <td>2017/01/04 05:43</td>
+                                            <td>2017/01/04 05:45</td>
+                                            <td>2017/01/04 05:48</td>
+                                            <td>传输</td>
+                                            <td>严重</td>
+                                            <td>跟踪</td>
+                                            <td>【严重故障跟踪信息】4:50发生的CMNET城域网新南汇9306-1至金桥MX960-2，新南汇9306-2至金桥MX960-1聚合口linkdown告警。网维回复该故障是由于光缆割接引起（割接方案中并未提及金桥至南汇WDM设备主光路）。该故障影响一条金牌客户专线（中国农业银行股份有限公司上海市分行）。目前未收到前台批量投诉。故障处理责任人：网维中心  程治 13501620195，当班值班长：贾正皓（网络运行管理中心）</td>
+                                            <td class="center">
+                                                <a class="btn btn-warning scoreButton" href="#" title="点击可给此条信息打分" data-toggle="tooltip" data-placement="top">
+                                                    <i class="glyphicon glyphicon-check icon-white"></i>
+                                                    点击打分
+                                                </a>  
                                             </td>
                                             <td>刘炎杰</td>
-                                            <td>凌晓欢</td>
+                                            <td>贾正皓</td>
+                                        </tr>
+                                        <tr>
+                                            <th>WLJK-170104-001</th>
+                                            <td>2017/01/04 05:59</td>
+                                            <td>2017/01/04 06:01</td>
+                                            <td>2017/01/04 06:03</td>
+                                            <td>传输</td>
+                                            <td>严重</td>
+                                            <td>恢复</td>
+                                            <td>【严重故障恢复信息】4:50发生的CMNET城域网新南汇9306-1至金桥MX960-2，新南汇9306-2至金桥MX960-1聚合口linkdown告警已于5:55恢复。期间未收到前台批量投诉。当班值班长：贾正皓（网络运行管理中心）</td>
+                                            <td class="center">
+                                                <a class="btn btn-warning scoreButton" href="#" title="点击可给此条信息打分" data-toggle="tooltip" data-placement="top">
+                                                    <i class="glyphicon glyphicon-check icon-white"></i>
+                                                    点击打分
+                                                </a>  
+                                            </td>
+                                            <td>刘炎杰</td>
+                                            <td>贾正皓</td>
+                                        </tr>
+                                        <tr>
+                                            <th>WLJK-170104-001</th>
+                                            <td>2017/01/04 07:13</td>
+                                            <td>2017/01/04 07:16</td>
+                                            <td>2017/01/04 07:17</td>
+                                            <td>传输</td>
+                                            <td>严重</td>
+                                            <td>恢复跟踪</td>
+                                            <td>【严重故障恢复跟踪信息】4:50发生的CMNET城域网新南汇9306-1至金桥MX960-2，新南汇9306-2至金桥MX960-1聚合口linkdown告警已于5:55恢复。经核实故障由于光缆割接引起（割接方案中并未提及金桥至南汇WDM设备主光路）期间未收到前台批量投诉，网运中心已向客服进行故障恢复信息发布。当班值班长：贾正皓（网络运行管理中心）</td>
+                                            <td class="center">
+                                                <a class="btn btn-warning scoreButton" href="#" title="点击可给此条信息打分" data-toggle="tooltip" data-placement="top">
+                                                    <i class="glyphicon glyphicon-check icon-white"></i>
+                                                    点击打分
+                                                </a>  
+                                            </td>
+                                            <td>刘炎杰</td>
+                                            <td>贾正皓</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -374,64 +416,31 @@
 
     <!-- 模态框 获取该短信并重新编辑功能-->
     <div class="modal fade" id="reEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-        data-backdrop="static">
+    data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form class="form-horizontal" role="form" id="reEditForm" method="post">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">×</button>
-                        <h3>反复修改的短信必须交由值班长再次审核</h3>
+                        <h3>给该短信打分</h3>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label class="control-label col-sm-3" for="zhuanye-modal-2">选择专业</label>
+                            <label for="score-modal" class="control-label col-sm-3">审核人打分</label>
                             <div class="col-sm-9">
-                                <select id="zhuanye-modal-2" class="form-control">
-                                    <option>无线</option>
-                                    <option>传输</option>
-                                    <option>数据</option>
-                                    <option>交换</option>
-                                    <option>集客</option>
-                                    <option>跨专业</option>
-                                    <option value="">投诉</option>
-                                    <option>其他</option>
-                                </select>
+                                <span class="raty" id="score-modal"></span>&nbsp;&nbsp;&nbsp;<span class="label label-danger" id="score-modal-number">4.5分</span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="level-modal-2" class="control-label col-sm-3">级别</label>
+                            <label for="beizhu" class="control-label col-sm-3">打分备注</label>
                             <div class="col-sm-9">
-                                <select name="" id="level-modal-2" class="form-control">
-                                    <option value="">重大</option>
-                                    <option value="">严重</option> 
-                                    <option value="">内部</option>
-                                    <option value="">一般</option>
-                                </select>
-                            </div>      
-                        </div>
-                        <div class="form-group">
-                            <label for="type-modal-2" class="control-label col-sm-3">类别</label>
-                            <div class="col-sm-9">
-                                <select name="" id="type-modal-2" class="form-control">
-                                    <option value="">发生</option>
-                                    <option value="">跟踪</option>
-                                    <option value="">恢复</option> 
-                                    <option value="">恢复跟踪</option>
-                                </select>
+                                <textarea name="beizhu" id="beizhu" placeholder="可以写一下，该短信发送过程中出了哪些问题，或者是短信内容哪里写错了" rows="10" class="form-control"></textarea>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="contents" class="control-label col-sm-3">短信内容</label>
-                            <div class="col-sm-9">
-                                <textarea id="contents" name="contents" rows="10" class="form-control" placeholder="请输入内容"> 
-                                </textarea>
-                            </div>
-                        </div>
-                        
                     </div>
                     <div class="modal-footer">
                         <a href="#" class="btn btn-default" data-dismiss="modal">取消</a>
-                        <button type="submit" class="btn btn-primary" id="submitToSender">请值班长审核</button>
+                        <button type="submit" class="btn btn-primary" id="submitToSender">将分数记录到数据库</button>
                     </div>
                 </form>
             </div>
@@ -476,6 +485,6 @@
     <!-- 所有页面共有的需启动初始化的js -->
     <script src="js/common.js"></script>
     <!-- 最终的独立js -->
-    <script src="jsonce/yujingfasong.js"></script>
+    <script src="jsonce/yujingdafen.js"></script>
 </body>
 </html>

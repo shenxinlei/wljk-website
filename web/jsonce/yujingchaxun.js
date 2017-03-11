@@ -29,107 +29,31 @@ function docReady() {
         },
     });
 
-    // 交由系统发送 按钮
-    $('.sendToSystem').on('click', function () {
-        $.confirm({
-            title: '是否已经完成发送',
-            content: '',
-            confirm: function () {
-                $.alert({
-                    icon: 'glyphicon glyphicon-heart',
-                    content: false,
-                    title: '发送成功',
-                    theme: 'green',
-                });
-            },
-            cancel: function () {
-                $.alert({
-                    content: false,
-                    title: '取消发送',
-                    theme: 'black',
-                });
-            },
-            confirmButton: '已发送',
-            cancelButton: '还没发送',
-            confirmButtonClass: 'btn-info',
-            cancelButtonClass: 'btn-danger',
-            animation: 'zoom',
-            closeAnimation: 'scale',
-            theme: 'black',
+    //查询按钮
+    $('#submit-query').click(function(){
+        $('#form-query').ajaxSubmit({
+            type: 'post',
         });
-        //return false;//阻止默认提交
+        $('#table-query').show();
+        $('#form-query').resetForm(); // 提交后重置表单
+        return false; // 阻止表单自动提交事件
     });
-
-    //获取该短信并重新编辑功能 再改改 按钮
-    $('.reEditButton').click(function (e){
-        e.preventDefault();
-        var contents = $(this).parent().parent().children().eq(6).text();
-        $("#contents").val(contents);
-        $("#reEdit").modal('show');
+    
+    //日期查询按照天粒度来取
+    $('.formDate').datetimepicker({
+        format:'yyyy-mm-dd',
+        language: 'zh-CN',
+        weekStart: 0,
+        autoclose: 1,
+        startView: 2,
+        todayBtn:  1,
+        todayHighlight: 1,
+        forceParse: 1,
+        showMeridian: 0,
+        minView: "month",//设置只显示到月份
+        initialDate:new Date(),
     });
-
-    //提交值班长审核
-    $('#submitToSender').on('click', function () {
-        $.confirm({
-            title: '请确认是否完成修改',
-            content: '请确保短信已经修改无误',
-            confirm: function () {
-                $.alert({
-                    icon: 'glyphicon glyphicon-heart',
-                    content: false,
-                    title: '成功交由值班长审核',
-                    theme: 'black',
-                });
-            },
-            cancel: function () {
-                $.alert({
-                    content: false,
-                    title: '已取消',
-                    theme: 'black',
-                });
-            },
-            confirmButton: '是的，继续',
-            cancelButton: '容我再改改',
-            confirmButtonClass: 'btn-info',
-            cancelButtonClass: 'btn-danger',
-            animation: 'zoom',
-            closeAnimation: 'scale',
-            theme: 'black',
-        });
-        return false;//阻止默认提交
-    });
-
-    //取消发送按钮
-    $('.cancelButton').on('click', function () {
-        $.confirm({
-            title: '是否确定不发送',
-            content: '',
-            confirm: function () {
-                $.alert({
-                    icon: 'glyphicon glyphicon-heart',
-                    content: false,
-                    title: '确定不发送',
-                    theme: 'black',
-                });
-            },
-            cancel: function () {
-                $.alert({
-                    content: false,
-                    title: '继续发送',
-                    theme: 'black',
-                });
-            },
-            confirmButton: '不发送了',
-            cancelButton: '再考虑一下',
-            confirmButtonClass: 'btn-info',
-            cancelButtonClass: 'btn-danger',
-            animation: 'zoom',
-            closeAnimation: 'scale',
-            theme: 'black',
-        });
-        //return false;//阻止默认提交
-    });
-
+    
 
 }
 

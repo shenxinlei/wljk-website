@@ -29,55 +29,54 @@ function docReady() {
         },
     });
 
-    // 交由系统发送 按钮
-    $('.sendToSystem').on('click', function () {
-        $.confirm({
-            title: '是否已经完成发送',
-            content: '',
-            confirm: function () {
-                $.alert({
-                    icon: 'glyphicon glyphicon-heart',
-                    content: false,
-                    title: '发送成功',
-                    theme: 'green',
-                });
-            },
-            cancel: function () {
-                $.alert({
-                    content: false,
-                    title: '取消发送',
-                    theme: 'black',
-                });
-            },
-            confirmButton: '已发送',
-            cancelButton: '还没发送',
-            confirmButtonClass: 'btn-info',
-            cancelButtonClass: 'btn-danger',
-            animation: 'zoom',
-            closeAnimation: 'scale',
-            theme: 'black',
-        });
-        //return false;//阻止默认提交
-    });
-
-    //获取该短信并重新编辑功能 再改改 按钮
-    $('.reEditButton').click(function (e){
+    //获取打分页面
+    $('.scoreButton').click(function (e){
         e.preventDefault();
-        var contents = $(this).parent().parent().children().eq(6).text();
-        $("#contents").val(contents);
+        //var contents = "678910"；
+        //var contents = $(this).parent().parent().children().eq(5).text();
+        //$("#contents").val(contents);
+        //console.log("12345");
         $("#reEdit").modal('show');
     });
 
-    //提交值班长审核
+    //星星评分
+    $('.raty').raty({ 
+        number: 5,
+        score: 4.5,
+        half: true,
+        halfShow: true, 
+        click: function(score, evt) {
+            var string = "";
+            switch (score) {
+                case "5": string = "5.0分"; break;
+                case "4": string = "4.0分"; break;
+                case "3": string = "3.0分"; break;
+                case "2": string = "2.0分"; break;
+                case "1": string = "1.0分"; break;
+                default: string = score + "分";
+            }           
+            $("#score-modal-number").text(string);
+        }
+    });
+
+    //如何获取星星上面的分数
+    // $('#submitToSender').click(function(e) {
+    //     e.preventDefault();
+    //     console.log("12345");
+    //     var temp = $('#score-modal').raty('score'); 
+    //     console.log(temp);
+    // });
+
+    //打分提交按钮
     $('#submitToSender').on('click', function () {
         $.confirm({
-            title: '请确认是否完成修改',
-            content: '请确保短信已经修改无误',
+            title: '请确认分数',
+            content: '请确认你给的分数和备注是否填写完整',
             confirm: function () {
                 $.alert({
                     icon: 'glyphicon glyphicon-heart',
                     content: false,
-                    title: '成功交由值班长审核',
+                    title: '打分成功',
                     theme: 'black',
                 });
             },
@@ -88,8 +87,8 @@ function docReady() {
                     theme: 'black',
                 });
             },
-            confirmButton: '是的，继续',
-            cancelButton: '容我再改改',
+            confirmButton: '是的，请提交',
+            cancelButton: '我再改改',
             confirmButtonClass: 'btn-info',
             cancelButtonClass: 'btn-danger',
             animation: 'zoom',
@@ -98,38 +97,6 @@ function docReady() {
         });
         return false;//阻止默认提交
     });
-
-    //取消发送按钮
-    $('.cancelButton').on('click', function () {
-        $.confirm({
-            title: '是否确定不发送',
-            content: '',
-            confirm: function () {
-                $.alert({
-                    icon: 'glyphicon glyphicon-heart',
-                    content: false,
-                    title: '确定不发送',
-                    theme: 'black',
-                });
-            },
-            cancel: function () {
-                $.alert({
-                    content: false,
-                    title: '继续发送',
-                    theme: 'black',
-                });
-            },
-            confirmButton: '不发送了',
-            cancelButton: '再考虑一下',
-            confirmButtonClass: 'btn-info',
-            cancelButtonClass: 'btn-danger',
-            animation: 'zoom',
-            closeAnimation: 'scale',
-            theme: 'black',
-        });
-        //return false;//阻止默认提交
-    });
-
 
 }
 

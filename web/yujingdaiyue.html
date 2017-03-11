@@ -258,17 +258,17 @@
             	<div>
     				<ul class="breadcrumb">
         				<li><a href="main.html">主页</a></li>
-        				<li><a href="#">预警发送</a></li>
+        				<li><a href="#">待阅预警</a></li>
     				</ul>
 			    </div>
                 
-                <div class="row">
+                <div class="row" id="yujingcase1">
                     <div class="box col-md-12">
                         <div class="box-inner">
                             <div class="box-header well" data-original-title="">
                                 <h2>
                                     <i class="glyphicon glyphicon-user"></i> 
-                                    等待发送的信息列表
+                                    预警ID：WLJK-170104-001 &nbsp;&nbsp;&nbsp;&nbsp;专业：传输 &nbsp;&nbsp;&nbsp;&nbsp;级别：严重
                                 </h2>
                                 <div class="box-icon">
                                     <a href="#" class="btn btn-minimize btn-round btn-default"><i
@@ -281,56 +281,252 @@
                                 <table class="table table-striped table-bordered responsive">
                                     <thead>
                                         <tr>
-                                            <th>预警ID</th>
                                             <th>发布时间</th>
                                             <th>审核时间</th>
+                                            <th>发送时间</th>
                                             <th>专业</th>
                                             <th>级别</th>
                                             <th>类型</th>
-                                            <th>内容</th>
-                                            <th>操作一</th>
-                                            <th>操作二</th>
-                                            <th>操作三</th>
                                             <th>发布人</th>
                                             <th>审核人</th>
+                                            <th>审核人打分</th>
+                                            <th>是否被修改</th> 
+                                            <th>是否发送</th>
+                                            <th>内容</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <th>WLJK-160601-002</th>
-                                            <td>2016/06/01 12:55</td>
-                                            <td>2016/06/01 12:58</td>
-                                            <td>传输</td>
+                                            <td>2017/01/04 05:03</td>
+                                            <td>2017/01/04 05:04</td>
+                                            <td>2017/01/04 05:06</td>
+                                            <td>数据</td>
                                             <td>严重</td>
-                                            <td>跟踪</td> 
-                                            <td>【严重故障跟踪信息】12:05 发生的宝山四季绿城共238个ONU离线故障，故障定位为四季绿城一期、二期基站搬迁引起，预计22:30完成后恢复。目前未收到前台相关投诉7件，网运中心将密切跟踪故障处理进展。当班值班长：凌晓欢（网络运行管理中心）</td>
-                                            <td class="center">
-                                                <a class="btn btn-primary reEditButton" href="#" title="如果发现短信编写有错误，点击继续修改" data-toggle="tooltip" data-placement="top">
-                                                    <i class="glyphicon glyphicon-edit icon-white"></i>
-                                                    再改改
-                                                </a>  
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-success sendToSystem" target="_blank" href="http://www.baidu.com" title="将跳转至短信发送系统" data-toggle="tooltip" data-placement="top">
-                                                    <i class="glyphicon glyphicon-ok icon-white"></i>
-                                                    发送短信
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-danger cancelButton" title="将取消发送该短信，但依然会记录在数据库中" data-toggle="tooltip" data-placement="top">
-                                                    <i class="glyphicon glyphicon-remove icon-white"></i>
-                                                    取消发送
-                                                </a>
-                                            </td>
-                                            <td>刘炎杰</td>
-                                            <td>凌晓欢</td>
+                                            <td>发生</td>
+                                            <td>张鹤</td>
+                                            <td>贾正皓</td>
+                                            <td>4.5分</td>
+                                            <td>是</td>
+                                            <td>是</td>
+                                            <td>【严重故障信息】4:50发生CMNET城域网新南汇9306-1至金桥MX960-2，新南汇9306-2至金桥MX960-1聚合口linkdown告警。故障影响新南汇9306-1下的GPON  IMS专线和CMS业务，新南汇9306-2下的GPON宽带通专线。传输网管显示浦东至南汇WDM设备上报主光路中断告警，初步怀疑为光缆中断。网运中心已向客服进行故障信息发布，目前未收到前台批量投诉。故障处理责任人：网维中心  程治 13501620195，当班值班长：贾正皓（网络运行管理中心）</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2017/01/04 05:43</td>
+                                            <td>2017/01/04 05:45</td>
+                                            <td>2017/01/04 05:46</td>
+                                            <td>数据</td>
+                                            <td>严重</td>
+                                            <td>跟踪</td>
+                                            <td>张鹤</td>
+                                            <td>贾正皓</td>
+                                            <td>5.0分</td>
+                                            <td>否</td>
+                                            <td>是</td>
+                                            <td>【严重故障跟踪信息】4:50发生的CMNET城域网新南汇9306-1至金桥MX960-2，新南汇9306-2至金桥MX960-1聚合口linkdown告警。网维回复该故障是由于光缆割接引起（割接方案中并未提及金桥至南汇WDM设备主光路）。该故障影响一条金牌客户专线（中国农业银行股份有限公司上海市分行）。目前未收到前台批量投诉。故障处理责任人：网维中心  程治 13501620195，当班值班长：贾正皓（网络运行管理中心） </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2017/01/04 06:40</td>
+                                            <td>2017/01/04 06:41</td>
+                                            <td>无</td>
+                                            <td>数据</td>
+                                            <td>严重</td>
+                                            <td>跟踪</td>
+                                            <td>张鹤</td>
+                                            <td>贾正皓</td>
+                                            <td>5.0分</td>
+                                            <td>否</td>
+                                            <td>否</td>
+                                            <td>【严重故障跟踪信息】4:50发生的CMNET城域网新南汇9306-1至金桥MX960-2，新南汇9306-2至金桥MX960-1聚合口linkdown告警。网维回复该故障是由于光缆割接引起（割接方案中并未提及金桥至南汇WDM设备主光路）。该故障影响一条金牌客户专线（中国农业银行股份有限公司上海市分行）。目前未收到前台批量投诉。故障处理责任人：网维中心  程治 13501620195，当班值班长：贾正皓（网络运行管理中心） </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2017/01/04 06:48</td>
+                                            <td>2017/01/04 06:50</td>
+                                            <td>2017/01/04 06:51</td>
+                                            <td>数据</td>
+                                            <td>严重</td>
+                                            <td>恢复</td>
+                                            <td>张鹤</td>
+                                            <td>贾正皓</td>
+                                            <td>4.5分</td>
+                                            <td>是</td>
+                                            <td>是</td>
+                                            <td>【严重故障恢复信息】4:50发生的CMNET城域网新南汇9306-1至金桥MX960-2，新南汇9306-2至金桥MX960-1聚合口linkdown告警已于6:45恢复。期间未收到前台批量投诉。当班值班长：贾正皓（网络运行管理中心） </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2017/01/04 07:03</td>
+                                            <td>2017/01/04 07:04</td>
+                                            <td>无</td>
+                                            <td>数据</td>
+                                            <td>严重</td>
+                                            <td>恢复跟踪</td>
+                                            <td>张鹤</td>
+                                            <td>贾正皓</td>
+                                            <td>4.5分</td>
+                                            <td>是</td>
+                                            <td>否</td>
+                                            <td>【严重故障恢复跟踪信息】4:50发生的CMNET城域网新南汇9306-1至金桥MX960-2，新南汇9306-2至金桥MX960-1聚合口linkdown告警已于6:45恢复。经核实故障由于光缆割接引起（割接方案中并未提及金桥至南汇WDM设备主光路）期间未收到前台批量投诉，网运中心已向客服进行故障恢复信息发布。当班值班长：贾正皓（网络运行管理中心）</td>
                                         </tr>
                                     </tbody>
                                 </table>
+                                <button class="btn btn-success btn-lg" id="closeCase1">一键阅毕</button>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="row" id="yujingcase2">
+                    <div class="box col-md-12">
+                        <div class="box-inner">
+                            <div class="box-header well" data-original-title="">
+                                <h2>
+                                    <i class="glyphicon glyphicon-user"></i> 
+                                    预警ID：WLJK-161224-001 &nbsp;&nbsp;&nbsp;&nbsp;专业：无线 &nbsp;&nbsp;&nbsp;&nbsp;级别：重大
+                                </h2>
+                                <div class="box-icon">
+                                    <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                            class="glyphicon glyphicon-chevron-up"></i></a>
+                                    <a href="#" class="btn btn-close btn-round btn-default"><i
+                                            class="glyphicon glyphicon-remove"></i></a>
+                                </div>
+                            </div>
+                            <div class="box-content">
+                                <table class="table table-striped table-bordered responsive">
+                                    <thead>
+                                        <tr>
+                                            <th>发布时间</th>
+                                            <th>审核时间</th>
+                                            <th>发送时间</th>
+                                            <th>专业</th>
+                                            <th>级别</th>
+                                            <th>类型</th>
+                                            <th>发布人</th>
+                                            <th>审核人</th>
+                                            <th>审核人打分</th>
+                                            <th>是否被修改</th> 
+                                            <th>是否发送</th>
+                                            <th>内容</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>2016/12/24 23:25</td>
+                                            <td>2016/12/24 23:26</td>
+                                            <td>2016/12/24 23:27</td>
+                                            <td>无线</td>
+                                            <td>重大</td>
+                                            <td>发生</td>
+                                            <td>曹宏亮</td>
+                                            <td>冷顺超</td>
+                                            <td>4.5分</td>
+                                            <td>是</td>
+                                            <td>是</td>
+                                            <td>【重大故障信息】23:10上报GSM基站退服数超40个告警，故障主要分布在闵行、黄浦等地区，传输网管显示分散核心平台二1级扩架与二级扩架间上报带宽利用率越限，网运中心紧急处理中。目前未收到前台批量投诉。故障处理责任人：网运中心  吴勇 13601720119；故障处理联系人：网运中心 徐瀚 13801830195；网运中心协调责任人：林晓轩  13524580195。当班值班长：冷顺超（网络运行管理中心）</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2016/12/25 00:17</td>
+                                            <td>2016/12/25 00:19</td>
+                                            <td>2016/12/25 00:23</td>
+                                            <td>无线</td>
+                                            <td>重大</td>
+                                            <td>跟踪</td>
+                                            <td>曹宏亮</td>
+                                            <td>冷顺超</td>
+                                            <td>4.0分</td>
+                                            <td>是</td>
+                                            <td>是</td>
+                                            <td>【重大故障跟踪信息】23:10发生全网GSM基站退服数超40个门限故障，目前尚未恢复，目前全网共65个GSM基站退服。批量退服原因定位为中兴PTN分散核心平台二金桥扩架PGEA单板故障，网运中心宋悦已赶赴现场处理。目前未收到前台批量投诉。根据集团重大故障定义该故障持续至2月7日2:10将达到集团重大故障标准，届时网运中心将启动重大故障管理流程，请相关单位加快抢修进度。故障处理责任人：网运中心  吴勇 13601720119；故障处理联系人：网运中心 徐瀚 13801830195；网运中心协调责任人：林晓轩  13524580195。当班值班长：冷顺超（网络运行管理中心）</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2016/12/25 00:50</td>
+                                            <td>2016/12/25 00:55</td>
+                                            <td>2016/12/25 00:57</td>
+                                            <td>无线</td>
+                                            <td>重大</td>
+                                            <td>恢复</td>
+                                            <td>曹宏亮</td>
+                                            <td>冷顺超</td>
+                                            <td>4.5分</td>
+                                            <td>是</td>
+                                            <td>是</td>
+                                            <td>【重大故障恢复信息】2月6日23:10发生的全网GSM基站退服数超40个门限故障已于2月7日0:45恢复，故障原因为中兴PTN分散核心平台二金桥一级扩架与二级扩架间上报带宽利用率越限引起，经网运中心将业务逐条切换到备用通道后恢复。期间未收到前台批量投诉，收到相关集团紧急故障单1张。故障历时不足3小时未达到集团重大故障标准。当班值班长：冷顺超（网络运行管理中心） </td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                                <button class="btn btn-success btn-lg" id="closeCase2">一键阅毕</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="yujingcase3">
+                    <div class="box col-md-12">
+                        <div class="box-inner">
+                            <div class="box-header well" data-original-title="">
+                                <h2>
+                                    <i class="glyphicon glyphicon-user"></i> 
+                                    预警ID：WLJK-161011-001 &nbsp;&nbsp;&nbsp;&nbsp;专业：传输 &nbsp;&nbsp;&nbsp;&nbsp;级别：严重
+                                </h2>
+                                <div class="box-icon">
+                                    <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                            class="glyphicon glyphicon-chevron-up"></i></a>
+                                    <a href="#" class="btn btn-close btn-round btn-default"><i
+                                            class="glyphicon glyphicon-remove"></i></a>
+                                </div>
+                            </div>
+                            <div class="box-content">
+                                <table class="table table-striped table-bordered responsive">
+                                    <thead>
+                                        <tr>
+                                            <th>发布时间</th>
+                                            <th>审核时间</th>
+                                            <th>发送时间</th>
+                                            <th>专业</th>
+                                            <th>级别</th>
+                                            <th>类型</th>
+                                            <th>发布人</th>
+                                            <th>审核人</th>
+                                            <th>审核人打分</th>
+                                            <th>是否被修改</th> 
+                                            <th>是否发送</th>
+                                            <th>内容</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>2016/10/11 08:36</td>
+                                            <td>2016/10/11 08:37</td>
+                                            <td>2016/10/11 08:39</td>
+                                            <td>传输</td>
+                                            <td>严重</td>
+                                            <td>发生</td>
+                                            <td>刘炎杰</td>
+                                            <td>凌晓欢</td>
+                                            <td>5.0分</td>
+                                            <td>否</td>
+                                            <td>是</td>
+                                            <td>【严重故障信息】8:20 港机一号生活区57个ONU离线，故障主要影响港机一号生活区宽带业务，目前未收到前台批量投诉，网管中心已协调属地分公司处理，并向客服进行故障信息发布。故障处理责任人：崇明分公司郑平浩13564300192。当班值班长：凌晓欢（网络运行管理中心）</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2016/10/11 10:01</td>
+                                            <td>2016/10/11 10:03</td>
+                                            <td>2016/10/11 10:04</td>
+                                            <td>传输</td>
+                                            <td>严重</td>
+                                            <td>恢复</td>
+                                            <td>刘炎杰</td>
+                                            <td>凌晓欢</td>
+                                            <td>4.5分</td>
+                                            <td>是</td>
+                                            <td>是</td>
+                                            <td>【严重故障恢复信息】8:20发生的港机一号生活区57个ONU离线故障于9:54恢复，故障原因为业主拉电检修，上电后恢复，期间前台未收到相关投诉，网运中心已向客服进行故障恢复信息发布。当班值班长：凌晓欢（网络运行管理中心）</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <button class="btn btn-success btn-lg" id="closeCase3">一键阅毕</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -374,64 +570,31 @@
 
     <!-- 模态框 获取该短信并重新编辑功能-->
     <div class="modal fade" id="reEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-        data-backdrop="static">
+    data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form class="form-horizontal" role="form" id="reEditForm" method="post">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">×</button>
-                        <h3>反复修改的短信必须交由值班长再次审核</h3>
+                        <h3>给该短信打分</h3>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label class="control-label col-sm-3" for="zhuanye-modal-2">选择专业</label>
+                            <label for="score-modal" class="control-label col-sm-3">审核人打分</label>
                             <div class="col-sm-9">
-                                <select id="zhuanye-modal-2" class="form-control">
-                                    <option>无线</option>
-                                    <option>传输</option>
-                                    <option>数据</option>
-                                    <option>交换</option>
-                                    <option>集客</option>
-                                    <option>跨专业</option>
-                                    <option value="">投诉</option>
-                                    <option>其他</option>
-                                </select>
+                                <span class="raty" id="score-modal"></span>&nbsp;&nbsp;&nbsp;<span class="label label-danger" id="score-modal-number">4.5分</span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="level-modal-2" class="control-label col-sm-3">级别</label>
+                            <label for="beizhu" class="control-label col-sm-3">打分备注</label>
                             <div class="col-sm-9">
-                                <select name="" id="level-modal-2" class="form-control">
-                                    <option value="">重大</option>
-                                    <option value="">严重</option> 
-                                    <option value="">内部</option>
-                                    <option value="">一般</option>
-                                </select>
-                            </div>      
-                        </div>
-                        <div class="form-group">
-                            <label for="type-modal-2" class="control-label col-sm-3">类别</label>
-                            <div class="col-sm-9">
-                                <select name="" id="type-modal-2" class="form-control">
-                                    <option value="">发生</option>
-                                    <option value="">跟踪</option>
-                                    <option value="">恢复</option> 
-                                    <option value="">恢复跟踪</option>
-                                </select>
+                                <textarea name="beizhu" id="beizhu" placeholder="可以写一下，该短信发送过程中出了哪些问题，或者是短信内容哪里写错了" rows="10" class="form-control"></textarea>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="contents" class="control-label col-sm-3">短信内容</label>
-                            <div class="col-sm-9">
-                                <textarea id="contents" name="contents" rows="10" class="form-control" placeholder="请输入内容"> 
-                                </textarea>
-                            </div>
-                        </div>
-                        
                     </div>
                     <div class="modal-footer">
                         <a href="#" class="btn btn-default" data-dismiss="modal">取消</a>
-                        <button type="submit" class="btn btn-primary" id="submitToSender">请值班长审核</button>
+                        <button type="submit" class="btn btn-primary" id="submitToSender">将分数记录到数据库</button>
                     </div>
                 </form>
             </div>
@@ -476,6 +639,6 @@
     <!-- 所有页面共有的需启动初始化的js -->
     <script src="js/common.js"></script>
     <!-- 最终的独立js -->
-    <script src="jsonce/yujingfasong.js"></script>
+    <script src="jsonce/yujingdaiyue.js"></script>
 </body>
 </html>
