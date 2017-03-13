@@ -1,7 +1,7 @@
 <?php
 
 // Define a destination
-$targetFolder = '/wljk-1.1.7/uploads'; // Relative to the root
+$targetFolder = '/wljk-website/web/uploads'; // Relative to the root
 
 if (!empty($_FILES)) {
 	$tempFile = $_FILES['Filedata']['tmp_name'];

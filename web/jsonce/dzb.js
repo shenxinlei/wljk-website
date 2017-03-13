@@ -1,69 +1,5 @@
 function docReady() {
-	//先从数据库判断，如果数据库里已经有数据了，就要直接把书签显示出来
-
-
-    //这里定义一个docReady函数内的全局变量reason
-    //这是一个字符串，当做原因分析时，这个变量会被改写
-    var reason = "上海网络运行正常，无影响业务的故障发生。";
-    //这4个布尔变量为了判定哪些指标超标，用来坐分析的，初始为false
-    var number = false;
-    var traffic = false;
-    var ims = false;
-    var esrvcc = false;
-
-
-    //excel文件上传
-    $('#file_upload').uploadify({
-        'swf': 'misc/uploadify.swf',
-        'uploader': 'misc/uploadify.php',
-        'buttonText':'选择上传的文件',
-        'onUploadSuccess' : function(file,data,response) {
-            //判断名字是否一致，一致就把大×改为钩子
-            if (file.name == "1.xlsx") {
-                $("#graph1").removeClass("glyphicon-remove").addClass("glyphicon-ok");
-                $("#button1").removeClass("btn-default").addClass("btn-primary");
-            }
-            if (file.name == "2.xlsx") {
-                $("#graph2").removeClass("glyphicon-remove").addClass("glyphicon-ok");
-                $("#button2").removeClass("btn-default").addClass("btn-primary");
-            }
-            if (file.name == "3.xlsx") {
-                $("#graph3").removeClass("glyphicon-remove").addClass("glyphicon-ok");
-                $("#button3").removeClass("btn-default").addClass("btn-primary");
-            }
-            if (file.name == "4.xlsx") {
-                $("#graph4").removeClass("glyphicon-remove").addClass("glyphicon-ok");
-                $("#button4").removeClass("btn-default").addClass("btn-primary");
-            }
-            if (file.name == "5.xlsx") {
-                $("#graph5").removeClass("glyphicon-remove").addClass("glyphicon-ok");
-                $("#button5").removeClass("btn-default").addClass("btn-primary");
-            }
-            if (file.name == "6.xlsx") {
-                $("#graph6").removeClass("glyphicon-remove").addClass("glyphicon-ok");
-                $("#button6").removeClass("btn-default").addClass("btn-primary");
-            }
-            if ($("#button1").hasClass("btn-primary") &&
-                $("#button2").hasClass("btn-primary") &&
-                $("#button3").hasClass("btn-primary") &&
-                $("#button4").hasClass("btn-primary") &&
-                $("#button5").hasClass("btn-primary") &&
-                $("#button6").hasClass("btn-primary")) {
-                $("#calculatedzb").attr("disabled", false);
-            }
-        }
-    });
-
-    //书签
-    $('#myTab a:first').tab('show');
-    $('#myTab a').click(function (e) {
-        e.preventDefault();
-        $(this).tab('show');
-    });
-
-    
-
-	//datatable
+    //datatable
     $('.datatable').dataTable({
         "sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-12'i><'col-md-12 center-block'p>>",
         "sPaginationType": "bootstrap",
@@ -92,6 +28,79 @@ function docReady() {
             }
         },
     });
+
+    /***
+        先从数据库判断，如果数据库里已经有数据了，就要直接把书签显示出来
+        这一步交给老蒋了
+    ***/
+
+    //excel文件上传
+    $('#file_upload').uploadify({
+        'swf': 'misc/uploadify.swf',
+        'uploader': 'misc/uploadify.php',
+        'buttonText':'选择上传的文件',
+        'onUploadSuccess' : function(file,data,response) {
+            //判断名字是否一致，一致就把大×改为钩子
+            if (file.name == "新监控大值班报表（集团）.xls") {
+                $("#graph1").removeClass("glyphicon-remove").addClass("glyphicon-ok");
+                $("#button1").removeClass("btn-default").addClass("btn-primary");
+            }
+            if (file.name == "eMSC性能报表.xlsx") {
+                $("#graph2").removeClass("glyphicon-remove").addClass("glyphicon-ok");
+                $("#button2").removeClass("btn-default").addClass("btn-primary");
+            }
+            if (file.name == "VoLTE SBC关键性能报表.xls") {
+                $("#graph3").removeClass("glyphicon-remove").addClass("glyphicon-ok");
+                $("#button3").removeClass("btn-default").addClass("btn-primary");
+            }
+            if (file.name == "S-CSCF关键性能报表.xls") {
+                $("#graph4").removeClass("glyphicon-remove").addClass("glyphicon-ok");
+                $("#button4").removeClass("btn-default").addClass("btn-primary");
+            }
+            if (file.name == "TD-LTE网络性能指标统计报表.xls") {
+                $("#graph5").removeClass("glyphicon-remove").addClass("glyphicon-ok");
+                $("#button5").removeClass("btn-default").addClass("btn-primary");
+            }
+            if (file.name == "GSM B表日统计粒度.xls") {
+                $("#graph6").removeClass("glyphicon-remove").addClass("glyphicon-ok");
+                $("#button6").removeClass("btn-default").addClass("btn-primary");
+            }
+            if (file.name == "GSM B表晚忙时报表.xls") {
+                $("#graph7").removeClass("glyphicon-remove").addClass("glyphicon-ok");
+                $("#button7").removeClass("btn-default").addClass("btn-primary");
+            }
+            if (file.name == "GSM B表早忙时报表.xls") {
+                $("#graph8").removeClass("glyphicon-remove").addClass("glyphicon-ok");
+                $("#button8").removeClass("btn-default").addClass("btn-primary");
+            }
+            if ($("#button1").hasClass("btn-primary") &&
+                $("#button2").hasClass("btn-primary") &&
+                $("#button3").hasClass("btn-primary") &&
+                $("#button4").hasClass("btn-primary") &&
+                $("#button5").hasClass("btn-primary") ) {
+                $("#calculatedzb").attr("disabled", false);
+            }
+        }
+    });
+
+    //书签
+    $('#myTab a:first').tab('show');
+    $('#myTab a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+
+
+    //这里定义一个docReady函数内的全局变量reason
+    //这是一个字符串，当做原因分析时，这个变量会被改写
+    var reason = "上海网络运行正常，无影响业务的故障发生。";
+    //这4个布尔变量为了判定哪些指标超标，用来坐分析的，初始为false
+    var number = false;
+    var traffic = false;
+    var ims = false;
+    var esrvcc = false;
+
+	
 
     //VoLTE注册用户数
     $("#number").change(function() {
