@@ -12,7 +12,6 @@ function docReady() {
     var esrvcc = false;
 
 
-
     //excel文件上传
     $('#file_upload').uploadify({
         'swf': 'misc/uploadify.swf',
