@@ -280,7 +280,7 @@
                                     请一定按照以下文件名上传.xls结尾的表格，可以不按照顺序上传。其中GSM的三个报表在指标出问题之后，才需要上传。（可多个文件一起上传）
                                 </div>
                                 <div class="btn-group" id="btn-group1">
-                                    <button class="btn btn-default btn-sm" id="button1">新监控大值班报表（集团）<i class="glyphicon glyphicon-remove" id="graph1"></i></button>
+                                    <button class="btn btn-default btn-sm" id="button1">新监控大值班报表<i class="glyphicon glyphicon-remove" id="graph1"></i></button>
                                     <button class="btn btn-default btn-sm" id="button2">eMSC性能报表<i class="glyphicon glyphicon-remove" id="graph2"></i></button>
                                     <button class="btn btn-default btn-sm" id="button3">VoLTE SBC关键性能报表<i class="glyphicon glyphicon-remove" id="graph3"></i></button>
                                     <button class="btn btn-default btn-sm" id="button4">S-CSCF关键性能报表<i class="glyphicon glyphicon-remove" id="graph4"></i></button>
@@ -407,7 +407,7 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <button id="saveVolte" type="button" class="btn btn-primary pull-right">保存大值班数据</button>
+                                        <button id="saveVolte" type="button" class="btn btn-danger pull-right">保存大值班数据</button>
                                         <button id="analyzeVolte" type="button" class="btn btn-primary">分析超标原因</button>
                                         <br><br><br>
                                         <form role="form" id="list" hidden>
@@ -415,7 +415,7 @@
                                                 <label for="reason">超标原因</label>
                                                 <textarea rows="10" cols="20" class="form-control" id="reason" name="reason"></textarea>
                                             </div>
-                                            <button type="submit" class="btn btn-primary">保存原因至数据库</button>
+                                            <button type="submit" class="btn btn-danger" id="saveReason">保存原因至数据库</button>
                                         </form>
                                     </div>
                                     <div class="tab-pane" id="gsmkpi">

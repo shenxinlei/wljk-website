@@ -40,12 +40,12 @@ function docReady() {
         'uploader': 'misc/uploadify.php',
         'buttonText':'选择上传的文件',
         'onUploadSuccess' : function(file,data,response) {
-            //判断名字是否一致，一致就把大×改为钩子
-            if (file.name == "新监控大值班报表（集团）.xls") {
+            //判断名字是否一致，一致就把大×改为钩
+            if (file.name == "新监控大值班报表.xls") {
                 $("#graph1").removeClass("glyphicon-remove").addClass("glyphicon-ok");
                 $("#button1").removeClass("btn-default").addClass("btn-primary");
             }
-            if (file.name == "eMSC性能报表.xlsx") {
+            if (file.name == "eMSC性能报表.xls") {
                 $("#graph2").removeClass("glyphicon-remove").addClass("glyphicon-ok");
                 $("#button2").removeClass("btn-default").addClass("btn-primary");
             }
@@ -78,16 +78,27 @@ function docReady() {
                 $("#button3").hasClass("btn-primary") &&
                 $("#button4").hasClass("btn-primary") &&
                 $("#button5").hasClass("btn-primary") ) {
-                $("#calculatedzb").attr("disabled", false);
+                $("#calculatedzb").removeClass("btn-primary").addClass("btn-success");
             }
         }
     });
 
-    //书签
+    //书签初始化函数
     $('#myTab a:first').tab('show');
     $('#myTab a').click(function (e) {
         e.preventDefault();
         $(this).tab('show');
+    });
+
+    //按钮“所有文件上传成功后点击生成数据”
+    $("#calculatedzb").click(function(e) {
+        e.preventDefault();
+        $("#kpiOverall").show();
+        //在这里我们模拟数据导入，这4个数据是我们自己瞎编的，真实情况下，应该从导入的excel中提取
+        $("#number").val("25.06").trigger("change");
+        $("#traffic").val("18.75").trigger("change");
+        $("#ims").val("95.75").trigger("change");
+        $("#esrvcc").val("89.75").trigger("change");
     });
 
 
@@ -99,8 +110,6 @@ function docReady() {
     var traffic = false;
     var ims = false;
     var esrvcc = false;
-
-	
 
     //VoLTE注册用户数
     $("#number").change(function() {
@@ -239,14 +248,13 @@ function docReady() {
     		alert("eSRVCC切换成功率是非法数据，不能提交到数据库");
     		return false;
     	}
-
     	//再ajax提交到后台
-
       	//都成功以后，就可以启用数据分析按钮，
       	//每次保存以后，如果没有改动，那么保存按钮就应该禁用
       	// $("#analyzeVolte").attr("disabled", false);
       	$("#saveVolte").attr("disabled", true);
-        // alert("123");
+        $("#saveVolte").removeClass("btn-danger").addClass("btn-success");
+        $("#saveVolte").text("已保存");
     });
 
     //按钮--分析超标原因
@@ -274,22 +282,33 @@ function docReady() {
     	$("#list").show();
     });	
 
+    //按钮--保存原因至数据库
+    $('#saveReason').click(function (e){
+        e.preventDefault();
+        $(this).text('已保存').removeClass("btn-danger").addClass("btn-success").attr("disabled", true);
+        //发送ajax到后端，保存数据
+    });
+
     //每次input有变动时，保存大值班应该就重新激活
     $('input').change(function() {
     	$("#saveVolte").attr("disabled", false);
+        $("#saveVolte").removeClass("btn-success").addClass("btn-danger");
+        $("#saveVolte").text("保存大值班数据");
+    });
+    //每次textarea有变动时，保存原因至数据库就重新激活
+    $('textarea').change(function() {
+        $('#saveReason').attr("disabled", false).removeClass("btn-success").addClass("btn-danger").text("保存原因至数据库");
     });
 
+    
 
-    //按钮----所有文件上传成功后点击生成数据
-    $("#calculatedzb").click(function(e) {
-        e.preventDefault();
-        $("#kpiOverall").show();
-        $("#number").val("25.06");
-        $("#number").trigger("change");
-        $("#traffic").val("18.75").trigger("change");
-        $("#ims").val("95.75").trigger("change");
-        $("#esrvcc").val("89.75").trigger("change");
-    });
+
+
+
+
+
+
+    
 }
 
 //additional functions for data table
