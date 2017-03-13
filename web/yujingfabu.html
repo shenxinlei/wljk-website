@@ -194,17 +194,12 @@
                             </li>
                             <li class="accordion">
                                 <a href="#">
-                                    <i class="glyphicon glyphicon-adjust"></i><span> 监控预警</span><span class="badge pull-right" title="有遗留请处理" data-toggle="tooltip" data-placement="right">!</span>
+                                    <i class="glyphicon glyphicon-bell"></i><span> 监控预警</span><span class="badge pull-right" title="有遗留请处理" data-toggle="tooltip" data-placement="right">!</span>
                                 </a>
                                 <ul class="nav nav-pills nav-stacked">
                                     <li>
                                         <a href="yujingfabu.html">
                                             <i class="glyphicon glyphicon-envelope"></i> 预警发布
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="yujingyiliu.html">
-                                            <i class="glyphicon glyphicon-envelope"></i> 遗留预警<span class="badge pull-right" title="当前遗留1预警" data-toggle="tooltip" data-placement="right">1</span>
                                         </a>
                                     </li>
                                     <li>
@@ -218,13 +213,18 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="yujingdafen.html">
-                                            <i class="glyphicon glyphicon-envelope"></i> 预警打分<span class="badge pull-right" title="当前有4条短信需打分" data-toggle="tooltip" data-placement="right">4</span>
+                                        <a href="yujingyiliu.html">
+                                            <i class="glyphicon glyphicon-envelope"></i> 遗留预警<span class="badge pull-right" title="当前遗留1预警" data-toggle="tooltip" data-placement="right">1</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="yujingdaiyue.html">
                                             <i class="glyphicon glyphicon-envelope"></i> 待阅预警<span class="badge pull-right" title="当前有3个预警等待您阅览" data-toggle="tooltip" data-placement="right">3</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="yujingdafen.html">
+                                            <i class="glyphicon glyphicon-envelope"></i> 预警打分<span class="badge pull-right" title="当前有4条短信需打分" data-toggle="tooltip" data-placement="right">4</span>
                                         </a>
                                     </li>
                                     <li>
@@ -259,7 +259,6 @@
     				<ul class="breadcrumb">
         				<li><a href="main.html">主页</a></li>
         				<li><a href="#">预警发布</a></li>
-                        <!-- <li><a href="dzbvolte.html">VOLTE KPI</a></li> -->
     				</ul>
 			    </div>
                 <!-- 预警发布模块 -->
@@ -318,12 +317,12 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-group" for="moban">具体模板</label>
+                                        <label class="form-group" for="moban">模版名称</label>
                                         <select id="moban" class="form-control">
-                                            <option>模板一</option>
-                                            <option>模板二</option>
-                                            <option>模板三</option>
-                                            <option>模板四</option>
+                                            <option>名称一</option>
+                                            <option>名称二</option>
+                                            <option>名称三</option>
+                                            <option>名称四</option>
                                         </select>
                                     </div>  
                                     <br><br>
@@ -648,7 +647,6 @@
                                 </select>
                             </div>                      
                         </div>
-                        <br><br>
                         <div class="form-group">
                             <label for="contents" class="control-label col-sm-3">短信内容</label>
                             <div class="col-sm-9">

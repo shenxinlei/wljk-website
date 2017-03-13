@@ -32,7 +32,7 @@ function docReady() {
     // 保存短信按钮
     $('.send').on('click', function () {
         $.confirm({
-            title: '请确认是否提交该短信至数据库',
+            title: '请确认是否提交该短信给值班长审核',
             content: '每条短信都将被记录到数据库，一旦提交，将无法修改',
             confirm: function () {
                 $.alert({
