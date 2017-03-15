@@ -332,77 +332,77 @@
                                             </thead>
                                             <tbody>
                                                 <tr class="warning">
-                                                    <td>2016-10-9</td>
-                                                    <td colspan='4'>VOLTE网</td>
+                                                    <td>2017-3-9</td>
+                                                    <td colspan='4'>VOLTE KPI情况</td>
                                                 </tr>
                                                 <tr class="active">
-                                                    <td>周日</td>
+                                                    <td>今天周四</td>
                                                     <td>VoLTE注册用户数</td>
-                                                    <td>VoLTE话务量</td>
                                                     <td>IMS初始注册成功率</td>
+                                                    <td>VoLTE话务量</td>
                                                     <td>eSRVCC切换成功率</td>
                                                 </tr>
                                                 <tr class="warning">
                                                     <td>单位</td>
                                                     <td>万户</td>
-                                                    <td>万erl</td>
                                                     <td>%</td>
+                                                    <td>万erl</td>
                                                     <td>%</td>
                                                 </tr>
                                                 <tr class="danger">
                                                     <td>门限</td>
                                                     <td>±30%</td>
-                                                    <td>±30%</td>
                                                     <td>&lt;95%</td>
+                                                    <td>±30%</td>
                                                     <td>&lt;90%</td>
                                                 </tr>
                                                 <tr class="info">
-                                                    <td>工作日日常值（10月参考值）</td>
-                                                    <td id="numberwd">18.29</td>
-                                                    <td id="trafficwd">23.09</td>
-                                                    <td id="imswd">96.17</td>
-                                                    <td id="esrvccwd">94.93</td>
+                                                    <td>工作日日常值（3月参考值）</td>
+                                                    <td id="numberwd">80.23</td>
+                                                    <td id="imswd">97.05</td>
+                                                    <td id="trafficwd">72.34</td>
+                                                    <td id="esrvccwd">94.33</td>
                                                 </tr>
                                                 <tr class="info">
-                                                    <td>周六日常值（10月参考值）</td>
-                                                    <td>17.95</td>
-                                                    <td>15.22</td>
-                                                    <td>95.97</td>
-                                                    <td>95.15</td>
+                                                    <td>周六日常值（3月参考值）</td>
+                                                    <td>78.38</td>
+                                                    <td>97.04</td>
+                                                    <td>54.71</td>
+                                                    <td>94.11</td>
                                                 </tr>
                                                 <tr class="info">
-                                                    <td>周日日常值（10月参考值）</td>
-                                                    <td>17.48</td>
-                                                    <td>13.67</td>
-                                                    <td>96.14</td>
-                                                    <td>95.11</td>
+                                                    <td>周日日常值（3月参考值）</td>
+                                                    <td>77.08</td>
+                                                    <td>97.04</td>
+                                                    <td>47.82</td>
+                                                    <td>94.40</td>
                                                 </tr>
                                                 <tr>
                                                     <td>上周同期值 </td>
-                                                    <td>20.12</td>
-                                                    <td>25.55</td>
-                                                    <td>95.95</td>
-                                                    <td>94.84</td>
+                                                    <td>106.30</td>
+                                                    <td>97.01</td>
+                                                    <td>114.78</td>
+                                                    <td>93.78</td>
                                                 </tr>
                                                 <tr>
                                                     <td>昨日值 </td>
-                                                    <td>18.21</td>
-                                                    <td>26.07</td>
-                                                    <td>96.05</td>
-                                                    <td>94.96</td>
+                                                    <td>120.21</td>
+                                                    <td>97.31</td>
+                                                    <td>125.47</td>
+                                                    <td>93.83</td>
                                                 </tr>
                                                 <tr>
                                                     <td>工作日</td>
-                                                    <td><input name="number" id="number" type="text"></td>
-                                                    <td><input name="traffic" id="traffic" type="text"></td>
-                                                    <td><input name="ims" id="ims" type="text"></td>
-                                                    <td><input name="esrvcc" id="esrvcc" type="text"></td>
+                                                    <td><input name="number" id="number" type="text" class="volte"></td>
+                                                    <td><input name="ims" id="ims" type="text" class="volte"></td>
+                                                    <td><input name="traffic" id="traffic" type="text" class="volte"></td>
+                                                    <td><input name="esrvcc" id="esrvcc" type="text" class="volte"></td>
                                                 </tr>
                                                 <tr class="success">
                                                     <td>波动</td>
                                                     <td id="numberbd"></td>
-                                                    <td id="trafficbd"></td>
                                                     <td id="imsbd"></td>
+                                                    <td id="trafficbd"></td>
                                                     <td id="esrvccbd"></td>
                                                 </tr>
                                             </tbody>
@@ -421,10 +421,158 @@
                                     <div class="tab-pane" id="gsmkpi">
                                     </div>
                                     <div class="tab-pane" id="tdkpi">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="5">上海网络运行日KPI情况（每日7:30前上报）</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="warning">
+                                                    <td>2017-3-9</td>
+                                                    <td colspan="4">TD KPI情况</td>
+                                                </tr>
+                                                <tr class="active">
+                                                    <td>今日周四</td>
+                                                    <td>VLR中TD-SCDMA网络位置区下存储的用户数</td>
+                                                    <td>TD系统语音话务量(RNC)</td>
+                                                    <td>TD系统视频话务量(RNC)</td>
+                                                    <td>TD系统分组域业务流量(RNC)</td>
+                                                </tr>
+                                                <tr class="warning">
+                                                    <td>单位</td>
+                                                    <td>万户</td>
+                                                    <td>万爱尔兰</td>
+                                                    <td>爱尔兰</td>
+                                                    <td>GBYTE</td>
+                                                </tr>
+                                                <tr class="danger">
+                                                    <td>门限</td>
+                                                    <td>±10%</td>
+                                                    <td>±30%</td>
+                                                    <td>±50%</td>
+                                                    <td>±50%</td>
+                                                </tr>
+                                                <tr class="info">
+                                                    <td>工作日日常值（3月参考值）</td>
+                                                    <td id="td-number-weekday">96.84</td>
+                                                    <td id="td-voiceTraffic-weekday">9.57</td>
+                                                    <td id="td-videoTraffic-weekday">0.40</td>
+                                                    <td id="td-packageTraffic-weekday">5232.85</td>
+                                                </tr>
+                                                <tr class="info">
+                                                    <td>周六日常值（3月参考值）</td>
+                                                    <td id="td-number-saturday">100.20</td>
+                                                    <td id="td-voiceTraffic-saturday">9.03</td>
+                                                    <td id="td-videoTraffic-saturday">0.40</td>
+                                                    <td id="td-packageTraffic-saturday">5464.92</td>
+                                                </tr>
+                                                <tr class="info">
+                                                    <td>周日日常值（3月参考值）</td>
+                                                    <td id="td-number-sunday">100.26</td>
+                                                    <td id="td-voiceTraffic-sunday">8.53</td>
+                                                    <td id="td-videoTraffic-sunday">0.45</td>
+                                                    <td id="td-packageTraffic-sunday">4958.32</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>上周同期值 </td>
+                                                    <td id="td-number-lastweek">100.82</td>
+                                                    <td id="td-voiceTraffic-lastweek">10.33</td>
+                                                    <td id="td-videoTraffic-lastweek">0.31</td>
+                                                    <td id="td-packageTraffic-lastweek">5316.37</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>昨日值 </td>
+                                                    
+                                                    <td id="cmnet-traffic-yesterday">554.90</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>工作日</td>
+                                                    <td><input name="cmnet-traffic" id="cmnet-traffic" type="text" class="cmnet"></td>
+                                                </tr>
+                                                <tr class="success">
+                                                    <td>波动</td>
+                                                    <td id="cmnet-traffic-fluctuate"></td>  
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <button id="saveCmnet" type="button" class="btn btn-danger pull-right">保存大值班数据</button>
+                                        <button id="analyzeCmnet" type="button" class="btn btn-primary">分析超标原因</button>
+                                        <br><br><br>
+                                        <form role="form" id="cmnet-list" hidden>
+                                            <div class="form-group">
+                                                <label for="cmnet-reason">超标原因</label>
+                                                <textarea rows="10" cols="20" class="form-control" id="cmnet-reason" name="cmnet-reason"></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-danger" id="saveCmnetReason">保存原因至数据库</button>
+                                        </form>
                                     </div>
                                     <div class="tab-pane" id="ltekpi">
                                     </div>
                                     <div class="tab-pane" id="cmnetkpi">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="2">上海网络运行日KPI情况（每日7:30前上报）</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="warning">
+                                                    <td>2017-3-9</td>
+                                                    <td>CMNET KPI情况</td>
+                                                </tr>
+                                                <tr class="active">
+                                                    <td>今日周四</td>
+                                                    <td>CMNET地市入流量</td>
+                                                </tr>
+                                                <tr class="warning">
+                                                    <td>单位</td>
+                                                    <td>TB</td>
+                                                </tr>
+                                                <tr class="danger">
+                                                    <td>门限</td>
+                                                    <td>±15%</td>
+                                                </tr>
+                                                <tr class="info">
+                                                    <td>工作日日常值（3月参考值）</td>
+                                                    <td id="cmnet-traffic-weekday">591.49</td>
+                                                </tr>
+                                                <tr class="info">
+                                                    <td>周六日常值（3月参考值）</td>
+                                                    <td id="cmnet-traffic-saturday">682.27</td>
+                                                </tr>
+                                                <tr class="info">
+                                                    <td>周日日常值（3月参考值）</td>
+                                                    <td id="cmnet-traffic-sunday">661.01</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>上周同期值 </td>
+                                                    <td id="cmnet-traffic-lastweek">642.51</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>昨日值 </td>
+                                                    <td id="cmnet-traffic-yesterday">554.90</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>工作日</td>
+                                                    <td><input name="cmnet-traffic" id="cmnet-traffic" type="text" class="cmnet"></td>
+                                                </tr>
+                                                <tr class="success">
+                                                    <td>波动</td>
+                                                    <td id="cmnet-traffic-fluctuate"></td>  
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <button id="saveCmnet" type="button" class="btn btn-danger pull-right">保存大值班数据</button>
+                                        <button id="analyzeCmnet" type="button" class="btn btn-primary">分析超标原因</button>
+                                        <br><br><br>
+                                        <form role="form" id="cmnet-list" hidden>
+                                            <div class="form-group">
+                                                <label for="cmnet-reason">超标原因</label>
+                                                <textarea rows="10" cols="20" class="form-control" id="cmnet-reason" name="cmnet-reason"></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-danger" id="saveCmnetReason">保存原因至数据库</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

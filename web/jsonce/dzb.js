@@ -95,13 +95,16 @@ function docReady() {
         e.preventDefault();
         $("#kpiOverall").show();
         //在这里我们模拟数据导入，这4个数据是我们自己瞎编的，真实情况下，应该从导入的excel中提取
-        $("#number").val("25.06").trigger("change");
-        $("#traffic").val("18.75").trigger("change");
-        $("#ims").val("95.75").trigger("change");
-        $("#esrvcc").val("89.75").trigger("change");
+        $("#number").val("120.44").trigger("change");
+        $("#ims").val("97.29").trigger("change");
+        $("#traffic").val("129.25").trigger("change");
+        $("#esrvcc").val("93.77").trigger("change");
     });
 
 
+    /***
+        这里一段是VolTE的数据记录
+    ***/
     //这里定义一个docReady函数内的全局变量reason
     //这是一个字符串，当做原因分析时，这个变量会被改写
     var reason = "上海网络运行正常，无影响业务的故障发生。";
@@ -114,16 +117,13 @@ function docReady() {
     //VoLTE注册用户数
     $("#number").change(function() {
     	var n1 = parseFloat($('#number').val());
-    	console.log(n1);
     	if (!n1) {
     		console.log("不是合法的数字");
     		$("#numberbd").html("不是合法的数字").css("color","#ef5b9c");
     		return false;
     	}
-    	console.log(typeof n1);
     	var n2 = $('#numberwd').html();
     	var bd = ((n1 - n2) / n2) * 100;
-    	//console.log(bd);
     	var bdoutput = bd.toFixed(2) + '%';
     	if (Math.abs(bd) >= 30) {
             number = true;
@@ -133,21 +133,19 @@ function docReady() {
             number = false;
     		$("#numberbd").html(bdoutput).css("color","black");
     	}
+        $('#number').val(n1.toFixed(2));
     });
 
     //VoLTE话务量
     $("#traffic").change(function() {
     	var n1 = parseFloat($('#traffic').val());
-    	console.log(n1);
     	if (!n1) {
     		console.log("不是合法的数字");
     		$("#trafficbd").html("不是合法的数字").css("color","#ef5b9c");
     		return false;
     	}
-    	console.log(typeof n1);
     	var n2 = $('#trafficwd').html();
     	var bd = ((n1 - n2) / n2) * 100;
-    	//console.log(bd);
     	var bdoutput = bd.toFixed(2) + '%';
     	if (Math.abs(bd) >= 30) {
             traffic = true;
@@ -157,12 +155,12 @@ function docReady() {
             traffic = false;
     		$("#trafficbd").html(bdoutput).css("color","black");
     	}
+        $('#traffic').val(n1.toFixed(2));
     });
 
     //	IMS初始注册成功率
     $("#ims").change(function() {
     	var n1 = parseFloat($('#ims').val());
-    	console.log(n1);
     	if (!n1) {
     		console.log("不是合法的数字");
     		$("#imsbd").html("不是合法的数字").css("color","#ef5b9c");
@@ -173,8 +171,6 @@ function docReady() {
     		$("#imsbd").html("超过100%了").css("color","#ef5b9c");
     		return false;
     	}
-    	console.log(typeof n1);
-    	//console.log(bd);
     	var bdoutput = n1.toFixed(2) + '%';
     	if (n1 < 95) {
             ims = true;
@@ -184,12 +180,12 @@ function docReady() {
             ims = false;
     		$("#imsbd").html(bdoutput).css("color","black");
     	}
+        $('#ims').val(n1.toFixed(2));
     });
 
     //	eSRVCC切换成功率
     $("#esrvcc").change(function() {
     	var n1 = parseFloat($('#esrvcc').val());
-    	console.log(n1);
     	if (!n1) {
     		console.log("不是合法的数字");
     		$("#esrvccbd").html("不是合法的数字").css("color","#ef5b9c");
@@ -200,8 +196,6 @@ function docReady() {
     		$("#esrvccbd").html("超过100%了").css("color","#ef5b9c");
     		return false;
     	}
-    	console.log(typeof n1);
-    	//console.log(bd);
     	var bdoutput = n1.toFixed(2) + '%';
     	if (n1 < 90) {
             esrvcc = true;
@@ -211,6 +205,7 @@ function docReady() {
             esrvcc = false;
     		$("#esrvccbd").html(bdoutput).css("color","black");
     	}
+        $('#esrvcc').val(n1.toFixed(2));
     });
 
     // 按钮--保存大值班数据
@@ -263,15 +258,15 @@ function docReady() {
         reason = "上海网络运行正常，无影响业务的故障发生。";
         var count = 1;
         if (number == true) {
-            reason += "&#13;&#10;"+count+"、VoLTE注册用户数为21.06万户，与上月周中参考值18.52万户比较，增加3.21万户，增幅10.34%。较前一天减少2.13万户，降幅1.23%，较上周同期增加2.12万户，增幅2.34%。用户行为引起，网络侧无异常。";
-            count++;
-        }
-        if (traffic == true) {
-            reason += "&#13;&#10;"+count+"、VoLTE话务量为18.41万erl，与上月周日参考值13.67万erl比较，增加4.74万erl，增幅34.67%。较前一天减少0.14万erl，降幅0.75%，较上周同期增加1.46万erl，增幅8.60%。用户行为引起，网络侧无异常。";
+            reason += "&#13;&#10;"+count+"、VoLTE注册用户数为xx万户，与上月周中参考值xx万户比较，增加xx万户，增幅xx%。较前一天减少xx万户，降幅xx%，较上周同期增加xx万户，增幅xx%。用户行为引起，网络侧无异常。";
             count++;
         }
         if (ims == true) {
             reason += "&#13;&#10;"+count+"、IMS初始注册成功率低于门限，稍后将以邮件形式补报集团。"
+            count++;
+        }
+        if (traffic == true) {
+            reason += "&#13;&#10;"+count+"、VoLTE话务量为xx万erl，与上月周日参考值xx万erl比较，增加xx万erl，增幅xx%。较前一天减少xx万erl，降幅xx%，较上周同期增加xx万erl，增幅xx%。用户行为引起，网络侧无异常。";
             count++;
         }
         if (esrvcc == true) {
@@ -280,6 +275,8 @@ function docReady() {
         }
         $("#reason").html(reason);
     	$("#list").show();
+        //加上这段代码目的是，如果用户又点了一次分析超标原因，save按钮会跳不回去，所以要人工让其跳回去
+        $('#saveReason').attr("disabled", false).removeClass("btn-success").addClass("btn-danger").text("保存原因至数据库");
     });	
 
     //按钮--保存原因至数据库
@@ -290,17 +287,98 @@ function docReady() {
     });
 
     //每次input有变动时，保存大值班应该就重新激活
-    $('input').change(function() {
+    $('.volte').change(function() {
     	$("#saveVolte").attr("disabled", false);
         $("#saveVolte").removeClass("btn-success").addClass("btn-danger");
         $("#saveVolte").text("保存大值班数据");
     });
     //每次textarea有变动时，保存原因至数据库就重新激活
-    $('textarea').change(function() {
+    $('#reason').change(function() {
         $('#saveReason').attr("disabled", false).removeClass("btn-success").addClass("btn-danger").text("保存原因至数据库");
     });
 
-    
+
+    /***
+        下面开始重复的工作了，先是cmnet
+    ***/
+    var cmnetReason = "上海网络运行正常，无影响业务的故障发生。";
+    var cmnetTraffic = false;
+    //Cmnet地市入流量
+    $("#cmnet-traffic").change(function() {
+        var n1 = parseFloat($('#cmnet-traffic').val());
+        if (!n1) {
+            console.log("不是合法的数字");
+            $("#cmnet-traffic-fluctuate").html("不是合法的数字").css("color","#ef5b9c");
+            return false;
+        }
+        var n2 = $('#cmnet-traffic-weekday').html();
+        var bd = ((n1 - n2) / n2) * 100;
+        //计算波动的数值
+        var bdoutput = bd.toFixed(2) + '%';
+        if (Math.abs(bd) >= 15) {
+            cmnetTraffic = true;
+            $("#cmnet-traffic-fluctuate").html(bdoutput).css("color","red");
+        }
+        else {
+            cmnetTraffic = false;
+            $("#cmnet-traffic-fluctuate").html(bdoutput).css("color","black");
+        }
+        //主要是为了把小数点都统一到保留2位
+        $('#cmnet-traffic').val(n1.toFixed(2));
+    });   
+    // Cmnet按钮--保存大值班数据
+    $('#saveCmnet').on('click', function() {
+        //先判断是否每个值都正确填写
+        var n1 = parseFloat($('#cmnet-traffic').val());
+        console.log(n1);
+        if (!n1) {
+            alert("CMNET地市入流量是非法数据，不能提交到数据库");
+            return false;
+        }
+        //再ajax提交到后台
+        //都成功以后，就可以启用数据分析按钮，
+        //每次保存以后，如果没有改动，那么保存按钮就应该禁用
+        //如果有改动过，那么保存按钮应该回到初始状态
+        $("#saveCmnet").attr("disabled", true);
+        $("#saveCmnet").removeClass("btn-danger").addClass("btn-success");
+        $("#saveCmnet").text("已保存");
+    });
+    // Cmnet按钮--分析超标原因
+    $('#analyzeCmnet').on('click', function() {
+        //在分析原因按钮点击以后，应该直接后台保存原因至数据库，防止用户忘记保存
+        cmnetReason = "上海网络运行正常，无影响业务的故障发生。";
+        var count = 1;
+        //当某一数据波动超门限的时候，就分析原因，模版如下：
+        if (cmnetTraffic == true) {
+            cmnetReason += "&#13;&#10;"+count+"、CMNET地市入流量为xxTB，与上月周日参考值xxTB比较，增加xxTB，增幅xx%。较前一天增加xxTB，增幅xx%，较上周同期增加xxTB，增幅xx%。主要是由于。。。";
+            count++;
+        }
+        $("#cmnet-reason").html(cmnetReason);
+        $("#cmnet-list").show();
+        //每次点分析按钮，都要让保存按钮重新回过来
+        $('#saveCmnetReason').attr("disabled", false).removeClass("btn-success").addClass("btn-danger").text("保存原因至数据库");
+    }); 
+    // Cmnet按钮--保存原因至数据库
+    $('#saveCmnetReason').click(function (e){
+        e.preventDefault();
+        $(this).text('已保存').removeClass("btn-danger").addClass("btn-success").attr("disabled", true);
+        //发送ajax到后端，保存数据
+    });
+    //每次Cmnet输入的input有变动时，保存大值班应该就重新激活
+    $('.cmnet').change(function() {
+        $("#saveCmnet").attr("disabled", false);
+        $("#saveCmnet").removeClass("btn-success").addClass("btn-danger");
+        $("#saveCmnet").text("保存大值班数据");
+    });
+    //每次textarea有变动时，保存原因至数据库就重新激活
+    $('#cmnet-reason').change(function() {
+        $('#saveCmnetReason').attr("disabled", false).removeClass("btn-success").addClass("btn-danger").text("保存原因至数据库");
+    });
+
+    /***
+        接下去做TD的数据表
+    ***/
+
 
 
 
