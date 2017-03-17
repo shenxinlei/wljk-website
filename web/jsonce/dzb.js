@@ -125,7 +125,7 @@ function docReady() {
     	var n2 = $('#numberwd').html();
     	var bd = ((n1 - n2) / n2) * 100;
     	var bdoutput = bd.toFixed(2) + '%';
-    	if (Math.abs(bd) >= 30) {
+    	if (Math.abs(bd) > 30) {
             number = true;
     		$("#numberbd").html(bdoutput).css("color","red");
     	}
@@ -147,7 +147,7 @@ function docReady() {
     	var n2 = $('#trafficwd').html();
     	var bd = ((n1 - n2) / n2) * 100;
     	var bdoutput = bd.toFixed(2) + '%';
-    	if (Math.abs(bd) >= 30) {
+    	if (Math.abs(bd) > 30) {
             traffic = true;
     		$("#trafficbd").html(bdoutput).css("color","red");
     	}
@@ -297,7 +297,6 @@ function docReady() {
         $('#saveReason').attr("disabled", false).removeClass("btn-success").addClass("btn-danger").text("保存原因至数据库");
     });
 
-
     /***
         下面开始重复的工作了，先是cmnet
     ***/
@@ -315,7 +314,7 @@ function docReady() {
         var bd = ((n1 - n2) / n2) * 100;
         //计算波动的数值
         var bdoutput = bd.toFixed(2) + '%';
-        if (Math.abs(bd) >= 15) {
+        if (Math.abs(bd) > 15) {
             cmnetTraffic = true;
             $("#cmnet-traffic-fluctuate").html(bdoutput).css("color","red");
         }
@@ -376,17 +375,872 @@ function docReady() {
     });
 
     /***
+
+
+
         接下去做TD的数据表
     ***/
+    var tdReason = "上海网络运行正常，无影响业务的故障发生。";
+    var tdNumber = false;
+    var tdVoiceTraffic = false;
+    var tdVideoTraffic = false;
+    var tdPackageTraffic = false;
+    //VLR中TD-SCDMA网络位置区下存储的用户数
+    $("#td-number").change(function() {
+        var n1 = parseFloat($('#td-number').val());
+        if (!n1) {
+            console.log("不是合法的数字");
+            $("#td-number-fluctuate").html("不是合法的数字").css("color","#ef5b9c");
+            return false;
+        }
+        var n2 = $('#td-number-weekday').html();
+        var bd = ((n1 - n2) / n2) * 100;
+        //计算波动的数值
+        var bdoutput = bd.toFixed(2) + '%';
+        if (Math.abs(bd) > 10) {
+            tdNumber = true;
+            $("#td-number-fluctuate").html(bdoutput).css("color","red");
+        }
+        else {
+            tdNumber = false;
+            $("#td-number-fluctuate").html(bdoutput).css("color","black");
+        }
+        //主要是为了把小数点都统一到保留2位
+        $('#td-number').val(n1.toFixed(2));
+    }); 
+    //TD系统语音话务量(RNC)
+    $("#td-voiceTraffic").change(function() {
+        var n1 = parseFloat($('#td-voiceTraffic').val());
+        if (!n1) {
+            console.log("不是合法的数字");
+            $("#td-voiceTraffic-fluctuate").html("不是合法的数字").css("color","#ef5b9c");
+            return false;
+        }
+        var n2 = $('#td-voiceTraffic-weekday').html();
+        var bd = ((n1 - n2) / n2) * 100;
+        //计算波动的数值
+        var bdoutput = bd.toFixed(2) + '%';
+        if (Math.abs(bd) > 30) {
+            tdVoiceTraffic = true;
+            $("#td-voiceTraffic-fluctuate").html(bdoutput).css("color","red");
+        }
+        else {
+            tdVoiceTraffic = false;
+            $("#td-voiceTraffic-fluctuate").html(bdoutput).css("color","black");
+        }
+        //主要是为了把小数点都统一到保留2位
+        $('#td-voiceTraffic').val(n1.toFixed(2));
+    }); 
+    //TD系统视频话务量(RNC)
+    $("#td-videoTraffic").change(function() {
+        var n1 = parseFloat($('#td-videoTraffic').val());
+        if (!n1) {
+            console.log("不是合法的数字");
+            $("#td-videoTraffic-fluctuate").html("不是合法的数字").css("color","#ef5b9c");
+            return false;
+        }
+        //这里是weekday还是saturday还是sunday需要再判断的
+        var n2 = $('#td-videoTraffic-weekday').html();
+        var bd = ((n1 - n2) / n2) * 100;
+        //计算波动的数值
+        var bdoutput = bd.toFixed(2) + '%';
+        if (Math.abs(bd) > 50) {
+            tdVideoTraffic = true;
+            $("#td-videoTraffic-fluctuate").html(bdoutput).css("color","red");
+        }
+        else {
+            tdVideoTraffic = false;
+            $("#td-videoTraffic-fluctuate").html(bdoutput).css("color","black");
+        }
+        //主要是为了把小数点都统一到保留2位
+        $('#td-videoTraffic').val(n1.toFixed(2));
+    });
+    //TD系统分组域业务流量(RNC)
+    $("#td-packageTraffic").change(function() {
+        var n1 = parseFloat($('#td-packageTraffic').val());
+        if (!n1) {
+            console.log("不是合法的数字");
+            $("#td-packageTraffic-fluctuate").html("不是合法的数字").css("color","#ef5b9c");
+            return false;
+        }
+        //这里是weekday还是saturday还是sunday需要再判断的
+        var n2 = $('#td-packageTraffic-weekday').html();
+        var bd = ((n1 - n2) / n2) * 100;
+        //计算波动的数值
+        var bdoutput = bd.toFixed(2) + '%';
+        if (Math.abs(bd) > 50) {
+            tdPackageTraffic = true;
+            $("#td-packageTraffic-fluctuate").html(bdoutput).css("color","red");
+        }
+        else {
+            tdPackageTraffic = false;
+            $("#td-packageTraffic-fluctuate").html(bdoutput).css("color","black");
+        }
+        //主要是为了把小数点都统一到保留2位
+        $('#td-packageTraffic').val(n1.toFixed(2));
+    });
+    // td按钮--保存大值班数据
+    $('#saveTd').on('click', function() {
+        //先判断是否每个值都正确填写
+        var n1 = parseFloat($('#td-number').val());
+        console.log(n1);
+        if (!n1) {
+            alert("VLR中TD-SCDMA网络位置区下存储的用户数是非法数据，不能提交到数据库");
+            return false;
+        }
+        var n2 = parseFloat($('#td-voiceTraffic').val());
+        console.log(n2);
+        if (!n2) {
+            alert("TD系统语音话务量(RNC)是非法数据，不能提交到数据库");
+            return false;
+        }
+        var n3 = parseFloat($('#td-videoTraffic').val());
+        console.log(n3);
+        if (!n3) {
+            alert("TD系统视频话务量(RNC)是非法数据，不能提交到数据库");
+            return false;
+        }
+        var n4 = parseFloat($('#td-packageTraffic').val());
+        console.log(n4);
+        if (!n4) {
+            alert(" TD系统分组域业务流量(RNC)是非法数据，不能提交到数据库");
+            return false;
+        }      
+        //再ajax提交到后台
+        //都成功以后，就可以启用数据分析按钮，
+        //每次保存以后，如果没有改动，那么保存按钮就应该禁用
+        //如果有改动过，那么保存按钮应该回到初始状态
+        $("#saveTd").attr("disabled", true);
+        $("#saveTd").removeClass("btn-danger").addClass("btn-success");
+        $("#saveTd").text("已保存");
+    });
+    //td按钮--分析超标原因
+    $('#analyzeTd').on('click', function() {
+        //在分析原因按钮点击以后，应该直接后台保存原因至数据库，防止用户忘记保存
+        tdReason = "上海网络运行正常，无影响业务的故障发生。";
+        var count = 1;
+        //当某一数据波动超门限的时候，就分析原因，模版如下：
+        if (tdNumber == true) {
+            tdReason += "&#13;&#10;"+count+"、VLR中TD-SCDMA网络位置区下存储的用户数为xx万户，与上月工作日参考值xx万户比较，减少xx万户，降幅xx%。较前一天增加xx万户，增幅xx%，较上周同期减少xx万户，降幅xx%。TD用户数基数较小，易受业务推广影响产生较大波动，网络侧无异常，属正常波动。";
+            count++;
+        }
+        if (tdVoiceTraffic == true) {
+            tdReason += "&#13;&#10;"+count+"、TD系统语音话务量(RNC)为xx万爱尔兰，与上月工作日参考值xx万爱尔兰比较，减少xx万爱尔兰，降幅xx%。较前一天增加xx万爱尔兰，增幅xx%，较上周同期减少xx万爱尔兰，降幅xx%。TD用户数基数较小，易受业务推广影响产生较大波动，网络侧无异常，属正常波动。";
+            count++;
+        }
+        if (tdVideoTraffic == true) {
+            tdReason += "&#13;&#10;"+count+"、TD系统视频话务量(RNC))为xx爱尔兰，与上月工作日参考值xx爱尔兰比较，减少xx爱尔兰，降幅xx%。较前一天增加xx爱尔兰，增幅xx%，较上周同期减少xx爱尔兰，降幅xx%。TD用户数基数较小，易受业务推广影响产生较大波动，网络侧无异常，属正常波动。";
+            count++;
+        }
+        if (tdPackageTraffic == true) {
+            tdReason += "&#13;&#10;"+count+"、TD系统分组域业务流量(RNC)为xxGBYTE，与上月工作日参考值xxGBYTE比较，减少xxGBYTE，降幅xx%。较前一天增加xxGBYTE，增幅xx%，较上周同期减少xxGBYTE，降幅xx%。TD用户数基数较小，易受业务推广影响产生较大波动，网络侧无异常，属正常波动。";
+            count++;
+        }
+        $("#td-list").show();
+        $("#td-reason").html(tdReason);
+        //每次点分析按钮，都要让保存按钮重新回过来
+        $('#saveTdReason').attr("disabled", false).removeClass("btn-success").addClass("btn-danger").text("保存原因至数据库");
+    }); 
+    // td按钮--保存原因至数据库
+    $('#saveTdReason').click(function (e){
+        e.preventDefault();
+        $(this).text('已保存').removeClass("btn-danger").addClass("btn-success").attr("disabled", true);
+        //发送ajax到后端，保存数据
+    });
+    //每次td输入的input有变动时，保存大值班应该就重新激活
+    $('.td').change(function() {
+        $("#saveTd").attr("disabled", false);
+        $("#saveTd").removeClass("btn-success").addClass("btn-danger");
+        $("#saveTd").text("保存大值班数据");
+    });
+    //每次textarea有变动时，保存原因至数据库就重新激活
+    $('#td-reason').change(function() {
+        $('#saveTdReason').attr("disabled", false).removeClass("btn-success").addClass("btn-danger").text("保存原因至数据库");
+    });
 
+    /***
 
+        接着做LTE的数据
 
+    ***/
+    var lteReason = "上海网络运行正常，无影响业务的故障发生。";
+    var lteTraffic = false;
+    var lteNumber = false;
+    var lteWcp = false;
+    var lteWlp = false;
+    var lteAttach = false;
+    // 吞吐量
+    $("#lte-traffic").change(function() {
+        var n1 = parseFloat($('#lte-traffic').val());
+        if (!n1) {
+            console.log("不是合法的数字");
+            $("#lte-traffic-fluctuate").html("不是合法的数字").css("color","#ef5b9c");
+            return false;
+        }
+        var n2 = $('#lte-traffic-weekday').html();
+        var bd = ((n1 - n2) / n2) * 100;
+        //计算波动的数值
+        var bdoutput = bd.toFixed(2) + '%';
+        if (Math.abs(bd) >= 25) {
+            lteTraffic = true;
+            $("#lte-traffic-fluctuate").html(bdoutput).css("color","red");
+        }
+        else {
+            lteTraffic = false;
+            $("#lte-traffic-fluctuate").html(bdoutput).css("color","black");
+        }
+        //主要是为了把小数点都统一到保留2位
+        $('#lte-traffic').val(n1.toFixed(2));
+    }); 
+    //MME用户数
+    $("#lte-number").change(function() {
+        var n1 = parseFloat($('#lte-number').val());
+        if (!n1) {
+            console.log("不是合法的数字");
+            $("#lte-number-fluctuate").html("不是合法的数字").css("color","#ef5b9c");
+            return false;
+        }
+        var n2 = $('#lte-number-weekday').html();
+        var bd = ((n1 - n2) / n2) * 100;
+        //计算波动的数值
+        var bdoutput = bd.toFixed(2) + '%';
+        if (Math.abs(bd) > 15) {
+            lteNumber = true;
+            $("#lte-number-fluctuate").html(bdoutput).css("color","red");
+        }
+        else {
+            lteNumber = false;
+            $("#lte-number-fluctuate").html(bdoutput).css("color","black");
+        }
+        //主要是为了把小数点都统一到保留2位
+        $('#lte-number').val(n1.toFixed(2));
+    }); 
+    //无线接通率
+    $("#lte-wcp").change(function() {
+        var n1 = parseFloat($('#lte-wcp').val());
+        if (!n1) {
+            console.log("不是合法的数字");
+            $("#lte-wcp-fluctuate").html("不是合法的数字").css("color","#ef5b9c");
+            return false;
+        }
+        if (n1 > 100) {
+            $("#lte-wcp-fluctuate").html("超过100%了").css("color","#ef5b9c");
+            return false;
+        }
+        if (n1 < 0) {
+            $("#lte-wcp-fluctuate").html("小于0%了").css("color","#ef5b9c");
+            return false;
+        }
+        //这里是weekday还是saturday还是sunday需要再判断的
+        var n2 = $('#lte-wcp-weekday').html();
+        var bd = n1 - n2;
+        //计算波动的数值
+        var bdoutput = bd.toFixed(2);
+        if (Math.abs(bd) > 0.5) {
+            lteWcp = true;
+            $("#lte-wcp-fluctuate").html(bdoutput).css("color","red");
+        }
+        else {
+            lteWcp = false;
+            $("#lte-wcp-fluctuate").html(bdoutput).css("color","black");
+        }
+        //主要是为了把小数点都统一到保留2位
+        $('#lte-wcp').val(n1.toFixed(2));
+    });
+    //无线掉线率
+    $("#lte-wlp").change(function() {
+        var n1 = parseFloat($('#lte-wlp').val());
+        if (!n1) {
+            $("#lte-wlp-fluctuate").html("不是合法的数字").css("color","#ef5b9c");
+            return false;
+        }
+        if (n1 > 100) {
+            $("#lte-wlp-fluctuate").html("超过100%了").css("color","#ef5b9c");
+            return false;
+        }
+        if (n1 < 0) {
+            $("#lte-wlp-fluctuate").html("小于0%了").css("color","#ef5b9c");
+            return false;
+        }
+        //这里是weekday还是saturday还是sunday需要再判断的
+        var n2 = $('#lte-wlp-weekday').html();
+        var bd = n1 - n2;
+        //计算波动的数值
+        var bdoutput = bd.toFixed(2);
+        if (Math.abs(bd) > 0.5) {
+            lteWlp = true;
+            $("#lte-wlp-fluctuate").html(bdoutput).css("color","red");
+        }
+        else {
+            lteWlp = false;
+            $("#lte-wlp-fluctuate").html(bdoutput).css("color","black");
+        }
+        //主要是为了把小数点都统一到保留2位
+        $('#lte-wlp').val(n1.toFixed(2));
+    });
+    //排除用户原因附着成功率
+    $("#lte-attach").change(function() {
+        var n1 = parseFloat($('#lte-attach').val());
+        if (!n1) {
+            $("#lte-attach-fluctuate").html("不是合法的数字").css("color","#ef5b9c");
+            return false;
+        }
+        if (n1 > 100) {
+            $("#lte-attach-fluctuate").html("超过100%了").css("color","#ef5b9c");
+            return false;
+        }
+        if (n1 < 0) {
+            $("#lte-attach-fluctuate").html("小于0%了").css("color","#ef5b9c");
+            return false;
+        }
+        //这里是weekday还是saturday还是sunday需要再判断的
+        var n2 = $('#lte-attach-weekday').html();
+        var bd = n1 - n2;
+        //计算波动的数值
+        var bdoutput = bd.toFixed(2);
+        if (Math.abs(bd) > 0.5) {
+            lteAttach = true;
+            $("#lte-attach-fluctuate").html(bdoutput).css("color","red");
+        }
+        else {
+            lteAttach = false;
+            $("#lte-attach-fluctuate").html(bdoutput).css("color","black");
+        }
+        //主要是为了把小数点都统一到保留2位
+        $('#lte-attach').val(n1.toFixed(2));
+    });
+    // lte按钮--保存大值班数据
+    $('#saveLte').on('click', function() {
+        //先判断是否每个值都正确填写
+        var n1 = parseFloat($('#lte-traffic').val());
+        console.log(n1);
+        if (!n1) {
+            alert("吞吐量是非法数据，不能提交到数据库");
+            return false;
+        }
+        var n2 = parseFloat($('#lte-number').val());
+        console.log(n2);
+        if (!n2) {
+            alert(" MME用户数是非法数据，不能提交到数据库");
+            return false;
+        }
+        var n3 = parseFloat($('#lte-wcp').val());
+        console.log(n3);
+        if (!n3) {
+            alert("无线接通率是非法数据，不能提交到数据库");
+            return false;
+        }
+        if (n3 > 100 || n3 < 0) {
+            alert("无线接通率超过100%或低于0%了，不能提交到数据库");
+            return false;
+        }
+        var n4 = parseFloat($('#lte-wlp').val());
+        console.log(n4);
+        if (!n4) {
+            alert("无线掉线率是非法数据，不能提交到数据库");
+            return false;
+        }
+        if (n4 > 100 || n4 < 0) {
+            alert("无线掉线率超过100%或低于0%了，不能提交到数据库");
+            return false;
+        }    
+        var n5 = parseFloat($('#lte-attach').val());
+        console.log(n5);
+        if (!n5) {
+            alert("排除用户原因附着成功率是非法数据，不能提交到数据库");
+            return false;
+        }
+        if (n5 > 100 || n5 <= 0) {
+            alert("排除用户原因附着成功率超过100%或低于0%了，不能提交到数据库");
+            return false;
+        }  
+        //再ajax提交到后台
+        //都成功以后，就可以启用数据分析按钮，
+        //每次保存以后，如果没有改动，那么保存按钮就应该禁用
+        //如果有改动过，那么保存按钮应该回到初始状态
+        $("#saveLte").attr("disabled", true);
+        $("#saveLte").removeClass("btn-danger").addClass("btn-success");
+        $("#saveLte").text("已保存");
+    });
+    //lte按钮--分析超标原因
+    $('#analyzeLte').on('click', function() {
+        //在分析原因按钮点击以后，应该直接后台保存原因至数据库，防止用户忘记保存
+        lteReason = "上海网络运行正常，无影响业务的故障发生。";
+        var count = 1;
 
+        //当某一数据波动超门限的时候，就分析原因，模版如下：
+        if (lteTraffic == true) {
+            lteReason += "&#13;&#10;"+count+"、吞吐量为xxTB，与上月工作日参考值xxTB比较，增加xxTB，增幅xx%。较前一天增加xxTB，增幅xx%，较上周同期增加xxTB，增幅xx%。主要是用户行为引起，网络侧无故障。";
+            count++;
+        }
+        if (lteNumber == true) {
+            lteReason += "&#13;&#10;"+count+"、MME用户数为xx万户，与上月工作日参考值xx万户比较，增加xx万户，增幅xx%。较前一天增加xx万户，增幅xx%，较上周同期增加xx万户，增幅xx%。属4G业务推广所致的正常现象。";
+            count++;
+        }
+        if (lteWcp == true) {
+            lteReason += "&#13;&#10;"+count+"、无线接通率为xx%，与上月工作日参考值xx%比较，减少xx%，波动超门限。原因稍后将以邮件形式补报集团。";
+            count++;
+        }
+        if (lteWlp == true) {
+            lteReason += "&#13;&#10;"+count+"、无线掉线率为xx%，与上月工作日参考值xx%比较，增加xx%，波动超门限。原因稍后将以邮件形式补报集团。";
+            count++;
+        }
+        if (lteAttach == true) {
+            lteReason += "&#13;&#10;"+count+"、排除用户原因附着成功率为xx%，与上月工作日参考值xx%比较，减少xx%，波动超门限。原因稍后将以邮件形式补报集团。";
+            count++;
+        }
+        $("#lte-list").show();
+        $("#lte-reason").html(lteReason);
+        //每次点分析按钮，都要让保存按钮重新回过来
+        $('#saveLteReason').attr("disabled", false).removeClass("btn-success").addClass("btn-danger").text("保存原因至数据库");
+    }); 
+    // lte按钮--保存原因至数据库
+    $('#saveLteReason').click(function (e){
+        e.preventDefault();
+        $(this).text('已保存').removeClass("btn-danger").addClass("btn-success").attr("disabled", true);
+        //发送ajax到后端，保存数据
+    });
+    //每次lte输入的input有变动时，保存大值班应该就重新激活
+    $('.lte').change(function() {
+        $("#saveLte").attr("disabled", false);
+        $("#saveLte").removeClass("btn-success").addClass("btn-danger");
+        $("#saveLte").text("保存大值班数据");
+    });
+    //每次textarea有变动时，保存原因至数据库就重新激活
+    $('#lte-reason').change(function() {
+        $('#saveLteReason').attr("disabled", false).removeClass("btn-success").addClass("btn-danger").text("保存原因至数据库");
+    });
 
+    /***
 
+        量最大的GSM KPI数据来了
 
-
+    ***/
+    var gsmReason = "上海网络运行正常，无影响业务的故障发生。";
+    var gsmCaixin = false;
+    var gsmCaixinWcp = false;
+    var gsmDuanxin = false;
+    var gsmDuanxinWcp = false;
+    var gsmTraffic = false;
+    var gsmDayTraffic = false;
+    var gsmNightTraffic = false;
+    var gsm6rushhourwlp = false;
+    var gsm6rushhourwlpcap = false;
+    var gsmPackageTraffic = false;
+    //国内彩信发送总条数
+    $("#gsm-caixin").change(function() {
+        var n1 = parseFloat($('#gsm-caixin').val());
+        if (!n1) {
+            console.log("不是合法的数字");
+            $("#gsm-caixin-fluctuate").html("不是合法的数字").css("color","#ef5b9c");
+            return false;
+        }
+        var n2 = $('#gsm-caixin-weekday').html();
+        var bd = ((n1 - n2) / n2) * 100;
+        //计算波动的数值
+        var bdoutput = bd.toFixed(2) + '%';
+        if (Math.abs(bd) > 10) {
+            gsmCaixin = true;
+            $("#gsm-caixin-fluctuate").html(bdoutput).css("color","red");
+        }
+        else {
+            gsmCaixin = false;
+            $("#gsm-caixin-fluctuate").html(bdoutput).css("color","black");
+        }
+        //主要是为了把小数点都统一到保留2位
+        $('#gsm-caixin').val(n1.toFixed(2));
+    }); 
+    //国内彩信网络接通率
+    $("#gsm-caixin-wcp").change(function() {
+        var n1 = parseFloat($('#gsm-caixin-wcp').val());
+        if (!n1) {
+            $("#gsm-caixin-wcp-fluctuate").html("不是合法的数字").css("color","#ef5b9c");
+            return false;
+        }
+        if (n1 > 100) {
+            $("#gsm-caixin-wcp-fluctuate").html("超过100%了").css("color","#ef5b9c");
+            return false;
+        }
+        if (n1 < 0) {
+            $("#gsm-caixin-wcp-fluctuate").html("小于0%了").css("color","#ef5b9c");
+            return false;
+        }
+        //这里是weekday还是saturday还是sunday需要再判断的
+        var n2 = $('#gsm-caixin-wcp-weekday').html();
+        var bd = n1 - n2;
+        //计算波动的数值
+        var bdoutput = bd.toFixed(2);
+        if (Math.abs(bd) > 0.1) {
+            gsmCaixinWcp = true;
+            $("#gsm-caixin-wcp-fluctuate").html(bdoutput).css("color","red");
+        }
+        else {
+            gsmCaixinWcp = false;
+            $("#gsm-caixin-wcp-fluctuate").html(bdoutput).css("color","black");
+        }
+        //主要是为了把小数点都统一到保留2位
+        $('#gsm-caixin-wcp').val(n1.toFixed(2));
+    });        
+    //短信全天条数
+    $("#gsm-duanxin").change(function() {
+        var n1 = parseFloat($('#gsm-duanxin').val());
+        if (!n1) {
+            console.log("不是合法的数字");
+            $("#gsm-duanxin-fluctuate").html("不是合法的数字").css("color","#ef5b9c");
+            return false;
+        }
+        var n2 = $('#gsm-duanxin-weekday').html();
+        var bd = ((n1 - n2) / n2) * 100;
+        //计算波动的数值
+        var bdoutput = bd.toFixed(2) + '%';
+        if (Math.abs(bd) > 10) {
+            gsmDuanxin = true;
+            $("#gsm-duanxin-fluctuate").html(bdoutput).css("color","red");
+        }
+        else {
+            gsmDuanxin = false;
+            $("#gsm-duanxin-fluctuate").html(bdoutput).css("color","black");
+        }
+        //主要是为了把小数点都统一到保留2位
+        $('#gsm-duanxin').val(n1.toFixed(2));
+    }); 
+    //短信全程接通率
+    $("#gsm-duanxin-wcp").change(function() {
+        var n1 = parseFloat($('#gsm-duanxin-wcp').val());
+        if (!n1) {
+            $("#gsm-duanxin-wcp-fluctuate").html("不是合法的数字").css("color","#ef5b9c");
+            return false;
+        }
+        if (n1 > 100) {
+            $("#gsm-duanxin-wcp-fluctuate").html("超过100%了").css("color","#ef5b9c");
+            return false;
+        }
+        if (n1 < 0) {
+            $("#gsm-duanxin-wcp-fluctuate").html("小于0%了").css("color","#ef5b9c");
+            return false;
+        }
+        //这里是weekday还是saturday还是sunday需要再判断的
+        var n2 = $('#gsm-duanxin-wcp-weekday').html();
+        var bd = n1 - n2;
+        //计算波动的数值
+        var bdoutput = bd.toFixed(2);
+        if (Math.abs(bd) > 0.1) {
+            gsmDuanxinWcp = true;
+            $("#gsm-duanxin-wcp-fluctuate").html(bdoutput).css("color","red");
+        }
+        else {
+            gsmDuanxinWcp = false;
+            $("#gsm-duanxin-wcp-fluctuate").html(bdoutput).css("color","black");
+        }
+        //主要是为了把小数点都统一到保留2位
+        $('#gsm-duanxin-wcp').val(n1.toFixed(2));
+    }); 
+    //gsm全天话务量
+    $("#gsm-traffic").change(function() {
+        var n1 = parseFloat($('#gsm-traffic').val());
+        if (!n1) {
+            console.log("不是合法的数字");
+            $("#gsm-traffic-fluctuate").html("不是合法的数字").css("color","#ef5b9c");
+            return false;
+        }
+        var n2 = $('#gsm-traffic-weekday').html();
+        var bd = ((n1 - n2) / n2) * 100;
+        //计算波动的数值
+        var bdoutput = bd.toFixed(2) + '%';
+        if (Math.abs(bd) > 5) {
+            gsmTraffic = true;
+            $("#gsm-traffic-fluctuate").html(bdoutput).css("color","red");
+        }
+        else {
+            gsmTraffic = false;
+            $("#gsm-traffic-fluctuate").html(bdoutput).css("color","black");
+        }
+        //主要是为了把小数点都统一到保留2位
+        $('#gsm-traffic').val(n1.toFixed(2));
+    }); 
+    //gsm早忙时话务量
+    $("#gsm-day-traffic").change(function() {
+        var n1 = parseFloat($('#gsm-day-traffic').val());
+        if (!n1) {
+            console.log("不是合法的数字");
+            $("#gsm-day-traffic-fluctuate").html("不是合法的数字").css("color","#ef5b9c");
+            return false;
+        }
+        var n2 = $('#gsm-day-traffic-weekday').html();
+        var bd = ((n1 - n2) / n2) * 100;
+        //计算波动的数值
+        var bdoutput = bd.toFixed(2) + '%';
+        if (Math.abs(bd) > 5) {
+            gsmDayTraffic = true;
+            $("#gsm-day-traffic-fluctuate").html(bdoutput).css("color","red");
+        }
+        else {
+            gsmDayTraffic = false;
+            $("#gsm-day-traffic-fluctuate").html(bdoutput).css("color","black");
+        }
+        //主要是为了把小数点都统一到保留2位
+        $('#gsm-day-traffic').val(n1.toFixed(2));
+    }); 
+    //gsm晚忙时话务量
+    $("#gsm-night-traffic").change(function() {
+        var n1 = parseFloat($('#gsm-night-traffic').val());
+        if (!n1) {
+            console.log("不是合法的数字");
+            $("#gsm-night-traffic-fluctuate").html("不是合法的数字").css("color","#ef5b9c");
+            return false;
+        }
+        var n2 = $('#gsm-night-traffic-weekday').html();
+        var bd = ((n1 - n2) / n2) * 100;
+        //计算波动的数值
+        var bdoutput = bd.toFixed(2) + '%';
+        if (Math.abs(bd) > 5) {
+            gsmNightTraffic = true;
+            $("#gsm-night-traffic-fluctuate").html(bdoutput).css("color","red");
+        }
+        else {
+            gsmNightTraffic = false;
+            $("#gsm-night-traffic-fluctuate").html(bdoutput).css("color","black");
+        }
+        //主要是为了把小数点都统一到保留2位
+        $('#gsm-night-traffic').val(n1.toFixed(2));
+    }); 
+    //6忙时掉话率
+    $("#gsm-6rushhour-wlp").change(function() {
+        var n1 = parseFloat($('#gsm-6rushhour-wlp').val());
+        if (!n1) {
+            $("#gsm-6rushhour-wlp-fluctuate").html("不是合法的数字").css("color","#ef5b9c");
+            return false;
+        }
+        if (n1 < 0) {
+            $("#gsm-6rushhour-wlp-fluctuate").html("小于0%了").css("color","#ef5b9c");
+            return false;
+        }
+        //这里是weekday还是saturday还是sunday需要再判断的
+        var n2 = $('#gsm-6rushhour-wlp-weekday').html();
+        var bd = n1 - n2;
+        //计算波动的数值
+        var bdoutput = bd.toFixed(2);
+        if (Math.abs(bd) > 0.1) {
+            gsm6rushhourwlp = true;
+            $("#gsm-6rushhour-wlp-fluctuate").html(bdoutput).css("color","red");
+        }
+        else {
+            gsm6rushhourwlp = false;
+            $("#gsm-6rushhour-wlp-fluctuate").html(bdoutput).css("color","black");
+        }
+        //主要是为了把小数点都统一到保留2位
+        $('#gsm-6rushhour-wlp').val(n1.toFixed(2));
+    }); 
+    //省会城市6忙时掉话率
+    $("#gsm-6rushhour-wlp-cap").change(function() {
+        var n1 = parseFloat($('#gsm-6rushhour-wlp-cap').val());
+        if (!n1) {
+            $("#gsm-6rushhour-wlp-cap-fluctuate").html("不是合法的数字").css("color","#ef5b9c");
+            return false;
+        }
+        if (n1 < 0) {
+            $("#gsm-6rushhour-wlp-cap-fluctuate").html("小于0%了").css("color","#ef5b9c");
+            return false;
+        }
+        //这里是weekday还是saturday还是sunday需要再判断的
+        var n2 = $('#gsm-6rushhour-wlp-cap-weekday').html();
+        var bd = n1 - n2;
+        //计算波动的数值
+        var bdoutput = bd.toFixed(2);
+        if (Math.abs(bd) > 0.1) {
+            gsm6rushhourwlpcap = true;
+            $("#gsm-6rushhour-wlp-cap-fluctuate").html(bdoutput).css("color","red");
+        }
+        else {
+            gsm6rushhourwlpcap = false;
+            $("#gsm-6rushhour-wlp-cap-fluctuate").html(bdoutput).css("color","black");
+        }
+        //主要是为了把小数点都统一到保留2位
+        $('#gsm-6rushhour-wlp-cap').val(n1.toFixed(2));
+    }); 
+    //2G分组域流量
+    $("#gsm-package-traffic").change(function() {
+        var n1 = parseFloat($('#gsm-package-traffic').val());
+        if (!n1) {
+            console.log("不是合法的数字");
+            $("#gsm-package-traffic-fluctuate").html("不是合法的数字").css("color","#ef5b9c");
+            return false;
+        }
+        var n2 = $('#gsm-package-traffic-weekday').html();
+        var bd = ((n1 - n2) / n2) * 100;
+        //计算波动的数值
+        var bdoutput = bd.toFixed(2) + '%';
+        if (Math.abs(bd) > 8) {
+            gsmPackageTraffic = true;
+            $("#gsm-package-traffic-fluctuate").html(bdoutput).css("color","red");
+        }
+        else {
+            gsmPackageTraffic = false;
+            $("#gsm-package-traffic-fluctuate").html(bdoutput).css("color","black");
+        }
+        //主要是为了把小数点都统一到保留2位
+        $('#gsm-package-traffic').val(n1.toFixed(2));
+    }); 
+    // gsm按钮--保存大值班数据
+    $('#saveGsm').on('click', function() {
+        //先判断是否每个值都正确填写
+        var n1 = parseFloat($('#gsm-caixin').val());
+        console.log(n1);
+        if (!n1) {
+            alert("国内彩信发送总条数是非法数据，不能提交到数据库");
+            return false;
+        }
+        var n2 = parseFloat($('#gsm-caixin-wcp').val());
+        console.log(n2);
+        if (!n2) {
+            alert("国内彩信网络接通率是非法数据，不能提交到数据库");
+            return false;
+        }
+        if (n2 > 100 || n2 < 0) {
+            alert("国内彩信网络接通率超过100%或低于0%了，不能提交到数据库");
+            return false;
+        }
+        var n3 = parseFloat($('#gsm-duanxin').val());
+        console.log(n3);
+        if (!n3) {
+            alert("短信全天总条数是非法数据，不能提交到数据库");
+            return false;
+        }
+        var n4 = parseFloat($('#gsm-duanxin-wcp').val());
+        console.log(n4);
+        if (!n4) {
+            alert("短信全程接通率是非法数据，不能提交到数据库");
+            return false;
+        }
+        if (n4 > 100 || n4 < 0) {
+            alert("短信全程接通率超过100%或低于0%了，不能提交到数据库");
+            return false;
+        }
+        var n5 = parseFloat($('#gsm-traffic').val());
+        console.log(n5);
+        if (!n5) {
+            alert("全天话务量是非法数据，不能提交到数据库");
+            return false;
+        }
+        var n6 = parseFloat($('#gsm-day-traffic').val());
+        console.log(n6);
+        if (!n6) {
+            alert("早忙时话务量是非法数据，不能提交到数据库");
+            return false;
+        }
+        var n7 = parseFloat($('#gsm-night-traffic').val());
+        console.log(n7);
+        if (!n7) {
+            alert("晚忙时话务量是非法数据，不能提交到数据库");
+            return false;
+        }
+        var n8 = parseFloat($('#gsm-6rushhour-wlp').val());
+        console.log(n8);
+        if (!n8) {
+            alert("6忙时掉话率是非法数据，不能提交到数据库");
+            return false;
+        }
+        if (n8 > 100 || n8 <= 0) {
+            alert("6忙时掉话率超过100%或低于0%了，不能提交到数据库");
+            return false;
+        }  
+        var n9 = parseFloat($('#gsm-6rushhour-wlp-cap').val());
+        console.log(n9);
+        if (!n9) {
+            alert("省会城市6忙时掉话率是非法数据，不能提交到数据库");
+            return false;
+        }
+        if (n9 > 100 || n9 <= 0) {
+            alert("省会城市6忙时掉话率超过100%或低于0%了，不能提交到数据库");
+            return false;
+        }  
+        var n10 = parseFloat($('#gsm-package-traffic').val());
+        console.log(n10);
+        if (!n10) {
+            alert("2G分组域流量是非法数据，不能提交到数据库");
+            return false;
+        }
+        //再ajax提交到后台
+        //都成功以后，就可以启用数据分析按钮，
+        //每次保存以后，如果没有改动，那么保存按钮就应该禁用
+        //如果有改动过，那么保存按钮应该回到初始状态
+        $("#saveGsm").attr("disabled", true);
+        $("#saveGsm").removeClass("btn-danger").addClass("btn-success");
+        $("#saveGsm").text("已保存");
+    });
+    // gsm按钮--分析超标原因
+    $('#analyzeGsm').on('click', function() {
+        //在分析原因按钮点击以后，应该直接后台保存原因至数据库，防止用户忘记保存
+        gsmReason = "上海网络运行正常，无影响业务的故障发生。";
+        var count = 1;
+        //当某一数据波动超门限的时候，就分析原因，模版如下：
+        if (gsmCaixin == true) {
+            gsmReason += "&#13;&#10;"+count+"、上海移动彩信业务总量（MO+AO）为xx万条，与上月工作日参考值xx万条比较，增加xx万条，增幅xx%。较前一天增加xx万条，增幅xx%，较上周同期增加xx万条，增幅xx%。其中MO总业务量增长了xx万条，增长了xx%；AO总业务量减少了xx万条，减少了xx%，其中。。。";
+            count++;
+        }
+        if (gsmCaixinWcp == true) {
+            gsmReason += "&#13;&#10;"+count+"、国内彩信网络接通率为xx%，与上月工作日参考值xx%比较，减少了xx%，波动超门限。原因将稍后以邮件形式补报集团。";
+            count++;
+        }
+        if (gsmDuanxin == true) {
+            gsmReason += "&#13;&#10;"+count+"、上海移动短信业务总量（MO+AO）为xx亿条，与上月周日参考值xx亿条比较，增加xx亿条，增幅xx%。较前一天增加xx亿条，增幅xx%，较上周同期减少xx亿条，降幅xx%。其中MO总业务量增长了xx万条，增长了xx%、AO总业务量增长了xx万条，增长了xx%。其中。。。";
+            count++;
+        }
+        if (gsmDuanxinWcp == true) {
+            gsmReason += "&#13;&#10;"+count+"、短信全程接通率为xx%，与上月工作日参考值xx%比较，减少了xx%，波动超门限。原因将稍后以邮件形式补报集团。";
+            count++;
+        }
+        if (gsmTraffic == true) {
+            gsmReason += "&#13;&#10;"+count+"、全天话务量为xx万ERL，与上月工作日参考值xx万ERL比较，增加xx万ERL，增幅xx%。较前一天减少xx万ERL，降幅xx%，较上周同期减少xx万ERL，降幅xx%。主要是由于全天VLR用户总数xx人，比上月工作日均值xx人，增幅xx%；系统试呼总次数xx次，比上月工作日均值xx次，增幅xx%。";
+            count++;
+        }
+        if (gsmDayTraffic == true) {
+            gsmReason += "&#13;&#10;"+count+"、早忙时话务量为xx万ERL，与上月工作日参考值xx万ERL比较，增加xx万ERL，增幅xx%。较前一天减少xx万ERL，降幅xx%，较上周同期减少xx万ERL，降幅xx%。主要是由于早忙时VLR用户总数xx人，比上月工作日均值xx人，增幅xx%；系统试呼总次数xx次，比上月工作日均值xx次，增幅xx%。";
+            count++;
+        }
+        if (gsmNightTraffic == true) {
+            gsmReason += "&#13;&#10;"+count+"、晚忙时话务量为xx万ERL，与上月工作日参考值xx万ERL比较，增加xx万ERL，增幅xx%。较前一天减少xx万ERL，降幅xx%，较上周同期减少xx万ERL，降幅xx%。主要是由于晚忙时VLR用户总数xx人，比上月工作日均值xx人，增幅xx%；系统试呼总次数xx次，比上月工作日均值xx次，增幅xx%。";
+            count++;
+        }
+        if (gsm6rushhourwlp == true) {
+            gsmReason += "&#13;&#10;"+count+"、6忙时掉话率为xx%，与上月工作日参考值xx%比较，增加了xx%，波动超门限。原因将稍后以邮件形式补报集团。";
+            count++;
+        }
+        if (gsm6rushhourwlpcap == true) {
+            gsmReason += "&#13;&#10;"+count+"、省会城市6忙时掉话率为xx%，与上月工作日参考值xx%比较，增加了xx%，波动超门限。原因将稍后以邮件形式补报集团。";
+            count++;
+        }
+        if (gsmPackageTraffic == true) {
+            gsmReason += "&#13;&#10;"+count+"、2G分组域流量为xxTB，与上月工作日参考值xxTB比较，增加xxTB，增幅xx%。较前一天增加xxTB，增幅xx%，较上周同期增加xxTB，增幅xx%。";
+            count++;
+        }
+        $("#gsm-list").show();
+        $("#gsm-reason").html(gsmReason);
+        //每次点分析按钮，都要让保存按钮重新回过来
+        $('#saveGsmReason').attr("disabled", false).removeClass("btn-success").addClass("btn-danger").text("保存原因至数据库");
+    }); 
+    //gsm按钮--保存原因至数据库
+    $('#saveGsmReason').click(function (e){
+        e.preventDefault();
+        $(this).text('已保存').removeClass("btn-danger").addClass("btn-success").attr("disabled", true);
+        //发送ajax到后端，保存数据
+    });
+    //每次gsm输入的input有变动时，保存大值班应该就重新激活
+    $('.gsm').change(function() {
+        $("#saveGsm").attr("disabled", false);
+        $("#saveGsm").removeClass("btn-success").addClass("btn-danger");
+        $("#saveGsm").text("保存大值班数据");
+    });
+    //每次textarea有变动时，保存原因至数据库就重新激活
+    $('#gsm-reason').change(function() {
+        $('#saveGsmReason').attr("disabled", false).removeClass("btn-success").addClass("btn-danger").text("保存原因至数据库");
+    });
     
+    
+
+
+
+
 }
 
 //additional functions for data table

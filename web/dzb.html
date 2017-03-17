@@ -419,6 +419,181 @@
                                         </form>
                                     </div>
                                     <div class="tab-pane" id="gsmkpi">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="11">上海网络运行日KPI情况（每日7:30前上报）</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="warning">
+                                                    <td>2017-3-9</td>
+                                                    <td colspan="2" style="text-align: center;">彩信业务</td>
+                                                    <td colspan="2" style="text-align: center;">短信业务</td>
+                                                    <td colspan="6" style="text-align: center;">GSM KPI情况</td>
+                                                </tr>
+                                                <tr class="active">
+                                                    <td>今日周四</td>
+                                                    <td>国内彩信发送总条数</td>
+                                                    <td>国内彩信网络接通率</td>
+                                                    <td>全天条数</td>
+                                                    <td>全程接通率</td>
+                                                    <td>全天话务量</td>
+                                                    <td>早忙时话务量</td>
+                                                    <td>晚忙时话务量</td>
+                                                    <td>6忙时掉话率</td>
+                                                    <td>省会城市6忙时掉话率</td>
+                                                    <td>2G分组域流量</td>
+                                                </tr>
+                                                <tr class="warning">
+                                                    <td>单位</td>
+                                                    <td>万条</td>
+                                                    <td>%</td>
+                                                    <td>亿条</td>
+                                                    <td>%</td>
+                                                    <td>万ERL</td>
+                                                    <td>万ERL</td>
+                                                    <td>万ERL</td>
+                                                    <td>%</td>
+                                                    <td>%</td>
+                                                    <td>TB</td>
+                                                </tr>
+                                                <tr class="danger">
+                                                    <td>门限</td>
+                                                    <td>±10%</td>
+                                                    <td>上下浮动0.1个百分点</td>
+                                                    <td>±10%</td>
+                                                    <td>上下浮动0.1个百分点</td>
+                                                    <td>±5%</td>
+                                                    <td>±5%</td>
+                                                    <td>±5%</td>
+                                                    <td>上下浮动0.1个百分点</td>
+                                                    <td>上下浮动0.1个百分点</td>
+                                                    <td>±8%</td>
+                                                </tr>
+                                                <tr class="info">
+                                                    <td>工作日日常值（3月参考值）</td>
+                                                    <td id="gsm-caixin-weekday">330.05</td>
+                                                    <td id="gsm-caixin-wcp-weekday">99.99</td>
+                                                    <td id="gsm-duanxin-weekday">1.22</td>
+                                                    <td id="gsm-duanxin-wcp-weekday">99.99</td>
+                                                    <td id="gsm-traffic-weekday">265.48</td>
+                                                    <td id="gsm-day-traffic-weekday">20.53</td>
+                                                    <td id="gsm-night-traffic-weekday">18.62</td>
+                                                    <td id="gsm-6rushhour-wlp-weekday">0.50</td>
+                                                    <td id="gsm-6rushhour-wlp-cap-weekday">0.50</td>
+                                                    <td id="gsm-package-traffic-weekday">11.01</td>
+                                                </tr>
+                                                <tr class="info">
+                                                    <td>周六日常值（3月参考值）</td>
+                                                    <td id="gsm-caixin-saturday">254.70</td>
+                                                    <td id="gsm-caixin-wcp-saturday">99.99</td>
+                                                    <td id="gsm-duanxin-saturday">0.97</td>
+                                                    <td id="gsm-duanxin-wcp-saturday">99.99</td>
+                                                    <td id="gsm-traffic-saturday">240.39</td>
+                                                    <td id="gsm-day-traffic-saturday">17.48</td>
+                                                    <td id="gsm-night-traffic-saturday">18.23</td>
+                                                    <td id="gsm-6rushhour-wlp-saturday">0.47</td>
+                                                    <td id="gsm-6rushhour-wlp-cap-saturday">0.47</td>
+                                                    <td id="gsm-package-traffic-saturday">10.90</td>
+                                                </tr>
+                                                <tr class="info">
+                                                    <td>周日日常值（3月参考值）</td>
+                                                    <td id="gsm-caixin-sunday">378.10</td>
+                                                    <td id="gsm-caixin-wcp-sunday">99.99</td>
+                                                    <td id="gsm-duanxin-sunday">0.89</td>
+                                                    <td id="gsm-duanxin-wcp-sunday">99.99</td>
+                                                    <td id="gsm-traffic-sunday">210.42</td>
+                                                    <td id="gsm-day-traffic-sunday">14.93</td>
+                                                    <td id="gsm-night-traffic-sunday">16.51</td>
+                                                    <td id="gsm-6rushhour-wlp-sunday">0.46</td>
+                                                    <td id="gsm-6rushhour-wlp-cap-sunday">0.46</td>
+                                                    <td id="gsm-package-traffic-sunday">9.50</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>上周同期值 </td>
+                                                    <td id="gsm-caixin-lastweek">261.47</td>
+                                                    <td id="gsm-caixin-wcp-lastweek">99.98</td>
+                                                    <td id="gsm-duanxin-lastweek">1.29</td>
+                                                    <td id="gsm-duanxin-wcp-lastweek">99.99</td>
+                                                    <td id="gsm-traffic-lastweek">320.04</td>
+                                                    <td id="gsm-day-traffic-lastweek">23.92</td>
+                                                    <td id="gsm-night-traffic-lastweek">23.84</td>
+                                                    <td id="gsm-6rushhour-wlp-lastweek">0.50</td>
+                                                    <td id="gsm-6rushhour-wlp-cap-lastweek">0.50</td>
+                                                    <td id="gsm-package-traffic-lastweek">12.54</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>昨日值 </td>
+                                                    <td id="gsm-caixin-yesterday">511.66</td>
+                                                    <td id="gsm-caixin-wcp-yesterday">99.99</td>
+                                                    <td id="gsm-duanxin-yesterday">1.26</td>
+                                                    <td id="gsm-duanxin-wcp-yesterday">99.99</td>
+                                                    <td id="gsm-traffic-yesterday">319.85</td>
+                                                    <td id="gsm-day-traffic-yesterday">23.90</td>
+                                                    <td id="gsm-night-traffic-yesterday">23.65</td>
+                                                    <td id="gsm-6rushhour-wlp-yesterday">0.48</td>
+                                                    <td id="gsm-6rushhour-wlp-cap-yesterday">0.48</td>
+                                                    <td id="gsm-package-traffic-yesterday">13.33</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>工作日</td>
+                                                    <td>
+                                                        <input type="text" name="gsm-caixin" id="gsm-caixin" class="gsm" size="6"/>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="gsm-caixin-wcp" id="gsm-caixin-wcp" class="gsm" size="5">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="gsm-duanxin" id="gsm-duanxin" class="gsm" size="5">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="gsm-duanxin-wcp" id="gsm-duanxin-wcp" class="gsm" size="5">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="gsm-traffic" id="gsm-traffic" class="gsm" size="6">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="gsm-day-traffic" id="gsm-day-traffic" class="gsm" size="5">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="gsm-night-traffic" id="gsm-night-traffic" class="gsm" size="5">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="gsm-6rushhour-wlp" id="gsm-6rushhour-wlp" class="gsm" size="5">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="gsm-6rushhour-wlp-cap" id="gsm-6rushhour-wlp-cap" class="gsm" size="5">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="gsm-package-traffic" id="gsm-package-traffic" class="gsm" size="5">
+                                                    </td>
+                                                </tr>
+                                                <tr class="success">
+                                                    <td>波动</td>
+                                                    <td id="gsm-caixin-fluctuate"></td>
+                                                    <td id="gsm-caixin-wcp-fluctuate"></td>
+                                                    <td id="gsm-duanxin-fluctuate"></td>
+                                                    <td id="gsm-duanxin-wcp-fluctuate"></td>
+                                                    <td id="gsm-traffic-fluctuate"></td>
+                                                    <td id="gsm-day-traffic-fluctuate"></td>
+                                                    <td id="gsm-night-traffic-fluctuate"></td>
+                                                    <td id="gsm-6rushhour-wlp-fluctuate"></td>
+                                                    <td id="gsm-6rushhour-wlp-cap-fluctuate"></td>
+                                                    <td id="gsm-package-traffic-fluctuate"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <button id="saveGsm" type="button" class="btn btn-danger pull-right">保存大值班数据</button>
+                                        <button id="analyzeGsm" type="button" class="btn btn-primary">分析超标原因</button>
+                                        <br><br><br>
+                                        <form role="form" id="gsm-list" hidden>
+                                            <div class="form-group">
+                                                <label for="gsm-reason">超标原因</label>
+                                                <textarea rows="10" cols="20" class="form-control" id="gsm-reason" name="gsm-reason"></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-danger" id="saveGsmReason">保存原因至数据库</button>
+                                        </form>
                                     </div>
                                     <div class="tab-pane" id="tdkpi">
                                         <table class="table table-bordered">
@@ -483,31 +658,142 @@
                                                 </tr>
                                                 <tr>
                                                     <td>昨日值 </td>
-                                                    
-                                                    <td id="cmnet-traffic-yesterday">554.90</td>
+                                                    <td id="td-number-yesterday">94.42</td>
+                                                    <td id="td-voiceTraffic-yesterday">9.41</td>
+                                                    <td id="td-videoTraffic-yesterday">0.21</td>
+                                                    <td id="td-packageTraffic-yesterday">5652.49</td>
                                                 </tr>
                                                 <tr>
                                                     <td>工作日</td>
-                                                    <td><input name="cmnet-traffic" id="cmnet-traffic" type="text" class="cmnet"></td>
+                                                    <td><input type="text" name="td-number" id="td-number" class="td"></td>
+                                                    <td><input type="text" name="td-voiceTraffic" id="td-voiceTraffic" class="td"></td>
+                                                    <td><input type="text" name="td-videoTraffic" id="td-videoTraffic" class="td"></td>
+                                                    <td><input type="text" name="td-packageTraffic" id="td-packageTraffic" class="td"></td>
                                                 </tr>
                                                 <tr class="success">
                                                     <td>波动</td>
-                                                    <td id="cmnet-traffic-fluctuate"></td>  
+                                                    <td id="td-number-fluctuate"></td>
+                                                    <td id="td-voiceTraffic-fluctuate"></td>
+                                                    <td id="td-videoTraffic-fluctuate"></td>
+                                                    <td id="td-packageTraffic-fluctuate"></td>
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <button id="saveCmnet" type="button" class="btn btn-danger pull-right">保存大值班数据</button>
-                                        <button id="analyzeCmnet" type="button" class="btn btn-primary">分析超标原因</button>
+                                        <button id="saveTd" type="button" class="btn btn-danger pull-right">保存大值班数据</button>
+                                        <button id="analyzeTd" type="button" class="btn btn-primary">分析超标原因</button>
                                         <br><br><br>
-                                        <form role="form" id="cmnet-list" hidden>
+                                        <form role="form" id="td-list" hidden>
                                             <div class="form-group">
-                                                <label for="cmnet-reason">超标原因</label>
-                                                <textarea rows="10" cols="20" class="form-control" id="cmnet-reason" name="cmnet-reason"></textarea>
+                                                <label for="td-reason">超标原因</label>
+                                                <textarea rows="10" cols="20" class="form-control" id="td-reason" name="td-reason"></textarea>
                                             </div>
-                                            <button type="submit" class="btn btn-danger" id="saveCmnetReason">保存原因至数据库</button>
+                                            <button type="submit" class="btn btn-danger" id="saveTdReason">保存原因至数据库</button>
                                         </form>
                                     </div>
                                     <div class="tab-pane" id="ltekpi">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="6">上海网络运行日KPI情况（每日7:30前上报）</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="warning">
+                                                    <td>2017-3-9</td>
+                                                    <td colspan="5">LTE KPI情况</td>
+                                                </tr>
+                                                <tr class="active">
+                                                    <td>今日周四</td>
+                                                    <td>吞吐量</td>
+                                                    <td>MME用户数</td>
+                                                    <td>无线接通率</td>
+                                                    <td>无线掉线率</td>
+                                                    <td>排除用户原因附着成功率</td>
+                                                </tr>
+                                                <tr class="warning">
+                                                    <td>单位</td>
+                                                    <td>TB</td>
+                                                    <td>万户</td>
+                                                    <td>%</td>
+                                                    <td>%</td>
+                                                    <td>%</td>
+                                                </tr>
+                                                <tr class="danger">
+                                                    <td>门限</td>
+                                                    <td>±25%</td>
+                                                    <td>±15%</td>
+                                                    <td>上下浮动0.5个百分点</td>
+                                                    <td>上下浮动0.5个百分点</td>
+                                                    <td>上下浮动1个百分点</td>
+                                                </tr>
+                                                <tr class="info">
+                                                    <td>工作日日常值（3月参考值）</td>
+                                                    <td id="lte-traffic-weekday">411.21</td>
+                                                    <td id="lte-number-weekday">1052.13</td>
+                                                    <td id="lte-wcp-weekday">99.48</td>
+                                                    <td id="lte-wlp-weekday">1.90</td>
+                                                    <td id="lte-attach-weekday">99.61</td>
+                                                </tr>
+                                                <tr class="info">
+                                                    <td>周六日常值（3月参考值）</td>
+                                                    <td id="lte-traffic-saturday">424.03</td>
+                                                    <td id="lte-number-saturday">1095.74</td>
+                                                    <td id="lte-wcp-saturday">99.62</td>
+                                                    <td id="lte-wlp-saturday">1.87</td>
+                                                    <td id="lte-attach-saturday">99.62</td>
+                                                </tr>
+                                                <tr class="info">
+                                                    <td>周日日常值（3月参考值）</td>
+                                                    <td id="lte-traffic-sunday">366.76</td>
+                                                    <td id="lte-number-sunday">1038.50</td>
+                                                    <td id="lte-wcp-sunday">99.64</td>
+                                                    <td id="lte-wlp-sunday">1.82</td>
+                                                    <td id="lte-attach-sunday">99.62</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>上周同期值 </td>
+                                                    <td id="lte-traffic-lastweek">498.04</td>
+                                                    <td id="lte-number-lastweek">1209.13</td>
+                                                    <td id="lte-wcp-lastweek">99.57</td>
+                                                    <td id="lte-wlp-lastweek">2.19</td>
+                                                    <td id="lte-attach-lastweek">99.37</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>昨日值 </td>
+                                                    <td id="lte-traffic-yesterday">530.45</td>
+                                                    <td id="lte-number-yesterday">1250.09</td>
+                                                    <td id="lte-wcp-yesterday">99.57</td>
+                                                    <td id="lte-wlp-yesterday">2.24</td>
+                                                    <td id="lte-attach-yesterday">99.57</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>工作日</td>
+                                                    <td><input type="text" name="lte-traffic" id="lte-traffic" class="lte"></td>
+                                                    <td><input type="text" name="lte-number" id="lte-number" class="lte"></td>
+                                                    <td><input type="text" name="lte-wcp" id="lte-wcp" class="lte"></td>
+                                                    <td><input type="text" name="lte-wlp" id="lte-wlp" class="lte"></td>
+                                                    <td><input type="text" name="lte-attach" id="lte-attach" class="lte"></td>
+                                                </tr>
+                                                <tr class="success">
+                                                    <td>波动</td>
+                                                    <td id="lte-traffic-fluctuate"></td>
+                                                    <td id="lte-number-fluctuate"></td>
+                                                    <td id="lte-wcp-fluctuate"></td>
+                                                    <td id="lte-wlp-fluctuate"></td>
+                                                    <td id="lte-attach-fluctuate"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <button id="saveLte" type="button" class="btn btn-danger pull-right">保存大值班数据</button>
+                                        <button id="analyzeLte" type="button" class="btn btn-primary">分析超标原因</button>
+                                        <br><br><br>
+                                        <form role="form" id="lte-list" hidden>
+                                            <div class="form-group">
+                                                <label for="lte-reason">超标原因</label>
+                                                <textarea rows="10" cols="20" class="form-control" id="lte-reason" name="lte-reason"></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-danger" id="saveLteReason">保存原因至数据库</button>
+                                        </form>
                                     </div>
                                     <div class="tab-pane" id="cmnetkpi">
                                         <table class="table table-bordered">
