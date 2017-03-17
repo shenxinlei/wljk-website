@@ -315,6 +315,12 @@
                                 </div>
                             </div>
                             <div class="box-content">
+                                <!-- 进度条代码 -->
+                                <h3>大值班数据保存监控进度条</h3>
+                                <div class="progress">
+                                    
+                                    <div id="progress-bar" class="progress-bar progress-bar-warning" data-transitiongoal="0"></div>
+                                </div>
                                 <ul class="nav nav-tabs" id="myTab">
                                     <li class="active"><a href="#voltekpi">VOLTE KPI统计模板</a></li>
                                     <li><a href="#gsmkpi">GSM KPI统计模板</a></li>
@@ -593,6 +599,7 @@
                                                 <textarea rows="10" cols="20" class="form-control" id="gsm-reason" name="gsm-reason"></textarea>
                                             </div>
                                             <button type="submit" class="btn btn-danger" id="saveGsmReason">保存原因至数据库</button>
+                                            <span class="label label-warning pull-right">还可以输入<span id="gsm-count-number"></span>个字符</span>
                                         </form>
                                     </div>
                                     <div class="tab-pane" id="tdkpi">
@@ -994,6 +1001,8 @@
     <script src="js/jquery.uploadify-3.1.min.js"></script>
     <!-- history.js for cross-browser state change on ajax -->
     <script src="js/jquery.history.js"></script>
+    <!-- 这里引入一个进度条插件，来通知用户大值班做到哪一步了 -->
+    <script src="js/bootstrap-progressbar.js"></script>
     <!-- 所有页面共有的需启动初始化的js -->
     <script src="js/common.js"></script>
     <!-- 最终的独立js -->

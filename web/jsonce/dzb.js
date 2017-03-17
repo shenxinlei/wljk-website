@@ -250,6 +250,13 @@ function docReady() {
       	$("#saveVolte").attr("disabled", true);
         $("#saveVolte").removeClass("btn-danger").addClass("btn-success");
         $("#saveVolte").text("已保存");
+
+        //每一次保存都让进度前向走20%
+        var pb = $('#progress-bar');
+        var pbValue = parseInt(pb.attr('data-transitiongoal'));
+        console.log(pbValue);
+        pbValue += 20;
+        pb.attr('data-transitiongoal', pbValue).progressbar({display_text: 'fill'});
     });
 
     //按钮--分析超标原因
@@ -258,22 +265,22 @@ function docReady() {
         reason = "上海网络运行正常，无影响业务的故障发生。";
         var count = 1;
         if (number == true) {
-            reason += "&#13;&#10;"+count+"、VoLTE注册用户数为xx万户，与上月周中参考值xx万户比较，增加xx万户，增幅xx%。较前一天减少xx万户，降幅xx%，较上周同期增加xx万户，增幅xx%。用户行为引起，网络侧无异常。";
+            reason += "\r\n"+count+"、VoLTE注册用户数为xx万户，与上月周中参考值xx万户比较，增加xx万户，增幅xx%。较前一天减少xx万户，降幅xx%，较上周同期增加xx万户，增幅xx%。用户行为引起，网络侧无异常。";
             count++;
         }
         if (ims == true) {
-            reason += "&#13;&#10;"+count+"、IMS初始注册成功率低于门限，稍后将以邮件形式补报集团。"
+            reason += "\r\n"+count+"、IMS初始注册成功率低于门限，稍后将以邮件形式补报集团。"
             count++;
         }
         if (traffic == true) {
-            reason += "&#13;&#10;"+count+"、VoLTE话务量为xx万erl，与上月周日参考值xx万erl比较，增加xx万erl，增幅xx%。较前一天减少xx万erl，降幅xx%，较上周同期增加xx万erl，增幅xx%。用户行为引起，网络侧无异常。";
+            reason += "\r\n"+count+"、VoLTE话务量为xx万erl，与上月周日参考值xx万erl比较，增加xx万erl，增幅xx%。较前一天减少xx万erl，降幅xx%，较上周同期增加xx万erl，增幅xx%。用户行为引起，网络侧无异常。";
             count++;
         }
         if (esrvcc == true) {
-            reason += "&#13;&#10;"+count+"、eSRVCC切换成功率低于门限，稍后将以邮件形式补报集团。"
+            reason += "\r\n"+count+"、eSRVCC切换成功率低于门限，稍后将以邮件形式补报集团。"
             count++;
         }
-        $("#reason").html(reason);
+        $("#reason").val(reason);
     	$("#list").show();
         //加上这段代码目的是，如果用户又点了一次分析超标原因，save按钮会跳不回去，所以要人工让其跳回去
         $('#saveReason').attr("disabled", false).removeClass("btn-success").addClass("btn-danger").text("保存原因至数据库");
@@ -288,6 +295,13 @@ function docReady() {
 
     //每次input有变动时，保存大值班应该就重新激活
     $('.volte').change(function() {
+        if ($("#saveVolte").hasClass('btn-success')) {
+            var pb = $('#progress-bar');
+            var pbValue = parseInt(pb.attr('data-transitiongoal'));
+            pbValue -= 20;
+            pb.attr('data-transitiongoal', pbValue).progressbar({display_text: 'fill'});
+        }
+        
     	$("#saveVolte").attr("disabled", false);
         $("#saveVolte").removeClass("btn-success").addClass("btn-danger");
         $("#saveVolte").text("保存大值班数据");
@@ -341,6 +355,13 @@ function docReady() {
         $("#saveCmnet").attr("disabled", true);
         $("#saveCmnet").removeClass("btn-danger").addClass("btn-success");
         $("#saveCmnet").text("已保存");
+
+        //每一次保存都让进度前向走20%
+        var pb = $('#progress-bar');
+        var pbValue = parseInt(pb.attr('data-transitiongoal'));
+        console.log(pbValue);
+        pbValue += 20;
+        pb.attr('data-transitiongoal', pbValue).progressbar({display_text: 'fill'});
     });
     // Cmnet按钮--分析超标原因
     $('#analyzeCmnet').on('click', function() {
@@ -349,10 +370,10 @@ function docReady() {
         var count = 1;
         //当某一数据波动超门限的时候，就分析原因，模版如下：
         if (cmnetTraffic == true) {
-            cmnetReason += "&#13;&#10;"+count+"、CMNET地市入流量为xxTB，与上月周日参考值xxTB比较，增加xxTB，增幅xx%。较前一天增加xxTB，增幅xx%，较上周同期增加xxTB，增幅xx%。主要是由于。。。";
+            cmnetReason += "\r\n"+count+"、CMNET地市入流量为xxTB，与上月周日参考值xxTB比较，增加xxTB，增幅xx%。较前一天增加xxTB，增幅xx%，较上周同期增加xxTB，增幅xx%。主要是由于。。。";
             count++;
         }
-        $("#cmnet-reason").html(cmnetReason);
+        $("#cmnet-reason").val(cmnetReason);
         $("#cmnet-list").show();
         //每次点分析按钮，都要让保存按钮重新回过来
         $('#saveCmnetReason').attr("disabled", false).removeClass("btn-success").addClass("btn-danger").text("保存原因至数据库");
@@ -365,6 +386,14 @@ function docReady() {
     });
     //每次Cmnet输入的input有变动时，保存大值班应该就重新激活
     $('.cmnet').change(function() {
+        if ($("#saveCmnet").hasClass('btn-success')) {
+            var pb = $('#progress-bar');
+            var pbValue = parseInt(pb.attr('data-transitiongoal'));
+            pbValue -= 20;
+            pb.attr('data-transitiongoal', pbValue).progressbar({display_text: 'fill'});
+        }
+
+
         $("#saveCmnet").attr("disabled", false);
         $("#saveCmnet").removeClass("btn-success").addClass("btn-danger");
         $("#saveCmnet").text("保存大值班数据");
@@ -513,6 +542,13 @@ function docReady() {
         $("#saveTd").attr("disabled", true);
         $("#saveTd").removeClass("btn-danger").addClass("btn-success");
         $("#saveTd").text("已保存");
+
+        //每一次保存都让进度前向走20%
+        var pb = $('#progress-bar');
+        var pbValue = parseInt(pb.attr('data-transitiongoal'));
+        console.log(pbValue);
+        pbValue += 20;
+        pb.attr('data-transitiongoal', pbValue).progressbar({display_text: 'fill'});
     });
     //td按钮--分析超标原因
     $('#analyzeTd').on('click', function() {
@@ -521,23 +557,23 @@ function docReady() {
         var count = 1;
         //当某一数据波动超门限的时候，就分析原因，模版如下：
         if (tdNumber == true) {
-            tdReason += "&#13;&#10;"+count+"、VLR中TD-SCDMA网络位置区下存储的用户数为xx万户，与上月工作日参考值xx万户比较，减少xx万户，降幅xx%。较前一天增加xx万户，增幅xx%，较上周同期减少xx万户，降幅xx%。TD用户数基数较小，易受业务推广影响产生较大波动，网络侧无异常，属正常波动。";
+            tdReason += "\r\n"+count+"、VLR中TD-SCDMA网络位置区下存储的用户数为xx万户，与上月工作日参考值xx万户比较，减少xx万户，降幅xx%。较前一天增加xx万户，增幅xx%，较上周同期减少xx万户，降幅xx%。TD用户数基数较小，易受业务推广影响产生较大波动，网络侧无异常，属正常波动。";
             count++;
         }
         if (tdVoiceTraffic == true) {
-            tdReason += "&#13;&#10;"+count+"、TD系统语音话务量(RNC)为xx万爱尔兰，与上月工作日参考值xx万爱尔兰比较，减少xx万爱尔兰，降幅xx%。较前一天增加xx万爱尔兰，增幅xx%，较上周同期减少xx万爱尔兰，降幅xx%。TD用户数基数较小，易受业务推广影响产生较大波动，网络侧无异常，属正常波动。";
+            tdReason += "\r\n"+count+"、TD系统语音话务量(RNC)为xx万爱尔兰，与上月工作日参考值xx万爱尔兰比较，减少xx万爱尔兰，降幅xx%。较前一天增加xx万爱尔兰，增幅xx%，较上周同期减少xx万爱尔兰，降幅xx%。TD用户数基数较小，易受业务推广影响产生较大波动，网络侧无异常，属正常波动。";
             count++;
         }
         if (tdVideoTraffic == true) {
-            tdReason += "&#13;&#10;"+count+"、TD系统视频话务量(RNC))为xx爱尔兰，与上月工作日参考值xx爱尔兰比较，减少xx爱尔兰，降幅xx%。较前一天增加xx爱尔兰，增幅xx%，较上周同期减少xx爱尔兰，降幅xx%。TD用户数基数较小，易受业务推广影响产生较大波动，网络侧无异常，属正常波动。";
+            tdReason += "\r\n"+count+"、TD系统视频话务量(RNC))为xx爱尔兰，与上月工作日参考值xx爱尔兰比较，减少xx爱尔兰，降幅xx%。较前一天增加xx爱尔兰，增幅xx%，较上周同期减少xx爱尔兰，降幅xx%。TD用户数基数较小，易受业务推广影响产生较大波动，网络侧无异常，属正常波动。";
             count++;
         }
         if (tdPackageTraffic == true) {
-            tdReason += "&#13;&#10;"+count+"、TD系统分组域业务流量(RNC)为xxGBYTE，与上月工作日参考值xxGBYTE比较，减少xxGBYTE，降幅xx%。较前一天增加xxGBYTE，增幅xx%，较上周同期减少xxGBYTE，降幅xx%。TD用户数基数较小，易受业务推广影响产生较大波动，网络侧无异常，属正常波动。";
+            tdReason += "\r\n"+count+"、TD系统分组域业务流量(RNC)为xxGBYTE，与上月工作日参考值xxGBYTE比较，减少xxGBYTE，降幅xx%。较前一天增加xxGBYTE，增幅xx%，较上周同期减少xxGBYTE，降幅xx%。TD用户数基数较小，易受业务推广影响产生较大波动，网络侧无异常，属正常波动。";
             count++;
         }
         $("#td-list").show();
-        $("#td-reason").html(tdReason);
+        $("#td-reason").val(tdReason);
         //每次点分析按钮，都要让保存按钮重新回过来
         $('#saveTdReason').attr("disabled", false).removeClass("btn-success").addClass("btn-danger").text("保存原因至数据库");
     }); 
@@ -549,6 +585,12 @@ function docReady() {
     });
     //每次td输入的input有变动时，保存大值班应该就重新激活
     $('.td').change(function() {
+        if ($("#saveTd").hasClass('btn-success')) {
+            var pb = $('#progress-bar');
+            var pbValue = parseInt(pb.attr('data-transitiongoal'));
+            pbValue -= 20;
+            pb.attr('data-transitiongoal', pbValue).progressbar({display_text: 'fill'});
+        }
         $("#saveTd").attr("disabled", false);
         $("#saveTd").removeClass("btn-success").addClass("btn-danger");
         $("#saveTd").text("保存大值班数据");
@@ -761,6 +803,13 @@ function docReady() {
         $("#saveLte").attr("disabled", true);
         $("#saveLte").removeClass("btn-danger").addClass("btn-success");
         $("#saveLte").text("已保存");
+
+        //每一次保存都让进度前向走20%
+        var pb = $('#progress-bar');
+        var pbValue = parseInt(pb.attr('data-transitiongoal'));
+        console.log(pbValue);
+        pbValue += 20;
+        pb.attr('data-transitiongoal', pbValue).progressbar({display_text: 'fill'});
     });
     //lte按钮--分析超标原因
     $('#analyzeLte').on('click', function() {
@@ -770,27 +819,27 @@ function docReady() {
 
         //当某一数据波动超门限的时候，就分析原因，模版如下：
         if (lteTraffic == true) {
-            lteReason += "&#13;&#10;"+count+"、吞吐量为xxTB，与上月工作日参考值xxTB比较，增加xxTB，增幅xx%。较前一天增加xxTB，增幅xx%，较上周同期增加xxTB，增幅xx%。主要是用户行为引起，网络侧无故障。";
+            lteReason += "\r\n"+count+"、吞吐量为xxTB，与上月工作日参考值xxTB比较，增加xxTB，增幅xx%。较前一天增加xxTB，增幅xx%，较上周同期增加xxTB，增幅xx%。主要是用户行为引起，网络侧无故障。";
             count++;
         }
         if (lteNumber == true) {
-            lteReason += "&#13;&#10;"+count+"、MME用户数为xx万户，与上月工作日参考值xx万户比较，增加xx万户，增幅xx%。较前一天增加xx万户，增幅xx%，较上周同期增加xx万户，增幅xx%。属4G业务推广所致的正常现象。";
+            lteReason += "\r\n"+count+"、MME用户数为xx万户，与上月工作日参考值xx万户比较，增加xx万户，增幅xx%。较前一天增加xx万户，增幅xx%，较上周同期增加xx万户，增幅xx%。属4G业务推广所致的正常现象。";
             count++;
         }
         if (lteWcp == true) {
-            lteReason += "&#13;&#10;"+count+"、无线接通率为xx%，与上月工作日参考值xx%比较，减少xx%，波动超门限。原因稍后将以邮件形式补报集团。";
+            lteReason += "\r\n"+count+"、无线接通率为xx%，与上月工作日参考值xx%比较，减少xx%，波动超门限。原因稍后将以邮件形式补报集团。";
             count++;
         }
         if (lteWlp == true) {
-            lteReason += "&#13;&#10;"+count+"、无线掉线率为xx%，与上月工作日参考值xx%比较，增加xx%，波动超门限。原因稍后将以邮件形式补报集团。";
+            lteReason += "\r\n"+count+"、无线掉线率为xx%，与上月工作日参考值xx%比较，增加xx%，波动超门限。原因稍后将以邮件形式补报集团。";
             count++;
         }
         if (lteAttach == true) {
-            lteReason += "&#13;&#10;"+count+"、排除用户原因附着成功率为xx%，与上月工作日参考值xx%比较，减少xx%，波动超门限。原因稍后将以邮件形式补报集团。";
+            lteReason += "\r\n"+count+"、排除用户原因附着成功率为xx%，与上月工作日参考值xx%比较，减少xx%，波动超门限。原因稍后将以邮件形式补报集团。";
             count++;
         }
         $("#lte-list").show();
-        $("#lte-reason").html(lteReason);
+        $("#lte-reason").val(lteReason);
         //每次点分析按钮，都要让保存按钮重新回过来
         $('#saveLteReason').attr("disabled", false).removeClass("btn-success").addClass("btn-danger").text("保存原因至数据库");
     }); 
@@ -802,6 +851,12 @@ function docReady() {
     });
     //每次lte输入的input有变动时，保存大值班应该就重新激活
     $('.lte').change(function() {
+        if ($("#saveLte").hasClass('btn-success')) {
+            var pb = $('#progress-bar');
+            var pbValue = parseInt(pb.attr('data-transitiongoal'));
+            pbValue -= 20;
+            pb.attr('data-transitiongoal', pbValue).progressbar({display_text: 'fill'});
+        }
         $("#saveLte").attr("disabled", false);
         $("#saveLte").removeClass("btn-success").addClass("btn-danger");
         $("#saveLte").text("保存大值班数据");
@@ -1167,6 +1222,13 @@ function docReady() {
         $("#saveGsm").attr("disabled", true);
         $("#saveGsm").removeClass("btn-danger").addClass("btn-success");
         $("#saveGsm").text("已保存");
+
+        //每一次保存都让进度前向走20%
+        var pb = $('#progress-bar');
+        var pbValue = parseInt(pb.attr('data-transitiongoal'));
+        console.log(pbValue);
+        pbValue += 20;
+        pb.attr('data-transitiongoal', pbValue).progressbar({display_text: 'fill'});
     });
     // gsm按钮--分析超标原因
     $('#analyzeGsm').on('click', function() {
@@ -1175,49 +1237,53 @@ function docReady() {
         var count = 1;
         //当某一数据波动超门限的时候，就分析原因，模版如下：
         if (gsmCaixin == true) {
-            gsmReason += "&#13;&#10;"+count+"、上海移动彩信业务总量（MO+AO）为xx万条，与上月工作日参考值xx万条比较，增加xx万条，增幅xx%。较前一天增加xx万条，增幅xx%，较上周同期增加xx万条，增幅xx%。其中MO总业务量增长了xx万条，增长了xx%；AO总业务量减少了xx万条，减少了xx%，其中。。。";
+            gsmReason += "\r\n"+count+"、上海移动彩信业务总量（MO+AO）为xx万条，与上月工作日参考值xx万条比较，增加xx万条，增幅xx%。较前一天增加xx万条，增幅xx%，较上周同期增加xx万条，增幅xx%。其中MO总业务量增长了xx万条，增长了xx%；AO总业务量减少了xx万条，减少了xx%，其中。。。";
             count++;
         }
         if (gsmCaixinWcp == true) {
-            gsmReason += "&#13;&#10;"+count+"、国内彩信网络接通率为xx%，与上月工作日参考值xx%比较，减少了xx%，波动超门限。原因将稍后以邮件形式补报集团。";
+            gsmReason += "\r\n"+count+"、国内彩信网络接通率为xx%，与上月工作日参考值xx%比较，减少了xx%，波动超门限。原因将稍后以邮件形式补报集团。";
             count++;
         }
         if (gsmDuanxin == true) {
-            gsmReason += "&#13;&#10;"+count+"、上海移动短信业务总量（MO+AO）为xx亿条，与上月周日参考值xx亿条比较，增加xx亿条，增幅xx%。较前一天增加xx亿条，增幅xx%，较上周同期减少xx亿条，降幅xx%。其中MO总业务量增长了xx万条，增长了xx%、AO总业务量增长了xx万条，增长了xx%。其中。。。";
+            gsmReason += "\r\n"+count+"、上海移动短信业务总量（MO+AO）为xx亿条，与上月周日参考值xx亿条比较，增加xx亿条，增幅xx%。较前一天增加xx亿条，增幅xx%，较上周同期减少xx亿条，降幅xx%。其中MO总业务量增长了xx万条，增长了xx%、AO总业务量增长了xx万条，增长了xx%。其中。。。";
             count++;
         }
         if (gsmDuanxinWcp == true) {
-            gsmReason += "&#13;&#10;"+count+"、短信全程接通率为xx%，与上月工作日参考值xx%比较，减少了xx%，波动超门限。原因将稍后以邮件形式补报集团。";
+            gsmReason += "\r\n"+count+"、短信全程接通率为xx%，与上月工作日参考值xx%比较，减少了xx%，波动超门限。原因将稍后以邮件形式补报集团。";
             count++;
         }
         if (gsmTraffic == true) {
-            gsmReason += "&#13;&#10;"+count+"、全天话务量为xx万ERL，与上月工作日参考值xx万ERL比较，增加xx万ERL，增幅xx%。较前一天减少xx万ERL，降幅xx%，较上周同期减少xx万ERL，降幅xx%。主要是由于全天VLR用户总数xx人，比上月工作日均值xx人，增幅xx%；系统试呼总次数xx次，比上月工作日均值xx次，增幅xx%。";
+            gsmReason += "\r\n"+count+"、全天话务量为xx万ERL，与上月工作日参考值xx万ERL比较，增加xx万ERL，增幅xx%。较前一天减少xx万ERL，降幅xx%，较上周同期减少xx万ERL，降幅xx%。主要是由于全天VLR用户总数xx人，比上月工作日均值xx人，增幅xx%；系统试呼总次数xx次，比上月工作日均值xx次，增幅xx%。";
             count++;
         }
         if (gsmDayTraffic == true) {
-            gsmReason += "&#13;&#10;"+count+"、早忙时话务量为xx万ERL，与上月工作日参考值xx万ERL比较，增加xx万ERL，增幅xx%。较前一天减少xx万ERL，降幅xx%，较上周同期减少xx万ERL，降幅xx%。主要是由于早忙时VLR用户总数xx人，比上月工作日均值xx人，增幅xx%；系统试呼总次数xx次，比上月工作日均值xx次，增幅xx%。";
+            gsmReason += "\r\n"+count+"、早忙时话务量为xx万ERL，与上月工作日参考值xx万ERL比较，增加xx万ERL，增幅xx%。较前一天减少xx万ERL，降幅xx%，较上周同期减少xx万ERL，降幅xx%。主要是由于早忙时VLR用户总数xx人，比上月工作日均值xx人，增幅xx%；系统试呼总次数xx次，比上月工作日均值xx次，增幅xx%。";
             count++;
         }
         if (gsmNightTraffic == true) {
-            gsmReason += "&#13;&#10;"+count+"、晚忙时话务量为xx万ERL，与上月工作日参考值xx万ERL比较，增加xx万ERL，增幅xx%。较前一天减少xx万ERL，降幅xx%，较上周同期减少xx万ERL，降幅xx%。主要是由于晚忙时VLR用户总数xx人，比上月工作日均值xx人，增幅xx%；系统试呼总次数xx次，比上月工作日均值xx次，增幅xx%。";
+            gsmReason += "\r\n"+count+"、晚忙时话务量为xx万ERL，与上月工作日参考值xx万ERL比较，增加xx万ERL，增幅xx%。较前一天减少xx万ERL，降幅xx%，较上周同期减少xx万ERL，降幅xx%。主要是由于晚忙时VLR用户总数xx人，比上月工作日均值xx人，增幅xx%；系统试呼总次数xx次，比上月工作日均值xx次，增幅xx%。";
             count++;
         }
         if (gsm6rushhourwlp == true) {
-            gsmReason += "&#13;&#10;"+count+"、6忙时掉话率为xx%，与上月工作日参考值xx%比较，增加了xx%，波动超门限。原因将稍后以邮件形式补报集团。";
+            gsmReason += "\r\n"+count+"、6忙时掉话率为xx%，与上月工作日参考值xx%比较，增加了xx%，波动超门限。原因将稍后以邮件形式补报集团。";
             count++;
         }
         if (gsm6rushhourwlpcap == true) {
-            gsmReason += "&#13;&#10;"+count+"、省会城市6忙时掉话率为xx%，与上月工作日参考值xx%比较，增加了xx%，波动超门限。原因将稍后以邮件形式补报集团。";
+            gsmReason += "\r\n"+count+"、省会城市6忙时掉话率为xx%，与上月工作日参考值xx%比较，增加了xx%，波动超门限。原因将稍后以邮件形式补报集团。";
             count++;
         }
         if (gsmPackageTraffic == true) {
-            gsmReason += "&#13;&#10;"+count+"、2G分组域流量为xxTB，与上月工作日参考值xxTB比较，增加xxTB，增幅xx%。较前一天增加xxTB，增幅xx%，较上周同期增加xxTB，增幅xx%。";
+            gsmReason += "\r\n"+count+"、2G分组域流量为xxTB，与上月工作日参考值xxTB比较，增加xxTB，增幅xx%。较前一天增加xxTB，增幅xx%，较上周同期增加xxTB，增幅xx%。";
             count++;
         }
+        $("#gsm-reason").val(gsmReason);
         $("#gsm-list").show();
-        $("#gsm-reason").html(gsmReason);
         //每次点分析按钮，都要让保存按钮重新回过来
         $('#saveGsmReason').attr("disabled", false).removeClass("btn-success").addClass("btn-danger").text("保存原因至数据库");
+        //每次点分析按钮，要让统计字数进行刷新
+        var text = $("#gsm-reason").val();
+        var count = 1000-text.length;
+        $("#gsm-count-number").text(count);
     }); 
     //gsm按钮--保存原因至数据库
     $('#saveGsmReason').click(function (e){
@@ -1227,20 +1293,34 @@ function docReady() {
     });
     //每次gsm输入的input有变动时，保存大值班应该就重新激活
     $('.gsm').change(function() {
+        //先做个判断，判断保存按钮是否是绿色，是绿色的话，就要修改进度条，回退20%
+        if ($("#saveGsm").hasClass('btn-success')) {
+            var pb = $('#progress-bar');
+            var pbValue = parseInt(pb.attr('data-transitiongoal'));
+            pbValue -= 20;
+            pb.attr('data-transitiongoal', pbValue).progressbar({display_text: 'fill'});
+        }
         $("#saveGsm").attr("disabled", false);
         $("#saveGsm").removeClass("btn-success").addClass("btn-danger");
-        $("#saveGsm").text("保存大值班数据");
+        $("#saveGsm").text("保存大值班数据");  
     });
     //每次textarea有变动时，保存原因至数据库就重新激活
     $('#gsm-reason').change(function() {
         $('#saveGsmReason').attr("disabled", false).removeClass("btn-success").addClass("btn-danger").text("保存原因至数据库");
     });
+    //统计GSM原因分析的字数，集团超过1000个字符会不让填写
+    var gsmText = gsmReason;
+    var countNumber = 1000-gsmText.length;
+    $("#gsm-count-number").text(countNumber);
+    $("#gsm-reason").on('blur keyup input', function(){
+        var text = $("#gsm-reason").val();
+        var count = 1000-text.length;
+        $("#gsm-count-number").text(count);
+    });
     
+    //初始化进度条
+    $('.progress .progress-bar').progressbar();  
     
-
-
-
-
 }
 
 //additional functions for data table
