@@ -29,100 +29,6 @@ function docReady() {
         },
     });
 
-    // //VoLTE注册用户数
-    // $("#number").change(function() {
-    // 	var n1 = parseFloat($('#number').val());
-    // 	console.log(n1);
-    // 	if (!n1) {
-    // 		console.log("不是合法的数字");
-    // 		$("#numberbd").html("不是合法的数字").css("color","#ef5b9c");
-    // 		return false;
-    // 	}
-    // 	console.log(typeof n1);
-    // 	var n2 = $('#numberwd').html();
-    // 	var bd = ((n1 - n2) / n2) * 100;
-    // 	//console.log(bd);
-    // 	var bdoutput = bd.toFixed(2) + '%';
-    // 	if (Math.abs(bd) >= 30) {
-    // 		$("#numberbd").html(bdoutput).css("color","red");
-    // 	}
-    // 	else {
-    // 		$("#numberbd").html(bdoutput).css("color","black");
-    // 	}
-    // });
-
-    // //VoLTE话务量
-    // $("#traffic").change(function() {
-    // 	var n1 = parseFloat($('#traffic').val());
-    // 	console.log(n1);
-    // 	if (!n1) {
-    // 		console.log("不是合法的数字");
-    // 		$("#trafficbd").html("不是合法的数字").css("color","#ef5b9c");
-    // 		return false;
-    // 	}
-    // 	console.log(typeof n1);
-    // 	var n2 = $('#trafficwd').html();
-    // 	var bd = ((n1 - n2) / n2) * 100;
-    // 	//console.log(bd);
-    // 	var bdoutput = bd.toFixed(2) + '%';
-    // 	if (Math.abs(bd) >= 30) {
-    // 		$("#trafficbd").html(bdoutput).css("color","red");
-    // 	}
-    // 	else {
-    // 		$("#trafficbd").html(bdoutput).css("color","black");
-    // 	}
-    // });
-
-    // //	IMS初始注册成功率
-    // $("#ims").change(function() {
-    // 	var n1 = parseFloat($('#ims').val());
-    // 	console.log(n1);
-    // 	if (!n1) {
-    // 		console.log("不是合法的数字");
-    // 		$("#imsbd").html("不是合法的数字").css("color","#ef5b9c");
-    // 		return false;
-    // 	}
-    // 	if (n1 > 100) {
-    // 		console.log("大于100了，哥");
-    // 		$("#imsbd").html("超过100%了").css("color","#ef5b9c");
-    // 		return false;
-    // 	}
-    // 	console.log(typeof n1);
-    // 	//console.log(bd);
-    // 	var bdoutput = n1.toFixed(2) + '%';
-    // 	if (n1 < 95) {
-    // 		$("#imsbd").html(bdoutput).css("color","red");
-    // 	}
-    // 	else {
-    // 		$("#imsbd").html(bdoutput).css("color","black");
-    // 	}
-    // });
-
-    // //	eSRVCC切换成功率
-    // $("#esrvcc").change(function() {
-    // 	var n1 = parseFloat($('#esrvcc').val());
-    // 	console.log(n1);
-    // 	if (!n1) {
-    // 		console.log("不是合法的数字");
-    // 		$("#esrvccbd").html("不是合法的数字").css("color","#ef5b9c");
-    // 		return false;
-    // 	}
-    // 	if (n1 > 100) {
-    // 		console.log("大于100了，哥");
-    // 		$("#esrvccbd").html("超过100%了").css("color","#ef5b9c");
-    // 		return false;
-    // 	}
-    // 	console.log(typeof n1);
-    // 	//console.log(bd);
-    // 	var bdoutput = n1.toFixed(2) + '%';
-    // 	if (n1 < 90) {
-    // 		$("#esrvccbd").html(bdoutput).css("color","red");
-    // 	}
-    // 	else {
-    // 		$("#esrvccbd").html(bdoutput).css("color","black");
-    // 	}
-    // });
-
     // 保存大值班按钮
     $('#saveVolte').on('click', function() {
         var judge = true;
@@ -155,20 +61,10 @@ function docReady() {
         $("#saveVolte").attr("disabled", true);
     });
 
-    // //分析原因的按钮点击
-    // $('#analyzeVolte').on('click', function() {
-    // 	$("#list").show();
-    // });	
-
-
     //每次input有变动时，保存大值班应该就重新激活
     $('input').change(function() {
-    	
-        //var n1 = $(this).val();
-        //console.log(n1);
         var input = $(this);  
-        var v = $.trim(input.val());  
-        //alert("输入值：" + v);  
+        var v = $.trim(input.val());   
         var reg = new RegExp("^[0-9]+(.[0-9]{2})?$", "g");  
         if (!reg.test(v)) {  
             alert("请输入一个数字，如果是小数，必须有两位！");  
@@ -179,8 +75,8 @@ function docReady() {
             input.css("color", "#3D9140");
             $("#saveVolte").attr("disabled", false);
         }
-
     });
+    
 }
 
 

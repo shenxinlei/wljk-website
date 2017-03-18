@@ -186,11 +186,11 @@
                                 <a href="#">
                                     <i class="glyphicon glyphicon-adjust"></i><span> 大值班KPI</span>
                                 </a>
-    				            <ul class="nav nav-pills nav-stacked">
-    				                <li><a href="dzb.html"><i class="glyphicon glyphicon-tag"></i> 每日KPI上报</a></li>
-                                    <li><a href="dazhibanmoban.html"><i class="glyphicon glyphicon-tag"></i> 大值班每月参考值修改</a></li>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="dzb.html"><i class="glyphicon glyphicon-tag"></i> 每日KPI上报</a></li>
+                                    <li><a href="dazhibanmoban.html"><i class="glyphicon glyphicon-tag"></i> 每月参考值查询及修改</a></li>
                                     <li><a href="dzbHistory.html"><i class="glyphicon glyphicon-tag"></i> KPI历史数据导出</a></li>
-    				            </ul>
+                                </ul>
                             </li>
                             <li class="accordion">
                                 <a href="#">
@@ -258,8 +258,8 @@
             	<div>
     				<ul class="breadcrumb">
         				<li><a href="main.html">主页</a></li>
-        				<li><a href="#">大值班KPI</a></li>
-                        <li><a href="dzbvolte.html">每日KPI上报</a></li>
+                        <li><a href="#">大值班KPI</a></li>
+                        <li><a href="#">每日KPI上报</a></li>
     				</ul>
 			    </div>
 
@@ -599,7 +599,8 @@
                                                 <textarea rows="10" cols="20" class="form-control" id="gsm-reason" name="gsm-reason"></textarea>
                                             </div>
                                             <button type="submit" class="btn btn-danger" id="saveGsmReason">保存原因至数据库</button>
-                                            <span class="label label-warning pull-right">还可以输入<span id="gsm-count-number"></span>个字符</span>
+                                            <!-- <span class="label label-warning pull-right" id="gsm-count">还可以输入<span id="gsm-count-number"></span>个字符</span> -->
+                                            <span class="label label-warning pull-right" id="gsm-count"></span>
                                         </form>
                                     </div>
                                     <div class="tab-pane" id="tdkpi">

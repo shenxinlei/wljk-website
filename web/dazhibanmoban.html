@@ -188,7 +188,7 @@
                                 </a>
     				            <ul class="nav nav-pills nav-stacked">
                                     <li><a href="dzb.html"><i class="glyphicon glyphicon-tag"></i> 每日KPI上报</a></li>
-                                    <li><a href="dazhibanmoban.html"><i class="glyphicon glyphicon-tag"></i> 大值班每月参考值修改</a></li>
+                                    <li><a href="dazhibanmoban.html"><i class="glyphicon glyphicon-tag"></i> 每月参考值查询及修改</a></li>
                                     <li><a href="dzbHistory.html"><i class="glyphicon glyphicon-tag"></i> KPI历史数据导出</a></li>
                                 </ul>
                             </li>
@@ -258,25 +258,24 @@
             	<div>
     				<ul class="breadcrumb">
         				<li><a href="main.html">主页</a></li>
-        				<li><a href="#">大值班每月参考值修改</a></li>
-                        <!-- <li><a href="dzbvolte.html">VOLTE KPI</a></li> -->
+                        <li><a href="#">大值班KPI</a></li>
+        				<li><a href="#">每月参考值查询及修改</a></li>
     				</ul>
 			    </div>
 
-                <div class="box col-md-12">
+                <div class="box">
                     <div class="box-inner">
                         <div class="box-header well" data-original-title="">
-                            <h2>VOLTE KPI统计模板</h2>
+                            <h2>VOLTE每月KPI查询及设定</h2>
                             <div class="box-icon">
-                                <!-- <a href="#" class="btn btn-setting btn-round btn-default"><i
-                                        class="glyphicon glyphicon-cog"></i></a> -->
                                 <a href="#" class="btn btn-minimize btn-round btn-default"><i
                                         class="glyphicon glyphicon-chevron-up"></i></a>
                                 <a href="#" class="btn btn-close btn-round btn-default"><i
                                         class="glyphicon glyphicon-remove"></i></a>
                             </div>
                         </div>
-                        <div class="box-content">
+                        <div class="box-content">                    
+                            <div class="alert alert-info">请点击下方年、月，进行数据查询、设置或修改。</div>
                             <table class="table table-bordered" id="volteTable">
                                 <thead>
                                     <tr>
@@ -309,7 +308,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- <form class="voltekpi" action=""> -->
                                     <tr class="active">
                                         <td>2016年10月参考值</td>
                                         <td>VoLTE注册用户数</td>
@@ -352,24 +350,12 @@
                                         <td><input type="text" value="96.14"></td>
                                         <td><input type="text" value="95.11"></td>
                                     </tr>
-                                    <!-- </form> -->
                                 </tbody>
                             </table>
                             <button id="saveVolte" type="button" class="btn btn-primary" disabled>保存基准值</button>
-                            <!-- <button id="analyzeVolte" type="button" class="btn btn-primary" disabled>分析超标原因</button> -->
-                            <!-- <button id="saveVolte" type="button" class="btn btn-primary">保存大值班数据</button> -->
                         </div>
                     </div>
                 </div>
-                <!-- <div class="box col-md-12">
-                    <form role="form" id="list" hidden>
-                        <div class="form-group">
-                            <label for="reason">超标原因</label>
-                            <textarea rows="10" cols="20" class="form-control" id="reason" name="reason">上海网络运行正常，无影响业务的故障发生。 1、VoLTE话务量为14.81万erl，与上月工作日参考值23.09万erl比较，减少8.28万erl，降幅35.87%。较前一天增加1.52万erl，增幅11.45%，较上周同期减少9.80万erl，降幅39.83%。话务量的减少是由于国庆长假用户行为引起。</textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">保存原因至数据库</button>
-                    </form>
-                </div> -->
             </div>
         </div>
     </div>
@@ -410,60 +396,6 @@
         </footer>
     </div>
 
-
-    <!-- 模态框 管理员信息发布-->
-    <div class="modal fade" id="supervisor" tabindex="-1" role="dialog" aria-labelledby="
-        myModalLabel" aria-hidden="true" data-backdrop="static">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form class="form-horizontal" role="form" id="publish-blackboard" method="post">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">×</button>
-                        <h3>重要通知发布</h3>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="headline" class="col-sm-2 control-label">标题</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="headline" name="headline" placeholder="请输入标题">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="contents" class="col-sm-2 control-label">内容</label>
-                            <div class="col-sm-10">
-                                <textarea id="contents" name="contents" rows="10" class="form-control" placeholder="请输入内容"> 
-                                </textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="dtp_input1" class="col-sm-3 control-label">公告起始时间</label>
-                            <div class="input-group date form_datetime col-sm-5" 
-                            data-link-field="dtp_input1">
-                                <input class="form-control" size="16" type="text" value="" readonly>
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-                            </div>
-                            <input type="hidden" id="dtp_input1" name="dtp_input1" value="">
-                        </div>
-                        <div class="form-group">
-                            <label for="dtp_input2" class="col-sm-3 control-label">公告结束时间</label>
-                            <div class="input-group date form_datetime col-sm-5"   
-                            data-link-field="dtp_input2">
-                                <input class="form-control" size="16" type="text" value="" readonly>
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-                            </div>
-                            <input type="hidden" id="dtp_input2" value="">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#" class="btn btn-default" data-dismiss="modal">取消</a>
-                        <button type="submit" class="btn btn-primary" id="submitToBlackboard">保存</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
     
 
     <!-- 日期选择插件 -->

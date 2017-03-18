@@ -1283,7 +1283,15 @@ function docReady() {
         //每次点分析按钮，要让统计字数进行刷新
         var text = $("#gsm-reason").val();
         var count = 1000-text.length;
-        $("#gsm-count-number").text(count);
+        if (count < 0) {
+            var text = "已超过"+Math.abs(count)+"个字符";
+            $("#gsm-count").text(text);
+        }
+        else {
+            var text = "还可以输入"+count+"个字符";
+            $("#gsm-count").text(text);
+        }
+        
     }); 
     //gsm按钮--保存原因至数据库
     $('#saveGsmReason').click(function (e){
@@ -1315,7 +1323,14 @@ function docReady() {
     $("#gsm-reason").on('blur keyup input', function(){
         var text = $("#gsm-reason").val();
         var count = 1000-text.length;
-        $("#gsm-count-number").text(count);
+        if (count < 0) {
+            var text = "已超过"+Math.abs(count)+"个字符";
+            $("#gsm-count").text(text);
+        }
+        else {
+            var text = "还可以输入"+count+"个字符";
+            $("#gsm-count").text(text);
+        }
     });
     
     //初始化进度条
