@@ -29,54 +29,153 @@ function docReady() {
         },
     });
 
-    // 保存大值班按钮
-    $('#saveVolte').on('click', function() {
+    /***
+        volte kpi
+    ***/
+    //volte 查询按钮
+    $("#volte-inquire").on("click", function() {
+        $("#volte-table").show();
+        $("#volte-save").show();
+        //ajax去后台查询，查询到了结果之后，传回到前端
+        $("#volte-form").ajaxSubmit({
+            type: "post",
+            data: $(this).formSerialize(),
+            success: function(responseText, statusText) {
+                //
+            }
+        });
+        return false;
+    });
+    // volte 保存大值班按钮
+    $("#volte-save").on("click", function() {
         var judge = true;
-        $("#volteTable input").each(function(){
-            console.log($(this).val());
-            //先判断是否所有值为非空
+        $("#volte-table input").each(function(){
+            //先判断是否所有值为非空，如果有格子空着是不能保存的
             if (!$(this).val()) {
-                console.log($(this).val());
-                alert("表中有空的格子没填");
+                $.alert({
+                    title: '表中有空的格子没填',
+                    content: ''
+                });
                 judge = false;
                 return false;
             }
             //再判断是否是红色的非法数字，如果都不是红色的，说明就可以提交了
-            //console.log($(this).css('color'));
-            if ($(this).css('color') == "rgb(255, 0, 0)") {
-                console.log($(this).css('color'));
-                alert("表中有红色非法的数据，请重新填写正确的数据");
+            if ($(this).css("color") == "rgb(255, 0, 0)") {
+                $.alert({
+                    title: '表中有红色非法的数据，请重新填写正确的数据',
+                    content: ''
+                });
                 judge = false;
                 return false;
             }
         });
-
         if (!judge) {
             return false;
         }
-
-        alert("保存成功");
-
+        //到了这一步就可以ajax提交数据到数据库了，这里用alert代替了
+        $.alert({
+            title: '保存成功',
+            content: ''
+        });
         //最后每次保存成功以后，把保存按钮禁用
-        $("#saveVolte").attr("disabled", true);
+        $("#volte-save").attr("disabled", true);
     });
-
-    //每次input有变动时，保存大值班应该就重新激活
-    $('input').change(function() {
+    //volte中 每次input有变动时，保存大值班应该就重新激活
+    $('#volte-table input').change(function() {
         var input = $(this);  
-        var v = $.trim(input.val());   
-        var reg = new RegExp("^[0-9]+(.[0-9]{2})?$", "g");  
-        if (!reg.test(v)) {  
-            alert("请输入一个数字，如果是小数，必须有两位！");  
+        var temp = $.trim(input.val());
+        var value = parseFloat(temp);
+        if (!value) {  
+            $.alert({
+                title: '请输入一个数字',
+                content: ''
+            });
             input.css("color", "red");  
-            $("#saveVolte").attr("disabled", true);
+            $("#volte-save").attr("disabled", true);
         }  
         else {
+            //转化为2位数字
+            input.val(value.toFixed(2));
             input.css("color", "#3D9140");
-            $("#saveVolte").attr("disabled", false);
+            $("#volte-save").attr("disabled", false);
         }
     });
+
+    /***
+        CMNET KPI
+    ***/
+    //cmnet 查询按钮
+    $("#cmnet-inquire").on("click", function() {
+        $("#cmnet-table").show();
+        $("#cmnet-save").show();
+        //ajax去后台查询，查询到了结果之后，传回到前端
+        $("#cmnet-form").ajaxSubmit({
+            type: "post",
+            data: $(this).formSerialize(),
+            success: function(responseText, statusText) {
+                //
+            }
+        });
+        return false;
+    });
+    // cmnet 保存大值班按钮
+    $("#cmnet-save").on("click", function() {
+        var judge = true;
+        $("#cmnet-table input").each(function(){
+            //先判断是否所有值为非空，如果有格子空着是不能保存的
+            if (!$(this).val()) {
+                $.alert({
+                    title: '表中有空的格子没填',
+                    content: ''
+                });
+                judge = false;
+                return false;
+            }
+            //再判断是否是红色的非法数字，如果都不是红色的，说明就可以提交了
+            if ($(this).css("color") == "rgb(255, 0, 0)") {
+                $.alert({
+                    title: '表中有红色非法的数据，请重新填写正确的数据',
+                    content: ''
+                });
+                judge = false;
+                return false;
+            }
+        });
+        if (!judge) {
+            return false;
+        }
+        //到了这一步就可以ajax提交数据到数据库了，这里用alert代替了
+        $.alert({
+            title: '保存成功',
+            content: ''
+        });
+        //最后每次保存成功以后，把保存按钮禁用
+        $("#cmnet-save").attr("disabled", true);
+    });
+    //cmnet中 每次input有变动时，保存大值班应该就重新激活
+    $('#cmnet-table input').change(function() {
+        var input = $(this);  
+        var temp = $.trim(input.val());
+        var value = parseFloat(temp);
+        if (!value) {  
+            $.alert({
+                title: '请输入一个数字',
+                content: ''
+            });
+            input.css("color", "red");  
+            $("#cmnet-save").attr("disabled", true);
+        }  
+        else {
+            //转化为2位数字
+            input.val(value.toFixed(2));
+            input.css("color", "#3D9140");
+            $("#cmnet-save").attr("disabled", false);
+        }
+    });
+
     
+
+
 }
 
 

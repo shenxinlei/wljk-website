@@ -28,6 +28,7 @@
     <link rel='stylesheet' href='css/uploadify.css'>
     <link rel='stylesheet' href='css/animate.min.css'>
     <link rel='stylesheet' href='css/bootstrap-tour.min.css'>
+    <link rel="stylesheet" href="css/jquery-confirm.css">
     
 
     <!-- jQuery -->
@@ -276,83 +277,165 @@
                         </div>
                         <div class="box-content">                    
                             <div class="alert alert-info">请点击下方年、月，进行数据查询、设置或修改。</div>
-                            <table class="table table-bordered" id="volteTable">
+                            <form id="volte-form" class="form-inline" role="form">
+                                <div class="form-group">
+                                    <label class="form-group" for="volte-month">选择月份</label>
+                                    <select id="volte-month" name="volte-month" class="form-control">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>        
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-group" for="volte-year">选择年份</label>
+                                    <select id="volte-year" name="volte-year" class="form-control">
+                                        <option>2017</option>
+                                        <option>2018</option>
+                                        <option>2019</option>
+                                        <option>2020</option>
+                                        <option>2021</option>       
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-default" id="volte-inquire">查询</button>
+                            </form>
+                            <br>
+                            <table class="table table-bordered" style="display:none;" id="volte-table">
                                 <thead>
-                                    <tr>
-                                        <th colspan="5">
-                                            <form class="form-inline" role="form" action="">
-                                                <select class="form-control">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                    <option>6</option>
-                                                    <option>7</option>
-                                                    <option>8</option>
-                                                    <option>9</option>
-                                                    <option>10</option>
-                                                    <option>11</option>
-                                                    <option>12</option>
-                                                </select>
-                                                <select class="form-control">
-                                                    <option>2016</option>
-                                                    <option>2017</option>
-                                                    <option>2018</option>
-                                                    <option>2019</option>
-                                                    <option>2020</option>
-                                                </select>
-                                                <button type="submit" class="btn btn-default">查询</button>
-                                            </form>
-                                        </th>
+                                    <tr class="active">
+                                        <th>2017年3月参考值</th>
+                                        <th>VoLTE注册用户数</th>
+                                        <th>IMS初始注册成功率</th>
+                                        <th>VoLTE话务量</th>
+                                        <th>eSRVCC切换成功率</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="active">
-                                        <td>2016年10月参考值</td>
-                                        <td>VoLTE注册用户数</td>
-                                        <td>VoLTE话务量</td>
-                                        <td>IMS初始注册成功率</td>
-                                        <td>eSRVCC切换成功率</td>
-                                    </tr>
                                     <tr class="warning">
                                         <td>单位</td>
                                         <td>万户</td>
-                                        <td>万erl</td>
                                         <td>%</td>
+                                        <td>万erl</td>
                                         <td>%</td>
                                     </tr>
                                     <tr class="danger">
                                         <td>门限</td>
                                         <td>±30%</td>
-                                        <td>±30%</td>
                                         <td>&lt;95%</td>
+                                        <td>±30%</td>
                                         <td>&lt;90%</td>
                                     </tr>
                                     <tr class="info">
                                         <td>工作日日常值</td>
-                                        <td id="numberwd"><input type="text" value="18.29"></td>
-                                        <td id="trafficwd"><input type="text" value="23.09"></td>
-                                        <td id="imswd"><input type="text" value="96.17"></td>
-                                        <td id="esrvccwd"><input type="text" value="94.93"></td>
+                                        <td id="volte-number-weekday"><input type="text" value="80.23"></td>
+                                        <td id="volte-ims-weekday"><input type="text" value="97.05"></td>
+                                        <td id="volte-traffic-weekday"><input type="text" value="72.34"></td>
+                                        <td id="volte-esrvcc-weekday"><input type="text" value="94.33"></td>
                                     </tr>
                                     <tr class="info">
                                         <td>周六日常值</td>
-                                        <td><input type="text" value="17.95"></td>
-                                        <td><input type="text" value="15.22"></td>
-                                        <td><input type="text" value="95.97"></td>
-                                        <td><input type="text" value="95.15"></td>
+                                        <td id="volte-number-saturday"><input type="text" value="78.38"></td>
+                                        <td id="volte-ims-saturday"><input type="text" value="97.04"></td>
+                                        <td id="volte-traffic-saturday"><input type="text" value="54.71"></td>
+                                        <td id="volte-esrvcc-saturday"><input type="text" value="94.11"></td>
                                     </tr>
                                     <tr class="info">
                                         <td>周日日常值</td>
-                                        <td><input type="text" value="17.48"></td>
-                                        <td><input type="text" value="13.67"></td>
-                                        <td><input type="text" value="96.14"></td>
-                                        <td><input type="text" value="95.11"></td>
-                                    </tr>
-                                </tbody>
+                                        <td id="volte-number-sunday"><input type="text" value="77.08"></td>
+                                        <td id="volte-ims-sunday"><input type="text" value="97.04"></td>
+                                        <td id="volte-traffic-sunday"><input type="text" value="47.82"></td>
+                                        <td id="volte-esrvcc-sunday"><input type="text" value="94.40"></td>
+                                    </tr>     
+                                </tbody>  
                             </table>
-                            <button id="saveVolte" type="button" class="btn btn-primary" disabled>保存基准值</button>
+                            <button id="volte-save" type="button" class="btn btn-primary" disabled style="display:none;">保存基准值</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="box-inner">
+                        <div class="box-header well" data-original-title="">
+                            <h2>CMNET每月KPI查询及设定</h2>
+                            <div class="box-icon">
+                                <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                        class="glyphicon glyphicon-chevron-up"></i></a>
+                                <a href="#" class="btn btn-close btn-round btn-default"><i
+                                        class="glyphicon glyphicon-remove"></i></a>
+                            </div>
+                        </div>
+                        <div class="box-content">                    
+                            <div class="alert alert-info">请点击下方年、月，进行数据查询、设置或修改。</div>
+                            <form id="cmnet-form" class="form-inline" role="form">
+                                <div class="form-group">
+                                    <label class="form-group" for="cmnet-month">选择月份</label>
+                                    <select id="cmnet-month" name="cmnet-month" class="form-control">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>        
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-group" for="cmnet-year">选择年份</label>
+                                    <select id="cmnet-year" name="cmnet-year" class="form-control">
+                                        <option>2017</option>
+                                        <option>2018</option>
+                                        <option>2019</option>
+                                        <option>2020</option>
+                                        <option>2021</option>       
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-default" id="cmnet-inquire">查询</button>
+                            </form>
+                            <br>
+                            <table class="table table-bordered" style="display:none;" id="cmnet-table">
+                                <thead>
+                                    <tr class="active">
+                                        <th>2017年3月参考值</th>
+                                        <th>CMNET地市入流量</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="warning">
+                                        <td>单位</td>
+                                        <td>TB</td>
+                                    </tr>
+                                    <tr class="danger">
+                                        <td>门限</td>
+                                        <td>±15%</td>
+                                    </tr>
+                                    <tr class="info">
+                                        <td>工作日日常值</td>
+                                        <td id="cmnet-traffic-weekday"><input type="text" value="591.49"></td>
+                                    </tr>
+                                    <tr class="info">
+                                        <td>周六日常值</td>
+                                        <td id="cmnet-traffic-saturday"><input type="text" value="682.27"></td>
+                                    </tr>
+                                    <tr class="info">
+                                        <td>周日日常值</td>
+                                        <td id="cmnet-traffic-sunday"><input type="text"></td>
+                                    </tr>     
+                                </tbody>  
+                            </table>
+                            <button id="cmnet-save" type="button" class="btn btn-primary" disabled style="display:none;">保存基准值</button>
                         </div>
                     </div>
                 </div>
@@ -430,6 +513,8 @@
     <script src="js/jquery.uploadify-3.1.min.js"></script>
     <!-- history.js for cross-browser state change on ajax -->
     <script src="js/jquery.history.js"></script>
+    <!-- 确认框插件 -->
+    <script src="js/jquery-confirm.js"></script>
     <!-- 所有页面共有的需启动初始化的js -->
     <script src="js/common.js"></script>
     <!-- 最终的独立js -->
