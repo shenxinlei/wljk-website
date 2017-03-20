@@ -173,8 +173,366 @@ function docReady() {
         }
     });
 
-    
+    /***
+        lte KPI
+    ***/
+    //lte 查询按钮
+    $("#lte-inquire").on("click", function() {
+        $("#lte-table").show();
+        $("#lte-save").show();
+        //ajax去后台查询，查询到了结果之后，传回到前端
+        $("#lte-form").ajaxSubmit({
+            type: "post",
+            data: $(this).formSerialize(),
+            success: function(responseText, statusText) {
+                //
+            }
+        });
+        return false;
+    });
+    // lte 保存大值班按钮
+    $("#lte-save").on("click", function() {
+        var judge = true;
+        $("#lte-table input").each(function(){
+            //先判断是否所有值为非空，如果有格子空着是不能保存的
+            if (!$(this).val()) {
+                $.alert({
+                    title: '表中有空的格子没填',
+                    content: ''
+                });
+                judge = false;
+                return false;
+            }
+            //再判断是否是红色的非法数字，如果都不是红色的，说明就可以提交了
+            if ($(this).css("color") == "rgb(255, 0, 0)") {
+                $.alert({
+                    title: '表中有红色非法的数据，请重新填写正确的数据',
+                    content: ''
+                });
+                judge = false;
+                return false;
+            }
+        });
+        if (!judge) {
+            return false;
+        }
+        //到了这一步就可以ajax提交数据到数据库了，这里用alert代替了
+        $.alert({
+            title: '保存成功',
+            content: ''
+        });
+        //最后每次保存成功以后，把保存按钮禁用
+        $("#lte-save").attr("disabled", true);
+    });
+    //lte中 每次input有变动时，保存大值班应该就重新激活
+    $('#lte-table input').change(function() {
+        var input = $(this);  
+        var temp = $.trim(input.val());
+        var value = parseFloat(temp);
+        if (!value) {  
+            $.alert({
+                title: '请输入一个数字',
+                content: ''
+            });
+            input.css("color", "red");  
+            $("#lte-save").attr("disabled", true);
+        }  
+        else {
+            //转化为2位数字
+            input.val(value.toFixed(2));
+            input.css("color", "#3D9140");
+            $("#lte-save").attr("disabled", false);
+        }
+    });
 
+    /***
+        TD KPI
+    ***/
+    //td 查询按钮
+    $("#td-inquire").on("click", function() {
+        $("#td-table").show();
+        $("#td-save").show();
+        //ajax去后台查询，查询到了结果之后，传回到前端
+        $("#td-form").ajaxSubmit({
+            type: "post",
+            data: $(this).formSerialize(),
+            success: function(responseText, statusText) {
+                //
+            }
+        });
+        return false;
+    });
+    // td 保存大值班按钮
+    $("#td-save").on("click", function() {
+        var judge = true;
+        $("#td-table input").each(function(){
+            //先判断是否所有值为非空，如果有格子空着是不能保存的
+            if (!$(this).val()) {
+                $.alert({
+                    title: '表中有空的格子没填',
+                    content: ''
+                });
+                judge = false;
+                return false;
+            }
+            //再判断是否是红色的非法数字，如果都不是红色的，说明就可以提交了
+            if ($(this).css("color") == "rgb(255, 0, 0)") {
+                $.alert({
+                    title: '表中有红色非法的数据，请重新填写正确的数据',
+                    content: ''
+                });
+                judge = false;
+                return false;
+            }
+        });
+        if (!judge) {
+            return false;
+        }
+        //到了这一步就可以ajax提交数据到数据库了，这里用alert代替了
+        $.alert({
+            title: '保存成功',
+            content: ''
+        });
+        //最后每次保存成功以后，把保存按钮禁用
+        $("#td-save").attr("disabled", true);
+    });
+    //td中 每次input有变动时，保存大值班应该就重新激活
+    $('#td-table input').change(function() {
+        var input = $(this);  
+        var temp = $.trim(input.val());
+        var value = parseFloat(temp);
+        if (!value) {  
+            $.alert({
+                title: '请输入一个数字',
+                content: ''
+            });
+            input.css("color", "red");  
+            $("#td-save").attr("disabled", true);
+        }  
+        else {
+            //转化为2位数字
+            input.val(value.toFixed(2));
+            input.css("color", "#3D9140");
+            $("#td-save").attr("disabled", false);
+        }
+    });
+
+    /***
+        短彩信KPI
+    ***/
+    //gsm1 查询按钮
+    $("#gsm1-inquire").on("click", function() {
+        $("#gsm1-table").show();
+        $("#gsm1-save").show();
+        //ajax去后台查询，查询到了结果之后，传回到前端
+        $("#gsm1-form").ajaxSubmit({
+            type: "post",
+            data: $(this).formSerialize(),
+            success: function(responseText, statusText) {
+                //
+            }
+        });
+        return false;
+    });
+    // gsm1 保存大值班按钮
+    $("#gsm1-save").on("click", function() {
+        var judge = true;
+        $("#gsm1-table input").each(function(){
+            //先判断是否所有值为非空，如果有格子空着是不能保存的
+            if (!$(this).val()) {
+                $.alert({
+                    title: '表中有空的格子没填',
+                    content: ''
+                });
+                judge = false;
+                return false;
+            }
+            //再判断是否是红色的非法数字，如果都不是红色的，说明就可以提交了
+            if ($(this).css("color") == "rgb(255, 0, 0)") {
+                $.alert({
+                    title: '表中有红色非法的数据，请重新填写正确的数据',
+                    content: ''
+                });
+                judge = false;
+                return false;
+            }
+        });
+        if (!judge) {
+            return false;
+        }
+        //到了这一步就可以ajax提交数据到数据库了，这里用alert代替了
+        $.alert({
+            title: '保存成功',
+            content: ''
+        });
+        //最后每次保存成功以后，把保存按钮禁用
+        $("#gsm1-save").attr("disabled", true);
+    });
+    //gsm1中 每次input有变动时，保存大值班应该就重新激活
+    $('#gsm1-table input').change(function() {
+        var input = $(this);  
+        var temp = $.trim(input.val());
+        var value = parseFloat(temp);
+        if (!value) {  
+            $.alert({
+                title: '请输入一个数字',
+                content: ''
+            });
+            input.css("color", "red");  
+            $("#gsm1-save").attr("disabled", true);
+        }  
+        else {
+            //转化为2位数字
+            input.val(value.toFixed(2));
+            input.css("color", "#3D9140");
+            $("#gsm1-save").attr("disabled", false);
+        }
+    });
+
+    /***
+        GSM KPI
+    ***/
+    //gsm2 查询按钮
+    $("#gsm2-inquire").on("click", function() {
+        $("#gsm2-table").show();
+        $("#gsm2-save").show();
+        //ajax去后台查询，查询到了结果之后，传回到前端
+        $("#gsm2-form").ajaxSubmit({
+            type: "post",
+            data: $(this).formSerialize(),
+            success: function(responseText, statusText) {
+                //
+            }
+        });
+        return false;
+    });
+    // gsm2 保存大值班按钮
+    $("#gsm2-save").on("click", function() {
+        var judge = true;
+        $("#gsm2-table input").each(function(){
+            //先判断是否所有值为非空，如果有格子空着是不能保存的
+            if (!$(this).val()) {
+                $.alert({
+                    title: '表中有空的格子没填',
+                    content: ''
+                });
+                judge = false;
+                return false;
+            }
+            //再判断是否是红色的非法数字，如果都不是红色的，说明就可以提交了
+            if ($(this).css("color") == "rgb(255, 0, 0)") {
+                $.alert({
+                    title: '表中有红色非法的数据，请重新填写正确的数据',
+                    content: ''
+                });
+                judge = false;
+                return false;
+            }
+        });
+        if (!judge) {
+            return false;
+        }
+        //到了这一步就可以ajax提交数据到数据库了，这里用alert代替了
+        $.alert({
+            title: '保存成功',
+            content: ''
+        });
+        //最后每次保存成功以后，把保存按钮禁用
+        $("#gsm2-save").attr("disabled", true);
+    });
+    //gsm2中 每次input有变动时，保存大值班应该就重新激活
+    $('#gsm2-table input').change(function() {
+        var input = $(this);  
+        var temp = $.trim(input.val());
+        var value = parseFloat(temp);
+        if (!value) {  
+            $.alert({
+                title: '请输入一个数字',
+                content: ''
+            });
+            input.css("color", "red");  
+            $("#gsm2-save").attr("disabled", true);
+        }  
+        else {
+            //转化为2位数字
+            input.val(value.toFixed(2));
+            input.css("color", "#3D9140");
+            $("#gsm2-save").attr("disabled", false);
+        }
+    });
+
+    /***
+        GSM 话务量分析
+    ***/
+    //gsm3 查询按钮
+    $("#gsm3-inquire").on("click", function() {
+        $("#gsm3-table").show();
+        $("#gsm3-save").show();
+        //ajax去后台查询，查询到了结果之后，传回到前端
+        $("#gsm3-form").ajaxSubmit({
+            type: "post",
+            data: $(this).formSerialize(),
+            success: function(responseText, statusText) {
+                //
+            }
+        });
+        return false;
+    });
+    // gsm3 保存大值班按钮
+    $("#gsm3-save").on("click", function() {
+        var judge = true;
+        $("#gsm3-table input").each(function(){
+            //先判断是否所有值为非空，如果有格子空着是不能保存的
+            if (!$(this).val()) {
+                $.alert({
+                    title: '表中有空的格子没填',
+                    content: ''
+                });
+                judge = false;
+                return false;
+            }
+            //再判断是否是红色的非法数字，如果都不是红色的，说明就可以提交了
+            if ($(this).css("color") == "rgb(255, 0, 0)") {
+                $.alert({
+                    title: '表中有红色非法的数据，请重新填写正确的数据',
+                    content: ''
+                });
+                judge = false;
+                return false;
+            }
+        });
+        if (!judge) {
+            return false;
+        }
+        //到了这一步就可以ajax提交数据到数据库了，这里用alert代替了
+        $.alert({
+            title: '保存成功',
+            content: ''
+        });
+        //最后每次保存成功以后，把保存按钮禁用
+        $("#gsm3-save").attr("disabled", true);
+    });
+    //gsm3中 每次input有变动时，保存大值班应该就重新激活
+    $('#gsm3-table input').change(function() {
+        var input = $(this);  
+        var temp = $.trim(input.val());
+        var value = parseInt(temp);
+        if (!value) {  
+            $.alert({
+                title: '请输入一个数字',
+                content: ''
+            });
+            input.css("color", "red");  
+            $("#gsm3-save").attr("disabled", true);
+        }  
+        else {
+            input.val(value);
+            input.css("color", "#3D9140");
+            $("#gsm3-save").attr("disabled", false);
+        }
+    });
+
+    
 
 }
 
