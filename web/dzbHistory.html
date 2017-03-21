@@ -267,7 +267,7 @@
                 <div class="box">
                     <div class="box-inner">
                         <div class="box-header well" data-original-title="">
-                            <h2>VOLTE每月KPI查询及设定</h2>
+                            <h2>大值班KPI查询导出</h2>
                             <div class="box-icon">
                                 <a href="#" class="btn btn-minimize btn-round btn-default"><i
                                         class="glyphicon glyphicon-chevron-up"></i></a>
@@ -276,125 +276,594 @@
                             </div>
                         </div>
                         <div class="box-content">                    
-                            <div class="alert alert-info">请点击下方年、月，进行数据查询、设置或修改。</div>
-                            <form id="volte-form" class="form-inline" role="form">
+                            <div class="alert alert-info">请选择KPI类型以及时间段</div>
+                            <form id="form1" class="form-inline" role="form">
                                 <div class="form-group">
-                                    <label class="form-group" for="volte-month">选择月份</label>
-                                    <select id="volte-month" name="volte-month" class="form-control">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                        <option>6</option>
-                                        <option>7</option>
-                                        <option>8</option>
-                                        <option>9</option>
-                                        <option>10</option>
-                                        <option>11</option>
-                                        <option>12</option>        
+                                    <label class="form-group" for="range">选择时间段</label>
+                                    <select id="range" name="range" class="form-control">
+                                        <option value="1">昨天</option>
+                                        <option value="2">过去7天</option>
+                                        <option value="3">过去30天</option>
+                                        <option value="4">上一周</option>
+                                        <option value="5">上月</option>
+                                        <option value="6">本月</option>
+                                        <option value="7">自定义</option>       
                                     </select>
                                 </div>
-                                <div class="form-group">
-                                    <label class="form-group" for="volte-year">选择年份</label>
-                                    <select id="volte-year" name="volte-year" class="form-control">
-                                        <option>2017</option>
-                                        <option>2018</option>
-                                        <option>2019</option>
-                                        <option>2020</option>
-                                        <option>2021</option>       
-                                    </select>
+                                <div class="form-group form1-range" style="display:none;">
+                                    <label for="dtp_input1" class="form-group control-label">起始日</label>
+                                    <div class="input-group date form_date" data-link-field="dtp_input1">
+                                        <input class="form-control" size="16" type="text" value="" readonly>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                    <input type="hidden" id="dtp_input1" value="" /><br/>
                                 </div>
-                                <button type="submit" class="btn btn-default" id="volte-inquire">查询</button>
+                                <div class="form-group form1-range" style="display:none;">
+                                    <label for="dtp_input2" class="form-group control-label">起始日</label>
+                                    <div class="input-group date form_date" data-link-field="dtp_input2">
+                                        <input class="form-control" size="16" type="text" value="" readonly>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                    <input type="hidden" id="dtp_input2" value="" /><br/>
+                                </div>
+                                <button type="submit" class="btn btn-default" id="inquire">在线查询</button>
+                                <button type="button" class="btn btn-default" id="derive">EXCEL导出</button>
                             </form>
-                            <br>
-                            <table class="table table-bordered" style="display:none;" id="volte-table">
-                                <thead>
-                                    <tr class="active">
-                                        <th>2017年3月参考值</th>
-                                        <th>VoLTE注册用户数</th>
-                                        <th>IMS初始注册成功率</th>
-                                        <th>VoLTE话务量</th>
-                                        <th>eSRVCC切换成功率</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="warning">
-                                        <td>单位</td>
-                                        <td>万户</td>
-                                        <td>%</td>
-                                        <td>万erl</td>
-                                        <td>%</td>
-                                    </tr>
-                                    <tr class="danger">
-                                        <td>门限</td>
-                                        <td>±30%</td>
-                                        <td>&lt;95%</td>
-                                        <td>±30%</td>
-                                        <td>&lt;90%</td>
-                                    </tr>
-                                    <tr class="info">
-                                        <td>工作日日常值</td>
-                                        <td id="volte-number-weekday"><input type="text" value="80.23"></td>
-                                        <td id="volte-ims-weekday"><input type="text" value="97.05"></td>
-                                        <td id="volte-traffic-weekday"><input type="text" value="72.34"></td>
-                                        <td id="volte-esrvcc-weekday"><input type="text" value="94.33"></td>
-                                    </tr>
-                                    <tr class="info">
-                                        <td>周六日常值</td>
-                                        <td id="volte-number-saturday"><input type="text" value="78.38"></td>
-                                        <td id="volte-ims-saturday"><input type="text" value="97.04"></td>
-                                        <td id="volte-traffic-saturday"><input type="text" value="54.71"></td>
-                                        <td id="volte-esrvcc-saturday"><input type="text" value="94.11"></td>
-                                    </tr>
-                                    <tr class="info">
-                                        <td>周日日常值</td>
-                                        <td id="volte-number-sunday"><input type="text" value="77.08"></td>
-                                        <td id="volte-ims-sunday"><input type="text" value="97.04"></td>
-                                        <td id="volte-traffic-sunday"><input type="text" value="47.82"></td>
-                                        <td id="volte-esrvcc-sunday"><input type="text" value="94.40"></td>
-                                    </tr>     
-                                </tbody>  
-                            </table>
-                            <button id="volte-save" type="button" class="btn btn-primary" disabled style="display:none;">保存基准值</button>
+                            <!-- href里面填写文件URL地址 -->
+                            
                         </div>
                     </div>
                 </div>
-                
-                <div class="container">
-    <form action="" class="form-horizontal"  role="form">
-        <fieldset>
-            <legend>Test</legend>
-            <div class="form-group">
-                <label for="dtp_input1" class="col-md-2 control-label">DateTime Picking</label>
-                <div class="input-group date form_datetime col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
-                    <input class="form-control" size="16" type="text" value="" readonly>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+
+                <div class="row" id="kpiOverall" style="display:none">
+                    <div class="box col-md-12">
+                        <div class="box-inner">
+                            <div class="box-header well" data-original-title="">
+                                <h2>历史KPI在线查询结果</h2>
+                                <div class="box-icon">
+                                    <a href="#" class="btn btn-setting btn-round btn-default"><i
+                                            class="glyphicon glyphicon-cog"></i></a>
+                                    <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                            class="glyphicon glyphicon-chevron-up"></i></a>
+                                    <a href="#" class="btn btn-close btn-round btn-default"><i
+                                            class="glyphicon glyphicon-remove"></i></a>
+                                </div>
+                            </div>
+                            <div class="box-content">
+                                <ul class="nav nav-tabs" id="myTab">            
+                                    <li class="active"><a href="#gsmkpi">GSM KPI统计模板</a></li>
+                                    <li><a href="#tdkpi">TD KPI统计模板</a></li>
+                                    <li><a href="#ltekpi">LTE KPI统计模板</a></li>
+                                    <li><a href="#cmnetkpi">CMNET KPI统计模板</a></li>
+                                    <li><a href="#voltekpi">VOLTE KPI统计模板</a></li>
+                                </ul>
+                                <div id="myTabContent" class="tab-content">
+                                    <div class="tab-pane active" id="gsmkpi">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="11">上海网络运行日KPI情况（每日7:30前上报）</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="warning">
+                                                    <td>2017-3-9</td>
+                                                    <td colspan="2" style="text-align: center;">彩信业务</td>
+                                                    <td colspan="2" style="text-align: center;">短信业务</td>
+                                                    <td colspan="6" style="text-align: center;">GSM KPI情况</td>
+                                                </tr>
+                                                <tr class="active">
+                                                    <td>今日周四</td>
+                                                    <td>国内彩信发送总条数</td>
+                                                    <td>国内彩信网络接通率</td>
+                                                    <td>全天条数</td>
+                                                    <td>全程接通率</td>
+                                                    <td>全天话务量</td>
+                                                    <td>早忙时话务量</td>
+                                                    <td>晚忙时话务量</td>
+                                                    <td>6忙时掉话率</td>
+                                                    <td>省会城市6忙时掉话率</td>
+                                                    <td>2G分组域流量</td>
+                                                </tr>
+                                                <tr class="warning">
+                                                    <td>单位</td>
+                                                    <td>万条</td>
+                                                    <td>%</td>
+                                                    <td>亿条</td>
+                                                    <td>%</td>
+                                                    <td>万ERL</td>
+                                                    <td>万ERL</td>
+                                                    <td>万ERL</td>
+                                                    <td>%</td>
+                                                    <td>%</td>
+                                                    <td>TB</td>
+                                                </tr>
+                                                <tr class="danger">
+                                                    <td>门限</td>
+                                                    <td>±10%</td>
+                                                    <td>上下浮动0.1个百分点</td>
+                                                    <td>±10%</td>
+                                                    <td>上下浮动0.1个百分点</td>
+                                                    <td>±5%</td>
+                                                    <td>±5%</td>
+                                                    <td>±5%</td>
+                                                    <td>上下浮动0.1个百分点</td>
+                                                    <td>上下浮动0.1个百分点</td>
+                                                    <td>±8%</td>
+                                                </tr>
+                                                <tr class="info">
+                                                    <td>工作日日常值（3月参考值）</td>
+                                                    <td id="gsm-caixin-weekday">330.05</td>
+                                                    <td id="gsm-caixin-wcp-weekday">99.99</td>
+                                                    <td id="gsm-duanxin-weekday">1.22</td>
+                                                    <td id="gsm-duanxin-wcp-weekday">99.99</td>
+                                                    <td id="gsm-traffic-weekday">265.48</td>
+                                                    <td id="gsm-day-traffic-weekday">20.53</td>
+                                                    <td id="gsm-night-traffic-weekday">18.62</td>
+                                                    <td id="gsm-6rushhour-wlp-weekday">0.50</td>
+                                                    <td id="gsm-6rushhour-wlp-cap-weekday">0.50</td>
+                                                    <td id="gsm-package-traffic-weekday">11.01</td>
+                                                </tr>
+                                                <tr class="info">
+                                                    <td>周六日常值（3月参考值）</td>
+                                                    <td id="gsm-caixin-saturday">254.70</td>
+                                                    <td id="gsm-caixin-wcp-saturday">99.99</td>
+                                                    <td id="gsm-duanxin-saturday">0.97</td>
+                                                    <td id="gsm-duanxin-wcp-saturday">99.99</td>
+                                                    <td id="gsm-traffic-saturday">240.39</td>
+                                                    <td id="gsm-day-traffic-saturday">17.48</td>
+                                                    <td id="gsm-night-traffic-saturday">18.23</td>
+                                                    <td id="gsm-6rushhour-wlp-saturday">0.47</td>
+                                                    <td id="gsm-6rushhour-wlp-cap-saturday">0.47</td>
+                                                    <td id="gsm-package-traffic-saturday">10.90</td>
+                                                </tr>
+                                                <tr class="info">
+                                                    <td>周日日常值（3月参考值）</td>
+                                                    <td id="gsm-caixin-sunday">378.10</td>
+                                                    <td id="gsm-caixin-wcp-sunday">99.99</td>
+                                                    <td id="gsm-duanxin-sunday">0.89</td>
+                                                    <td id="gsm-duanxin-wcp-sunday">99.99</td>
+                                                    <td id="gsm-traffic-sunday">210.42</td>
+                                                    <td id="gsm-day-traffic-sunday">14.93</td>
+                                                    <td id="gsm-night-traffic-sunday">16.51</td>
+                                                    <td id="gsm-6rushhour-wlp-sunday">0.46</td>
+                                                    <td id="gsm-6rushhour-wlp-cap-sunday">0.46</td>
+                                                    <td id="gsm-package-traffic-sunday">9.50</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>上周同期值 </td>
+                                                    <td id="gsm-caixin-lastweek">261.47</td>
+                                                    <td id="gsm-caixin-wcp-lastweek">99.98</td>
+                                                    <td id="gsm-duanxin-lastweek">1.29</td>
+                                                    <td id="gsm-duanxin-wcp-lastweek">99.99</td>
+                                                    <td id="gsm-traffic-lastweek">320.04</td>
+                                                    <td id="gsm-day-traffic-lastweek">23.92</td>
+                                                    <td id="gsm-night-traffic-lastweek">23.84</td>
+                                                    <td id="gsm-6rushhour-wlp-lastweek">0.50</td>
+                                                    <td id="gsm-6rushhour-wlp-cap-lastweek">0.50</td>
+                                                    <td id="gsm-package-traffic-lastweek">12.54</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>昨日值 </td>
+                                                    <td id="gsm-caixin-yesterday">511.66</td>
+                                                    <td id="gsm-caixin-wcp-yesterday">99.99</td>
+                                                    <td id="gsm-duanxin-yesterday">1.26</td>
+                                                    <td id="gsm-duanxin-wcp-yesterday">99.99</td>
+                                                    <td id="gsm-traffic-yesterday">319.85</td>
+                                                    <td id="gsm-day-traffic-yesterday">23.90</td>
+                                                    <td id="gsm-night-traffic-yesterday">23.65</td>
+                                                    <td id="gsm-6rushhour-wlp-yesterday">0.48</td>
+                                                    <td id="gsm-6rushhour-wlp-cap-yesterday">0.48</td>
+                                                    <td id="gsm-package-traffic-yesterday">13.33</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>工作日</td>
+                                                    <td>
+                                                        <input type="text" name="gsm-caixin" id="gsm-caixin" class="gsm" size="6"/>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="gsm-caixin-wcp" id="gsm-caixin-wcp" class="gsm" size="5">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="gsm-duanxin" id="gsm-duanxin" class="gsm" size="5">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="gsm-duanxin-wcp" id="gsm-duanxin-wcp" class="gsm" size="5">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="gsm-traffic" id="gsm-traffic" class="gsm" size="6">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="gsm-day-traffic" id="gsm-day-traffic" class="gsm" size="5">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="gsm-night-traffic" id="gsm-night-traffic" class="gsm" size="5">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="gsm-6rushhour-wlp" id="gsm-6rushhour-wlp" class="gsm" size="5">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="gsm-6rushhour-wlp-cap" id="gsm-6rushhour-wlp-cap" class="gsm" size="5">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="gsm-package-traffic" id="gsm-package-traffic" class="gsm" size="5">
+                                                    </td>
+                                                </tr>
+                                                <tr class="success">
+                                                    <td>波动</td>
+                                                    <td id="gsm-caixin-fluctuate"></td>
+                                                    <td id="gsm-caixin-wcp-fluctuate"></td>
+                                                    <td id="gsm-duanxin-fluctuate"></td>
+                                                    <td id="gsm-duanxin-wcp-fluctuate"></td>
+                                                    <td id="gsm-traffic-fluctuate"></td>
+                                                    <td id="gsm-day-traffic-fluctuate"></td>
+                                                    <td id="gsm-night-traffic-fluctuate"></td>
+                                                    <td id="gsm-6rushhour-wlp-fluctuate"></td>
+                                                    <td id="gsm-6rushhour-wlp-cap-fluctuate"></td>
+                                                    <td id="gsm-package-traffic-fluctuate"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <button id="saveGsm" type="button" class="btn btn-danger pull-right">保存大值班数据</button>
+                                        <button id="analyzeGsm" type="button" class="btn btn-primary">分析超标原因</button>
+                                        <br><br><br>
+                                        <form role="form" id="gsm-list" hidden>
+                                            <div class="form-group">
+                                                <label for="gsm-reason">超标原因</label>
+                                                <textarea rows="10" cols="20" class="form-control" id="gsm-reason" name="gsm-reason"></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-danger" id="saveGsmReason">保存原因至数据库</button>
+                                            <!-- <span class="label label-warning pull-right" id="gsm-count">还可以输入<span id="gsm-count-number"></span>个字符</span> -->
+                                            <span class="label label-warning pull-right" id="gsm-count"></span>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane" id="tdkpi">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="5">上海网络运行日KPI情况（每日7:30前上报）</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="warning">
+                                                    <td>2017-3-9</td>
+                                                    <td colspan="4">TD KPI情况</td>
+                                                </tr>
+                                                <tr class="active">
+                                                    <td>今日周四</td>
+                                                    <td>VLR中TD-SCDMA网络位置区下存储的用户数</td>
+                                                    <td>TD系统语音话务量(RNC)</td>
+                                                    <td>TD系统视频话务量(RNC)</td>
+                                                    <td>TD系统分组域业务流量(RNC)</td>
+                                                </tr>
+                                                <tr class="warning">
+                                                    <td>单位</td>
+                                                    <td>万户</td>
+                                                    <td>万爱尔兰</td>
+                                                    <td>爱尔兰</td>
+                                                    <td>GBYTE</td>
+                                                </tr>
+                                                <tr class="danger">
+                                                    <td>门限</td>
+                                                    <td>±10%</td>
+                                                    <td>±30%</td>
+                                                    <td>±50%</td>
+                                                    <td>±50%</td>
+                                                </tr>
+                                                <tr class="info">
+                                                    <td>工作日日常值（3月参考值）</td>
+                                                    <td id="td-number-weekday">96.84</td>
+                                                    <td id="td-voiceTraffic-weekday">9.57</td>
+                                                    <td id="td-videoTraffic-weekday">0.40</td>
+                                                    <td id="td-packageTraffic-weekday">5232.85</td>
+                                                </tr>
+                                                <tr class="info">
+                                                    <td>周六日常值（3月参考值）</td>
+                                                    <td id="td-number-saturday">100.20</td>
+                                                    <td id="td-voiceTraffic-saturday">9.03</td>
+                                                    <td id="td-videoTraffic-saturday">0.40</td>
+                                                    <td id="td-packageTraffic-saturday">5464.92</td>
+                                                </tr>
+                                                <tr class="info">
+                                                    <td>周日日常值（3月参考值）</td>
+                                                    <td id="td-number-sunday">100.26</td>
+                                                    <td id="td-voiceTraffic-sunday">8.53</td>
+                                                    <td id="td-videoTraffic-sunday">0.45</td>
+                                                    <td id="td-packageTraffic-sunday">4958.32</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>上周同期值 </td>
+                                                    <td id="td-number-lastweek">100.82</td>
+                                                    <td id="td-voiceTraffic-lastweek">10.33</td>
+                                                    <td id="td-videoTraffic-lastweek">0.31</td>
+                                                    <td id="td-packageTraffic-lastweek">5316.37</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>昨日值 </td>
+                                                    <td id="td-number-yesterday">94.42</td>
+                                                    <td id="td-voiceTraffic-yesterday">9.41</td>
+                                                    <td id="td-videoTraffic-yesterday">0.21</td>
+                                                    <td id="td-packageTraffic-yesterday">5652.49</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>工作日</td>
+                                                    <td><input type="text" name="td-number" id="td-number" class="td"></td>
+                                                    <td><input type="text" name="td-voiceTraffic" id="td-voiceTraffic" class="td"></td>
+                                                    <td><input type="text" name="td-videoTraffic" id="td-videoTraffic" class="td"></td>
+                                                    <td><input type="text" name="td-packageTraffic" id="td-packageTraffic" class="td"></td>
+                                                </tr>
+                                                <tr class="success">
+                                                    <td>波动</td>
+                                                    <td id="td-number-fluctuate"></td>
+                                                    <td id="td-voiceTraffic-fluctuate"></td>
+                                                    <td id="td-videoTraffic-fluctuate"></td>
+                                                    <td id="td-packageTraffic-fluctuate"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <button id="saveTd" type="button" class="btn btn-danger pull-right">保存大值班数据</button>
+                                        <button id="analyzeTd" type="button" class="btn btn-primary">分析超标原因</button>
+                                        <br><br><br>
+                                        <form role="form" id="td-list" hidden>
+                                            <div class="form-group">
+                                                <label for="td-reason">超标原因</label>
+                                                <textarea rows="10" cols="20" class="form-control" id="td-reason" name="td-reason"></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-danger" id="saveTdReason">保存原因至数据库</button>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane" id="ltekpi">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="6">上海网络运行日KPI情况（每日7:30前上报）</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="warning">
+                                                    <td>2017-3-9</td>
+                                                    <td colspan="5">LTE KPI情况</td>
+                                                </tr>
+                                                <tr class="active">
+                                                    <td>今日周四</td>
+                                                    <td>吞吐量</td>
+                                                    <td>MME用户数</td>
+                                                    <td>无线接通率</td>
+                                                    <td>无线掉线率</td>
+                                                    <td>排除用户原因附着成功率</td>
+                                                </tr>
+                                                <tr class="warning">
+                                                    <td>单位</td>
+                                                    <td>TB</td>
+                                                    <td>万户</td>
+                                                    <td>%</td>
+                                                    <td>%</td>
+                                                    <td>%</td>
+                                                </tr>
+                                                <tr class="danger">
+                                                    <td>门限</td>
+                                                    <td>±25%</td>
+                                                    <td>±15%</td>
+                                                    <td>上下浮动0.5个百分点</td>
+                                                    <td>上下浮动0.5个百分点</td>
+                                                    <td>上下浮动1个百分点</td>
+                                                </tr>
+                                                <tr class="info">
+                                                    <td>工作日日常值（3月参考值）</td>
+                                                    <td id="lte-traffic-weekday">411.21</td>
+                                                    <td id="lte-number-weekday">1052.13</td>
+                                                    <td id="lte-wcp-weekday">99.48</td>
+                                                    <td id="lte-wlp-weekday">1.90</td>
+                                                    <td id="lte-attach-weekday">99.61</td>
+                                                </tr>
+                                                <tr class="info">
+                                                    <td>周六日常值（3月参考值）</td>
+                                                    <td id="lte-traffic-saturday">424.03</td>
+                                                    <td id="lte-number-saturday">1095.74</td>
+                                                    <td id="lte-wcp-saturday">99.62</td>
+                                                    <td id="lte-wlp-saturday">1.87</td>
+                                                    <td id="lte-attach-saturday">99.62</td>
+                                                </tr>
+                                                <tr class="info">
+                                                    <td>周日日常值（3月参考值）</td>
+                                                    <td id="lte-traffic-sunday">366.76</td>
+                                                    <td id="lte-number-sunday">1038.50</td>
+                                                    <td id="lte-wcp-sunday">99.64</td>
+                                                    <td id="lte-wlp-sunday">1.82</td>
+                                                    <td id="lte-attach-sunday">99.62</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>上周同期值 </td>
+                                                    <td id="lte-traffic-lastweek">498.04</td>
+                                                    <td id="lte-number-lastweek">1209.13</td>
+                                                    <td id="lte-wcp-lastweek">99.57</td>
+                                                    <td id="lte-wlp-lastweek">2.19</td>
+                                                    <td id="lte-attach-lastweek">99.37</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>昨日值 </td>
+                                                    <td id="lte-traffic-yesterday">530.45</td>
+                                                    <td id="lte-number-yesterday">1250.09</td>
+                                                    <td id="lte-wcp-yesterday">99.57</td>
+                                                    <td id="lte-wlp-yesterday">2.24</td>
+                                                    <td id="lte-attach-yesterday">99.57</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>工作日</td>
+                                                    <td><input type="text" name="lte-traffic" id="lte-traffic" class="lte"></td>
+                                                    <td><input type="text" name="lte-number" id="lte-number" class="lte"></td>
+                                                    <td><input type="text" name="lte-wcp" id="lte-wcp" class="lte"></td>
+                                                    <td><input type="text" name="lte-wlp" id="lte-wlp" class="lte"></td>
+                                                    <td><input type="text" name="lte-attach" id="lte-attach" class="lte"></td>
+                                                </tr>
+                                                <tr class="success">
+                                                    <td>波动</td>
+                                                    <td id="lte-traffic-fluctuate"></td>
+                                                    <td id="lte-number-fluctuate"></td>
+                                                    <td id="lte-wcp-fluctuate"></td>
+                                                    <td id="lte-wlp-fluctuate"></td>
+                                                    <td id="lte-attach-fluctuate"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <button id="saveLte" type="button" class="btn btn-danger pull-right">保存大值班数据</button>
+                                        <button id="analyzeLte" type="button" class="btn btn-primary">分析超标原因</button>
+                                        <br><br><br>
+                                        <form role="form" id="lte-list" hidden>
+                                            <div class="form-group">
+                                                <label for="lte-reason">超标原因</label>
+                                                <textarea rows="10" cols="20" class="form-control" id="lte-reason" name="lte-reason"></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-danger" id="saveLteReason">保存原因至数据库</button>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane" id="cmnetkpi">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="3">上海网络运行日KPI情况（每日7:30前上报）</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="active">
+                                                    <td></td>
+                                                    <td>CMNET地市入流量</td>
+                                                    <td rowspan="3" style="vertical-align: middle;text-align: center;">异常原因说明</td>
+                                                </tr>
+                                                <tr class="warning">
+                                                    <td>单位</td>
+                                                    <td>TB</td>
+                                                </tr>
+                                                <tr class="danger">
+                                                    <td>门限</td>
+                                                    <td>±15%</td>
+                                                </tr>
+                                                <tr>
+                                                    <td rowspan="2" style="vertical-align: middle;text-align: center;">2017/03/01 周三</td>
+                                                    <td>661.75</td>
+                                                    <td rowspan="2" style="vertical-align: middle;text-align: center;"><button type="button" class="btn btn-success" id="btn-cmnet-20170301"><i class="glyphicon glyphicon-search icon-white"></i> 点击查看原因分析</button></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>11.88%</td>
+                                                </tr>
+                                                <tr>
+                                                    <td rowspan="2" style="vertical-align: middle;text-align: center;">2017/03/02 周四</td>
+                                                    <td>642.51</td>
+                                                    <td rowspan="2" style="vertical-align: middle;text-align: center;"><button type="button" class="btn btn-success" id="btn-cmnet-20170302"><i class="glyphicon glyphicon-search icon-white"></i> 点击查看原因分析</button></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>8.63%</td>
+                                                </tr>
+                                                <tr>
+                                                    <td rowspan="2" style="vertical-align: middle;text-align: center;">2017/03/03 周五</td>
+                                                    <td>632.93</td>
+                                                    <td rowspan="2" style="vertical-align: middle;text-align: center;"><button type="button" class="btn btn-success" id="btn-cmnet-20170303"><i class="glyphicon glyphicon-search icon-white"></i> 点击查看原因分析</button></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>7.01%</td>
+                                                </tr>
+                                                <tr>
+                                                    <td rowspan="2" style="vertical-align: middle;text-align: center;">2017/03/04 周六</td>
+                                                    <td>719.34</td>
+                                                    <td rowspan="2" style="vertical-align: middle;text-align: center;"><button type="button" class="btn btn-success" id="btn-cmnet-20170304"><i class="glyphicon glyphicon-search icon-white"></i> 点击查看原因分析</button></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>5.43%</td>
+                                                </tr>
+                                                <tr>
+                                                    <td rowspan="2" style="vertical-align: middle;text-align: center;">2017/03/05 周日</td>
+                                                    <td>763.55</td>
+                                                    <td rowspan="2" style="vertical-align: middle;text-align: center;"><button type="button" class="btn btn-success" id="btn-cmnet-20170305"><i class="glyphicon glyphicon-search icon-white"></i> 点击查看原因分析</button></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="success">15.51%</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="tab-pane" id="voltekpi">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="6">上海网络运行日KPI情况（每日7:30前上报）</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="active">
+                                                    <td></td>
+                                                    <td>VoLTE注册用户数</td>
+                                                    <td>IMS初始注册成功率</td>
+                                                    <td>VoLTE话务量</td>
+                                                    <td>eSRVCC切换成功率</td>
+                                                    <td rowspan="3" style="vertical-align: middle;text-align: center;">异常原因说明</td>
+                                                </tr>
+                                                <tr class="warning">
+                                                    <td>单位</td>
+                                                    <td>万户</td>
+                                                    <td>%</td>
+                                                    <td>万erl</td>
+                                                    <td>%</td>
+                                                </tr>
+                                                <tr class="danger">
+                                                    <td>门限</td>
+                                                    <td>±30%</td>
+                                                    <td>&lt;95%</td>
+                                                    <td>±30%</td>
+                                                    <td>&lt;90%</td>
+                                                </tr>
+                                                <tr>
+                                                    <td rowspan="2" style="vertical-align: middle;text-align: center;">2017/03/01 周三</td>
+                                                    <td>107.95</td>
+                                                    <td>96.80</td>
+                                                    <td>100.26</td>
+                                                    <td>93.81</td>
+                                                    <td rowspan="2" style="vertical-align: middle;text-align: center;"><button type="button" class="btn btn-success" id="btn-volte-20170301"><i class="glyphicon glyphicon-search icon-white"></i> 点击查看原因分析</button></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="success">34.55%</td>
+                                                    <td>96.80</td>
+                                                    <td class="success">38.59%</td>
+                                                    <td>93.81</td>
+                                                </tr>
+                                                <tr>
+                                                    <td rowspan="2" style="vertical-align: middle;text-align: center;">2017/03/02 周四</td>
+                                                    <td>106.30</td>
+                                                    <td>97.01</td>
+                                                    <td>114.78</td>
+                                                    <td>93.78</td>
+                                                    <td rowspan="2" style="vertical-align: middle;text-align: center;"><button type="button" class="btn btn-success" id="btn-volte-20170302"><i class="glyphicon glyphicon-search icon-white"></i> 点击查看原因分析</button></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="success">32.50%</td>
+                                                    <td>97.01</td>
+                                                    <td class="success">58.66%</td>
+                                                    <td>93.78</td>
+                                                </tr>
+                                                <tr>
+                                                    <td rowspan="2" style="vertical-align: middle;text-align: center;">2017/03/03 周五</td>
+                                                    <td>107.22</td>
+                                                    <td>97.09</td>
+                                                    <td>116.07</td>
+                                                    <td>93.78</td>
+                                                    <td rowspan="2" style="vertical-align: middle;text-align: center;"><button type="button" class="btn btn-success" id="btn-volte-20170303"><i class="glyphicon glyphicon-search icon-white"></i> 点击查看原因分析</button></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="success">33.64%</td>
+                                                    <td>97.09</td>
+                                                    <td class="success">60.44%</td>
+                                                    <td>93.78</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <input type="hidden" id="dtp_input1" value="" /><br/>
-            </div>
-            <div class="form-group">
-                <label for="dtp_input2" class="col-md-2 control-label">Date Picking</label>
-                <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    <input class="form-control" size="16" type="text" value="" readonly>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                </div>
-                <input type="hidden" id="dtp_input2" value="" /><br/>
-            </div>
-            <div class="form-group">
-                <label for="dtp_input3" class="col-md-2 control-label">Time Picking</label>
-                <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-                    <input class="form-control" size="16" type="text" value="" readonly>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                </div>
-                <input type="hidden" id="dtp_input3" value="" /><br/>
-            </div>
-        </fieldset>
-    </form>
-</div>
+
             </div>
         </div>
     </div>
