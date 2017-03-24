@@ -93,13 +93,52 @@ function docReady() {
     //按钮“所有文件上传成功后点击生成数据”
     $("#calculatedzb").click(function(e) {
         e.preventDefault();
-        $("#kpiOverall").show();
         //在这里我们模拟数据导入，这4个数据是我们自己瞎编的，真实情况下，应该从导入的excel中提取
         $("#number").val("120.44").trigger("change");
         $("#ims").val("97.29").trigger("change");
         $("#traffic").val("129.25").trigger("change");
         $("#esrvcc").val("93.77").trigger("change");
     });
+
+    //备注初始化，去后端读取备注的内容
+    //$(".beizhu").html("");
+    //备注按钮
+    $("#beizhu").click(function (e){
+        e.preventDefault();
+        var temp = $("#beizhu-html").text();
+        $("#beizhu-contents").val(temp);
+        $("#beizhu-modal").modal('show');
+    });
+    $("#beizhu-submit").click(function(e) {
+        e.preventDefault();
+        //把内容通过ajax保存到后端数据库。
+        var content = $("#beizhu-contents").val();
+        $(".beizhu").html("<p class='text-danger' id='beizhu-html'>" + content + "</p>");
+        //完成以后在前端，把内容显示出来。
+        $("#beizhu-modal").modal('hide');
+    });
+
+    //补报按钮
+    var getBubao = false;//这个数据是取自数据库的，是否需要补报KPI
+    if (getBubao == true) {
+        $("#bubao").addClass("btn-danger").removeClass("btn-default");
+    } 
+    else {
+        $("#bubao").addClass("btn-default").removeClass("btn-danger");
+    }
+    $("#bubao").click(function(e) {
+        e.preventDefault();
+        $(this).toggleClass("btn-default").toggleClass("btn-danger");
+        getBubao = !getBubao;
+        //ajax把getBubao这个数据提交到后端，成功以后，执行下面这一步
+        if (getBubao == true) {
+            $("#xububao").after('<span class="badge pull-right" title="今日KPI需补报原因分析" data-toggle="tooltip" data-placement="right">!</span>');
+        }
+        else {
+            $("#xububao").siblings(".badge").remove();
+        }
+    });
+
 
 
     /***
