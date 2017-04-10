@@ -3,3 +3,4 @@ Big thanks for charisma!
 Based on Bootstrap framework, so the style is twitter-like.
 Using several jquery-related plugins to enrich contents.
 Any question, please contact me jiazhenghao@sh.chinamobile.com
+This is the version 1.4.10
