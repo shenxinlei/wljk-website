@@ -4,7 +4,7 @@ jQuery(document).ready(function() {
 
     new WOW().init();
     
-	var countTo = "2017/01/01";
+	var countTo = "2017/06/01";
 	$('.timer').countdown(countTo, function(event) {
 		$(this).find('.days').text(event.offset.totalDays);
 		$(this).find('.hours').text(event.offset.hours);
